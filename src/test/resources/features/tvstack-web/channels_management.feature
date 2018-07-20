@@ -30,3 +30,9 @@ Feature: Manage Channels
     And  I will select any Gender option 'userInput' corresponding to Channels 'userInput2'
     Then  I will click Next: Scenarios button
     Then i should see Scenarios page with Create new scenario button
+    
+ Scenario: To test validation message without selecting any Channels
+    Given I'm on Channels setup page
+    Then I will uncheck all channels options
+    Then I will click Next: Scenarios button
+    And I should see message 'Please select at least 1 channel buying audience and format to proceed'
