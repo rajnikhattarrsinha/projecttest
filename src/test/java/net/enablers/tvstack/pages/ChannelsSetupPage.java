@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.inject.spi.Elements;
 
@@ -34,6 +36,7 @@ public class ChannelsSetupPage extends PageObject
 			 if(buyingAudience.trim() !="")
 			 {
 				 element(listboxbuyingAudience(ChannelName)).selectByVisibleText(buyingAudience);
+				 WaitForPageLoad(20);
 			 }
 			 
 		 }
@@ -47,7 +50,8 @@ public class ChannelsSetupPage extends PageObject
 			 //@ select Second Length format if input is not blank.
 			 if(SecondLengthformat.trim() !="")
 			 {
-				 element(listboxbuyingAudience(ChannelName)).selectByVisibleText(SecondLengthformat);
+				 element(listboxSecondLengthformat(ChannelName)).selectByVisibleText(SecondLengthformat);
+				 WaitForPageLoad(20);
 			 }
 		 }
 	 }
@@ -64,7 +68,7 @@ public class ChannelsSetupPage extends PageObject
 	 
 	 public By listboxSecondLengthformat(String ChannelsName)
 	 {
-		 return By.xpath("//td[text()='TV']/parent::tr/child::td[4]//select");
+		 return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[4]//select");
 	 }
 	 
 	 public By buttonName(String ButtonText)
@@ -75,6 +79,7 @@ public class ChannelsSetupPage extends PageObject
 	 public void clickonNextScenariosbutton()
 	 {
 		 element(buttonName("Next: Scenarios")).click();
+		 WaitForPageLoad(120);
 	 }
 	 
 	 public void verifyScenariosPage()
@@ -93,10 +98,13 @@ public class ChannelsSetupPage extends PageObject
 		 if(ChannelName.trim()!="")
 		 {
 			 //@ check by default behaviour of checkbox if it is not checked then only it will click.
+			 JavascriptExecutor executor = (JavascriptExecutor)getDriver();
 			 if(!element(checkboxChannels(ChannelName)).isSelected())
 			 {
 				 //@ channel checkbox selection.
 				 element(checkboxChannels(ChannelName)).click();
+				 executor.executeScript("arguments[0].focus();", element(checkboxChannels(ChannelName)));
+                 executor.executeScript("arguments[0].click();", element(checkboxChannels(ChannelName)));
 			 }
 			 
 		 }
@@ -106,11 +114,25 @@ public class ChannelsSetupPage extends PageObject
 	 public void selectAgeforYoutubeChannel(String Age)
 	 {
 		 listboxYoutubeAge.selectByVisibleText(Age);
+		 WaitForPageLoad(20);
 	 }
 	 
 	 public void selectGender(String Gender,String Channel)
 	 {
 		 element(listboxGender(Channel)).selectByVisibleText(Gender);
+		 WaitForPageLoad(20);
+	 }
+	 
+	 public void selectMinAge(String MinAge,String Channel)
+	 {
+		 element(listboxMinAge(Channel)).selectByVisibleText(MinAge);
+		 WaitForPageLoad(20);
+	 }
+	 
+	 public void selectMaxAge(String MaxAge,String Channel)
+	 {
+		 element(listboxMaxAge(Channel)).selectByVisibleText(MaxAge);
+		 WaitForPageLoad(20);
 	 }
 	 
 	 public By listboxGender(String ChannelsName)
@@ -126,23 +148,82 @@ public class ChannelsSetupPage extends PageObject
 		 
 	 }
 	 
+	 public By listboxMinAge(String ChannelsName)
+	 {
+		 return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[1]//select");
+	 }
+	 
+	 public By listboxMaxAge(String ChannelsName)
+	 {
+		 return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[2]//select");
+	 }
+	 
 	 public void verifyMessageonHeader()
 	 {
 		 textvalidationMessage.withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
 	 }
 	 
+	 public void clickOnNextChannelsbuttonandverifyChannelPage()
+	 {
+		 element(buttonName("Next: Channels")).click();
+		 WaitForPageLoad(20);
+	 }
+	 
 	 public void uncheckAllChannelcheckbox()
 	 {
+		 JavascriptExecutor executor = (JavascriptExecutor)getDriver();
 		 List<WebElementFacade> matchingWebElements = findAll(By.xpath("//input[contains(@id,'Checkbox')]"));
 		 int Count = matchingWebElements.size();
 		 for(int i=0;i<Count;i++)
 		 {
 			 if(matchingWebElements.get(i).isSelected())
 			 {
-				 matchingWebElements.get(i).click();
+				 executor.executeScript("arguments[0].focus();", matchingWebElements.get(i));
+                 executor.executeScript("arguments[0].click();", matchingWebElements.get(i));
 			 }
-		 }
-				 
-		 
+		 } 
+	 }
+	 
+	 public void WaitForPageLoad(int timeoutinsecond)
+	 {
+		//@ Wait for browser Ready state.
+		 JavascriptExecutor executor = (JavascriptExecutor)getDriver();
+		try
+        {
+			for(int i =0;i<timeoutinsecond;i++)
+			{
+	          String browserState = String.valueOf(executor.executeScript("return document.readyState"));
+	          if(browserState.equals("complete"))
+	          {
+	        	  break;
+	          }
+	          else
+	          {
+	        	  waitABit(1000);
+	          }
+			}
+            
+        }
+        catch (Exception e)
+        {}
+		
+		//@ Wait for Spinner
+		
+		try
+        {
+            for (int i = 0; i < timeoutinsecond; i++)
+            {
+                WebElement elementajax = getDriver().findElement(By.xpath("//*[contains(@class,'-Spinner--')]"));
+                if(elementajax.isDisplayed())
+                Thread.sleep(1000);
+                else
+                {
+                	Thread.sleep(1000);
+                	break;
+                }
+            }
+        }
+        catch (Exception e)
+        { }
 	 }
 }
