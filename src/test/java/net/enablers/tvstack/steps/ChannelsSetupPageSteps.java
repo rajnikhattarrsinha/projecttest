@@ -2,18 +2,36 @@ package net.enablers.tvstack.steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelsSetupPage;
+import net.enablers.tvstack.pages.NewPlanSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
+import net.thucydides.core.annotations.Steps;
 
 public class ChannelsSetupPageSteps 
 {
-	ChannelsSetupPage channelsSetupPage;
+	 ChannelsSetupPage channelsSetupPage;
 	 AppliEyes appliEyes;
+	 
+    @Steps
+    TvstackLandingPageSteps landingPageSteps;
+
+    @Steps
+    NewPlanSetupPageSteps planSetupPageSteps;
+    
+    @Steps
+    AudienceSetupPageSteps audienceSetupPageSteps;
+	 
 	 
 	@Given("^I'm on Channels setup page$")
 	public void i_m_on_Channels_setup_page() throws Throwable 
 	{
-	  
+	  landingPageSteps.userHasChosenToCreateNewPlan();
+	  planSetupPageSteps.iAddPlanDetailsAndClickNextButton();
+	  audienceSetupPageSteps.iClickOnCreateNewAudience();
+	  audienceSetupPageSteps.iCreateNewAudienceAndSave();
+	  channelsSetupPage.clickOnNextChannelsbuttonandverifyChannelPage();
+      appliEyes.capture("User is landed on Channels setup page.");
 	}
 
 	@Then("^I should see multiple channels options$")
@@ -24,7 +42,7 @@ public class ChannelsSetupPageSteps
 	}
 
 	@Then("^I will select Channel '(.*)' checkbox$")
-	public void i_will_select_Channel_TV_checkbox(String Channelname) throws Throwable 
+	public void i_will_select_Channel_checkbox(String Channelname) throws Throwable 
 	{
 		channelsSetupPage.checkChannelscheckbox(Channelname);
 		appliEyes.capture("Channel '"+Channelname+"' checkbox checked successfully.");
@@ -40,7 +58,7 @@ public class ChannelsSetupPageSteps
 	@Then("^I will select any Second Length/Format option '(.*)' corresponding to Channels '(.*)'$")
 	public void i_will_select_any_Second_Length_Format_option_userInput_corresponding_to_Channels_userInput(String secondlengthFormatoption,String ChannelName) throws Throwable 
 	{
-		channelsSetupPage.selectClosestbuyingAudienceoption(ChannelName,secondlengthFormatoption);
+		channelsSetupPage.selectSecondLengthFormatoption(ChannelName,secondlengthFormatoption);
 		appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+ChannelName+"'.");
 	}
 
@@ -55,19 +73,9 @@ public class ChannelsSetupPageSteps
 	public void i_will_select_any_Gender_option_userInput_corresponding_to_Channels_userInput(String Gender,String Channel) throws Throwable 
 	{
 		channelsSetupPage.selectGender(Gender, Channel);
+		appliEyes.capture("Gender '"+Gender+"' is successfully selected for Channel '"+Channel+"'.");
 	}
 
-	@Then("^I will select any Min Age option 'userInput' corresponding to Channels 'userInput(\\d+)'$")
-	public void i_will_select_any_Min_Age_option_userInput_corresponding_to_Channels_userInput(int arg1) throws Throwable 
-	{
-
-	}
-
-	@Then("^I will select any Max Age option 'userInput' corresponding to Channels 'userInput(\\d+)'$")
-	public void i_will_select_any_Max_Age_option_userInput_corresponding_to_Channels_userInput(int arg1) throws Throwable 
-	{
-
-	}
 
 	@Then("^I will click Next: Scenarios button$")
 	public void i_will_click_Next_Scenarios_button() throws Throwable 
@@ -95,5 +103,21 @@ public class ChannelsSetupPageSteps
 	{
 		channelsSetupPage.verifyMessageonHeader();
 		appliEyes.capture("'Please select at least 1 channel buying audience and format to proceed' message displayed.");
+	}
+	
+
+	@Then("^I will select any Min Age option '(.*)' corresponding to Channels '(.*)'$")
+	public void i_will_select_any_Min_Age_option_corresponding_to_Channels(String MinAge,String Channel) throws Throwable 
+	{
+		channelsSetupPage.selectMinAge(MinAge, Channel);
+		appliEyes.capture("MinAge '"+MinAge+"' is successfully selected for Channel '"+Channel+"'.");
+	}
+
+	@Then("^I will select any Max Age option '(.*)' corresponding to Channels '(.*)'$")
+	public void i_will_select_any_Max_Age_option_corresponding_to_Channels(String MaxAge,String Channel) throws Throwable 
+	{
+		channelsSetupPage.selectMaxAge(MaxAge, Channel);
+		appliEyes.capture("MaxAge '"+MaxAge+"' is successfully selected for Channel '"+Channel+"'.");
+
 	}
 }
