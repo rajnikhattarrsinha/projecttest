@@ -32,6 +32,9 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
         	homePage.openUrl(conf.getString("webdriver.base.url") + "logout");
             homePage.openUrl(conf.getString("webdriver.base.url"));
         }
+        //* As per serenity. Properties file browser width and height is hardcoded,
+        //* but on standard practice execution machine size should be vary so it’s better to write a maximize the code.
+        getDriver().manage().window().maximize();
         adminHomePage.loginAs(username);
         homePage.verifyPageHeaderIsCorrect();
         appliEyes.capture("Landed on landing page");
