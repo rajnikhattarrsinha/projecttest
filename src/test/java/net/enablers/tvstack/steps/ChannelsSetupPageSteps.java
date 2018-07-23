@@ -11,6 +11,7 @@ import net.thucydides.core.annotations.Steps;
 public class ChannelsSetupPageSteps 
 {
 	 ChannelsSetupPage channelsSetupPage;
+	 AudienceSetupPage audienceSetupPage;
 	 AppliEyes appliEyes;
 	 
     @Steps
@@ -28,10 +29,10 @@ public class ChannelsSetupPageSteps
 	{
 	  landingPageSteps.userHasChosenToCreateNewPlan();
 	  planSetupPageSteps.iAddPlanDetailsAndClickNextButton();
-	  audienceSetupPageSteps.iClickOnCreateNewAudience();
-	  audienceSetupPageSteps.iCreateNewAudienceAndSave();
+	  channelsSetupPage.WaitForPageLoad(60);
+	  audienceSetupPage.iWillCreateNewAudienceandSavetheAudience();
 	  channelsSetupPage.clickOnNextChannelsbuttonandverifyChannelPage();
-      appliEyes.capture("User is landed on Channels setup page.");
+      	  appliEyes.capture("User is landed on Channels setup page.");
 	}
 
 	@Then("^I should see multiple channels options$")
