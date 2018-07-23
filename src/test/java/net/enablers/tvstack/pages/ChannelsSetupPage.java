@@ -187,6 +187,7 @@ public class ChannelsSetupPage extends PageObject
 	 public void WaitForPageLoad(int timeoutinsecond)
 	 {
 		//@ Wait for browser Ready state.
+		 waitABit(100);
 		 JavascriptExecutor executor = (JavascriptExecutor)getDriver();
 		try
         {
@@ -206,24 +207,43 @@ public class ChannelsSetupPage extends PageObject
         }
         catch (Exception e)
         {}
-		
-		//@ Wait for Spinner
-		
+		//@ Wait for Loader
 		try
         {
             for (int i = 0; i < timeoutinsecond; i++)
             {
-                WebElement elementajax = getDriver().findElement(By.xpath("//*[contains(@class,'-Spinner--')]"));
+                WebElement elementajax = getDriver().findElement(By.xpath("//*[@aria-label='Loading']"));
                 if(elementajax.isDisplayed())
-                Thread.sleep(1000);
+                {
+                	waitABit(1000);
+                }
                 else
                 {
-                	Thread.sleep(1000);
                 	break;
                 }
             }
         }
         catch (Exception e)
         { }
-	 }
+		
+		//@ Wait for Spinner
+		try
+        {
+            for (int i = 0; i < timeoutinsecond; i++)
+            {
+                WebElement elementajax = getDriver().findElement(By.xpath("//*[contains(@class,'Spinner')]"));
+                if(elementajax.isDisplayed())
+                {
+                	waitABit(1000);
+                }
+                else
+                {
+                	break;
+                }
+            }
+        }
+        catch (Exception e)
+        { }
+		
+	}
 }
