@@ -15,6 +15,7 @@ import net.thucydides.core.pages.PageObject;
 
 public class AudienceSetupPage extends PageObject {
 
+    ChannelsSetupPage channelsSetupPage;
     ProjectRequestModel plan = new ProjectRequestModel();
 
     @FindBy(xpath = "//h1[contains(.,'Audiences')]")
@@ -124,5 +125,37 @@ public class AudienceSetupPage extends PageObject {
     public void checkAudienceDeletedSuccessfully() {
         //the row containing the audience in the table should be deleted
         withTimeoutOf(300, TimeUnit.SECONDS).waitForAbsenceOf("//table/tbody");
+    }
+    
+    public void iWillCreateNewAudienceandSavetheAudience()
+    {
+    	//@ wait for new audience page.
+    	element(newAudieceButton).withTimeoutOf(60, TimeUnit.SECONDS).shouldBeVisible();
+        //Setting this variable so we can mimic the drag and drop on new audience page later on
+        ((JavascriptExecutor) getDriver()).executeScript("window.APP_ENV = 'test';");
+        newAudieceButton.waitUntilClickable().then().click();
+       //@ Hardcore wait removed, Dynamic wait added which is responsible for browser ready state
+        channelsSetupPage.WaitForPageLoad(60);
+        //@ driver click has some internal wait, after performing click action
+        //@ again we have created a element which was not in htmldom so previos line of code
+        //@ throw error.
+        WebElement demographicsFolder = $("//div[span='Demographics']");
+        withTimeoutOf(200, TimeUnit.SECONDS).waitFor(demographicsFolder).then().click();
+        WebElement genderFolder = $("//div[span='Sex']");
+        waitFor(genderFolder).then().click();
+        WebElement genderContainer = $("//div[span='Gender']");
+        waitFor(genderContainer).then().click();
+        WebElement femaleCandidate = $("//div[span='Female']");
+        femaleCandidate.click();
+        channelsSetupPage.WaitForPageLoad(60);
+        Serenity.setSessionVariable("female_query").to("((Gender [Female]))");
+        previewZone.shouldContainText((String)Serenity.sessionVariableCalled("female_query"));
+        Serenity.setSessionVariable("new_audience_name").to("Auto_audience" + RandomGenerator.randomAlphanumeric(3));
+        newAudieceInputField.type((String)Serenity.sessionVariableCalled("new_audience_name"));
+        //@ save the Audience
+        //@ Remove Hardcoded Wait
+        $("//button[contains(span,'Save')]").withTimeoutOf(50, TimeUnit.SECONDS).waitUntilClickable().click();
+       // $("//button[contains(span,'Save')]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
+        channelsSetupPage.WaitForPageLoad(60);
     }
 }
