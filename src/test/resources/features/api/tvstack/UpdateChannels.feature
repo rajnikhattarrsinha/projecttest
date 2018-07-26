@@ -1,7 +1,7 @@
 Feature: API - Update existing channels
 
   Background:
-    Given Market Admin user "Market.admin2@dentsuaegis.com" log into Admin to get OktaToken
+    Given Market Admin user "client.admin1@dentsuaegis.com" log into Admin to get OktaToken
     When User requests for Create buying audience
       | channelId | name         | filter               | formattedFilter                | filterMap              |
       | TV        | Demographics | ((field("26") == 6)) | ((Age group recode 1 [55-64])) | Demographics_filterMap |

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIOException;
 
 public class HomePage extends PageObject {
 
@@ -46,7 +47,6 @@ public class HomePage extends PageObject {
     @FindBy(xpath = "//*[@class=\'Polaris-Card']/*/ul/li[1]//h3")
     WebElementFacade firstExistingPlanName;
 
-
     @FindBy(xpath = "//p[@class]")
     WebElementFacade tvStackClientText;
 
@@ -76,11 +76,16 @@ public class HomePage extends PageObject {
     public By getDeleteButtonForPlan(String plan) {
         return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//..//..//..//button/span/span[text() = 'Delete']");
     }
-    
+    public By getDefinitiveButtonForPlan(String plan) {
+        return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//..//..//..//button/span/span[text() = 'Set as Definitive']");
+    }
+    public By getRemoveDefinitiveButtonForPlan(String plan) {
+        return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//..//..//..//button/span/span[text() = 'Remove Definitive']");
+    }
     public By getEditButtonForPlan(String user) {
         return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//strong[text() = '"+user+"']//..//..//..//..//..//button/span/span[text() = 'Edit']");
     }
-    
+
     public void verifyPageHeaderIsCorrect() {
         pageHeader.withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
     }
@@ -148,9 +153,35 @@ public class HomePage extends PageObject {
         element(this.getDeleteButtonForPlan(plan)).waitUntilEnabled().click();
         deletePlanModalBtn.waitUntilClickable().then().click();
         loadingCover.shouldBeCurrentlyVisible();
-        loadingCover.withTimeoutOf(30, TimeUnit.SECONDS).waitUntilNotVisible();       
+        loadingCover.withTimeoutOf(30, TimeUnit.SECONDS).waitUntilNotVisible();
     }
-    
+
+
+    public void DefinitiveButton(String plan) {
+        withAction().moveToElement(element(this.getDefinitiveButtonForPlan(plan))).click().build().perform();
+        element(this.getDefinitiveButtonForPlan(plan)).waitUntilEnabled().click();
+
+    }
+    public void verifyDefinitiveButtonIsShown(String plan){
+
+        if (findAll("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//span[text() = 'Definitive']").size() >= 0) {
+            assertThat(findAll(By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//span[text() = 'Definitive']")).size()).isEqualTo(1);
+        }
+
+    }
+    public void RemoveDefinitiveButton(String plan) {
+        withAction().moveToElement(element(this.getRemoveDefinitiveButtonForPlan(plan))).click().build().perform();
+        //element(this.getRemoveDefinitiveButtonForPlan(plan)).waitUntilEnabled().click();
+
+    }
+    public void verifyDefinitiveBadgeIsRemoved(String plan){
+
+        if (findAll("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//span[text() = 'Definitive']").size() <=0) {
+            assertThat(findAll(By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//span[text() = 'Definitive']")).size()).isEqualTo(0);
+        }
+
+    }
+
     public void verifyAtleastOnePlanExist() {
         assertThat(findAll("//*[@class='Polaris-Card']/*/ul//li").size() >= 1).isTrue();
     }

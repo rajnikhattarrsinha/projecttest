@@ -3,6 +3,7 @@ package net.enablers.tvstack.services;
 import com.jayway.restassured.response.Response;
 import net.enablers.tvstack.helpers.ApiHelper;
 import net.enablers.tvstack.model.api.admin.ClientsLeadRequestModel;
+import net.enablers.tvstack.model.api.admin.ClientsPlannerRequestModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,5 +29,19 @@ public class ClientsService extends ApiHelper {
 
     public static Response deleteLeadForClient(String oktaAccessToken, String clientId, String userId) {
         return getTvstackAdminConfig(oktaAccessToken).delete("/api/clients/" + clientId + "/leads/" + userId);
+    }
+
+    public static Response createPlannerForClient(String oktaAccessToken, String clientId, List<ClientsPlannerRequestModel> clientsPlannerRequestModels) {
+
+        Response createPlannerClientResponse = null;
+
+        for (ClientsPlannerRequestModel plannerRequestModel : clientsPlannerRequestModels) {
+            createPlannerClientResponse = getTvstackAdminConfig(oktaAccessToken).body(gson().toJson(plannerRequestModel)).post("/api/clients/" + clientId + "/planners");
+        }
+        return createPlannerClientResponse;
+    }
+
+    public static Response deletePlannerForClient(String oktaAccessToken, String clientId, String userId) {
+        return getTvstackAdminConfig(oktaAccessToken).delete("/api/clients/" + clientId + "/planners/" + userId);
     }
 }

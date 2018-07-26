@@ -1,7 +1,6 @@
 package net.enablers.tvstack.steps.api;
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.enablers.tvstack.helpers.ApiHelper;
@@ -29,6 +28,7 @@ public class UpdateChannelSteps extends ApiHelper {
         buyingAudienceId = ManageBuyingAudienceSteps.getBuyingAudienceId();
         formatId = ManageFormatSteps.getFormatId();
         oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
+        Thread.sleep(10000);
 
         updateChannelResponse = ChannelService.updateChannelsToThePlan(oktaAccessToken, projectId, updateChannel, buyingAudienceId, formatId);
         Assert.assertTrue(updateChannelResponse.getStatusCode() == 200);
@@ -47,12 +47,9 @@ public class UpdateChannelSteps extends ApiHelper {
                 Assert.assertTrue(updateChannelResponseModels[count].getCpm() == 4);
                 Assert.assertTrue(updateChannelResponseModels[count].getCurveCalibration().getGrp() == 1);
                 Assert.assertTrue(updateChannelResponseModels[count].getCurveCalibration().getMaxGrp() == 4);
-                Assert.assertTrue(updateChannelResponseModels[count].getCurveCalibration().getReach() == 0.01);
-                Assert.assertTrue(updateChannelResponseModels[count].getCurveCalibration().getMaxReach() == 0.03);
-            } else {
-                Assert.assertFalse(updateChannelResponseModels[count].getSelected().equals(false));
+                Assert.assertTrue(updateChannelResponseModels[count].getCurveCalibration().getReach() == 1);
+                Assert.assertTrue(updateChannelResponseModels[count].getCurveCalibration().getMaxReach() == 3);
             }
-
         }
     }
 

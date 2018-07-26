@@ -3,13 +3,13 @@ package net.enablers.tvstack.steps.api;
 import com.jayway.restassured.response.Response;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.enablers.tvstack.helpers.ApiHelper;
 import net.enablers.tvstack.model.api.admin.ClientResponseModel;
 import net.enablers.tvstack.model.api.admin.ClientsLeadRequestModel;
+import net.enablers.tvstack.model.api.admin.ClientsPlannerRequestModel;
 import net.enablers.tvstack.services.ClientsService;
 import net.enablers.tvstack.utilities.MongoDbConnection;
 import org.bson.Document;
@@ -29,10 +29,11 @@ public class ManageClientsSteps extends ApiHelper {
 
     private String oktaAccessToken;
     private MongoDbConnection dbConnection = new MongoDbConnection();
-    private Response clientsResponse, leadClientsResponse, deleteLeadClientsResponse;
+    private Response clientsResponse, leadClientsResponse, deleteLeadClientsResponse, plannerClientsResponse, deletePlannerClientsResponse;
     private ClientResponseModel[] clientResponseModel;
     private MongoCollection<Document> clientsCollection;
     private String clientId;
+    private int noOfLeads, noOfPlanners;
 
 
     @When("^User requests for Gets the clients$")
@@ -80,10 +81,12 @@ public class ManageClientsSteps extends ApiHelper {
         Document clientName = clientsCollection.find(eq("countryId", country)).first();
 
         List<Document> leads = (List<Document>) clientName.get("leads");
+        noOfLeads = leads.size();
         for (Document lead : leads) {
             if (lead.get("userId").equals(clientLead)) {
                 System.out.println("UserId : " + lead.get("userId"));
                 Assert.assertTrue(lead.get("userId").equals(clientLead));
+                break;
             }
         }
         dbConnection.disconnect();
@@ -107,9 +110,62 @@ public class ManageClientsSteps extends ApiHelper {
         Document countryName = clientsCollection.find(eq("countryId", country)).first();
 
         List<Document> leads = (List<Document>) countryName.get("leads");
-        Assert.assertTrue(leads.size() == 0);
+        Assert.assertTrue(noOfLeads - 1 == leads.size());
 
         dbConnection.disconnect();
-
     }
+
+    @When("^User requests for planner a lead for the clients$")
+    public void userRequestsForPlannerALeadForTheClients(List<ClientsPlannerRequestModel> clientsPlannerRequestModels) throws Throwable {
+
+        oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
+        clientId = "5af2fdd0fd69b172a23f62b2";
+
+        plannerClientsResponse = ClientsService.createPlannerForClient(oktaAccessToken, clientId, clientsPlannerRequestModels);
+        Assert.assertTrue(plannerClientsResponse.getStatusCode() == 201);
+    }
+
+
+    @Then("^planner \"([^\"]*)\" is created into database$")
+    public void plannerIsCreatedIntoDatabase(String userId) throws Throwable {
+        dbConnection.connect();
+
+        clientsCollection = dbConnection.queryClients();
+        Document clientName = clientsCollection.find(eq("_id", clientId)).first();
+
+        List<Document> planners = (List<Document>) clientName.get("planners");
+        noOfPlanners = planners.size();
+        for (Document planner : planners) {
+            if (planner.get("userId").equals(userId)) {
+                System.out.println("UserId : " + planner.get("userId"));
+                Assert.assertTrue(planner.get("userId").equals(userId));
+                break;
+            }
+        }
+        dbConnection.disconnect();
+    }
+
+    @When("^User requests for Deletes a planner to the  client \"([^\"]*)\"$")
+    public void userRequestsForDeletesAPlannerToTheClient(String userId) throws Throwable {
+
+        oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
+
+        deletePlannerClientsResponse = ClientsService.deletePlannerForClient(oktaAccessToken, clientId, userId);
+        Assert.assertTrue(deletePlannerClientsResponse.getStatusCode() == 204);
+    }
+
+    @Then("^planner \"([^\"]*)\" is deleted into database$")
+    public void plannerIsDeletedIntoDatabase(String userId) throws Throwable {
+        dbConnection.connect();
+
+        clientsCollection = dbConnection.queryClients();
+        Document countryName = clientsCollection.find(eq("_id", clientId)).first();
+
+        List<Document> planners = (List<Document>) countryName.get("planners");
+        Assert.assertTrue(noOfPlanners - 1 == planners.size());
+
+        dbConnection.disconnect();
+    }
+
+
 }

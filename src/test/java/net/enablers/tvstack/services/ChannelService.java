@@ -18,6 +18,7 @@ public class ChannelService extends ApiHelper {
         channels.setId(channel);
         channels.setBuyingAudienceId(buyingAudienceId);
         channels.setFormatId(formatId);
+        channels.setSelected(true);
 
         Channels[] channelsList = new Channels[1];
         channelsList[0] = channels;
@@ -28,13 +29,5 @@ public class ChannelService extends ApiHelper {
         updateChannelRequestModel.setChannels(channelsList);
 
         return getTvstackConfig(oktaToken).body(gson().toJson(updateChannelRequestModel)).put("/api/channels");
-
     }
-
-//    public static void main(String[] args){
-//        Channels channels = new Channels();
-//        channels.setId("TV");
-//        System.out.println(channels);
-//
-//    }
 }

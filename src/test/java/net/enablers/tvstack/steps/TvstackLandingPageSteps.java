@@ -1,9 +1,12 @@
 package net.enablers.tvstack.steps;
 
 import com.typesafe.config.Config;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.enablers.tvstack.model.web.PlanModel;
 import net.enablers.tvstack.pages.AdminHomePage;
 import net.enablers.tvstack.pages.HomePage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
@@ -18,6 +21,7 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
     AdminHomePage adminHomePage;
     NewPlanSetupPage newPlanSetupPage;
     HomePage homePage;
+
     public AppliEyes appliEyes;
     private static Config conf = ConfigLoader.load();
     private String DEFAULT_MARKET = "United Kingdom";
@@ -29,12 +33,9 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
         if (conf.getBoolean("appli_eyes")) {
             appliEyes.load(conf.getString("webdriver.base.url"));
         } else {
-        	homePage.openUrl(conf.getString("webdriver.base.url") + "logout");
+            homePage.openUrl(conf.getString("webdriver.base.url") + "logout");
             homePage.openUrl(conf.getString("webdriver.base.url"));
         }
-        //* As per serenity. Properties file browser width and height is hardcoded,
-        //* but on standard practice execution machine size should be vary so it’s better to write a maximize the code.
-        getDriver().manage().window().maximize();
         adminHomePage.loginAs(username);
         homePage.verifyPageHeaderIsCorrect();
         appliEyes.capture("Landed on landing page");
@@ -105,7 +106,7 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
         this.iClickOnCreateNewPlan();
     }
 
-    public void selectDefaultMarketAndClient(){
+    public void selectDefaultMarketAndClient() {
         this.iLoginWith("Tvstack.user2@dentsuaegis.com");
         Serenity.setSessionVariable("user").to("Tvstack.user2@dentsuaegis.com");
         this.iSelectTheMarket(DEFAULT_MARKET);
@@ -118,4 +119,70 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
         selectDefaultMarketAndClient();
         iClickOnCreateNewPlan();
     }
+//----------------------------------------------------------------------------------------------------------------------------
+
+    @Given("^Login with '(.*)'$")
+    public void loginWithTvstackUserDentsuaegisCom(String username) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        if (conf.getBoolean("appli_eyes")) {
+            appliEyes.load(conf.getString("webdriver.base.url"));
+        } else {
+            homePage.openUrl(conf.getString("webdriver.base.url") + "logout");
+            homePage.openUrl(conf.getString("webdriver.base.url"));
+        }
+        adminHomePage.loginAs(username);
+        homePage.verifyPageHeaderIsCorrect();
+        appliEyes.capture("Landed on landing page");
+        waitABit(500);
+    }
+
+
+    @Then("^See the option to create new plan$")
+    public void seeTheOptionToCreateNewPlan() throws Throwable {
+        homePage.verifyCreateNewPlanOptionPresent();
+    }
+
+    @Then("^click on create new plan$")
+    public void clickOnCreateNewPlan() throws Throwable {
+        appliEyes.capture("Selected market and clients and now going to click new plan button");
+        homePage.createNewPlan();
+        newPlanSetupPage.submitNewPlan();
+    }
+
+    @Then("^plan is saved successfully$")
+    public void planIsSavedSuccessfully() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        PlanModel plan = newPlanSetupPage.clickOnLogo();
+        homePage.verifyNewPlanIsShown(plan.getPlanName());
+        System.out.println(plan);
+    }
+
+    @Then("^mark plan as definitive$")
+    public void markPlanAsDefinitive() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage.DefinitiveButton(Serenity.sessionVariableCalled("planName"));
+        waitABit(5000);
+    }
+
+    @Then("^see plan is marked as definitive$")
+    public void verifyDefinitiveButtonIsShown() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage.verifyDefinitiveButtonIsShown(Serenity.sessionVariableCalled("planName"));
+    }
+
+    @Then("^mark plan as not definitive$")
+    public void markPlanAsNotDefinitive() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage.RemoveDefinitiveButton(Serenity.sessionVariableCalled("planName"));
+        waitABit(5000);
+
+    }
+
+    @Then("^see plan is marked as not definitive$")
+    public void seePlanIsMarkedAsNotDefinitive() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage.verifyDefinitiveBadgeIsRemoved(Serenity.sessionVariableCalled("planName"));
+        waitABit(5000);
+    }
+
 }

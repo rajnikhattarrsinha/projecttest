@@ -15,11 +15,7 @@ import net.thucydides.core.pages.PageObject;
 
 public class AudienceSetupPage extends PageObject {
 
-    ChannelsSetupPage channelsSetupPage;
     ProjectRequestModel plan = new ProjectRequestModel();
-
-    @FindBy(xpath = "//h1[contains(.,'Audiences')]")
-    WebElementFacade pageHeader;
 
     @FindBy(xpath = "//*[@class='audience-builder__dd-pane-header']/h2[contains(.,'Planning audience') or contains(.,'Buying audience')]")
     WebElementFacade audienceBuilderHeader;
@@ -48,13 +44,19 @@ public class AudienceSetupPage extends PageObject {
     @FindBy(xpath = "//h1[contains(.,'TV Stack')]")
     WebElementFacade homePageHeader;
 
+    NewPlanSetupPage newPlanSetupPage;
+    
+    public By getPageHeader(String section) {
+    	return By.xpath("//h1[contains(.,'"+section+"')]");
+    }
+    
     public void verifyExistingAudienceSectionPresent() {
         existingAudiencesSection.shouldBePresent();
     }
 
     public void verifyPageTitle() {
-        withTimeoutOf(180, TimeUnit.SECONDS).waitFor(pageHeader);
-        pageHeader.shouldBePresent();
+        withTimeoutOf(180, TimeUnit.SECONDS).waitFor(newPlanSetupPage.getPageHeaderBasedOnSection("Audiences"));
+        element(newPlanSetupPage.getPageHeaderBasedOnSection("Audiences")).shouldBePresent();
     }
     
     public void verifyHomePageTitle() {
@@ -106,7 +108,8 @@ public class AudienceSetupPage extends PageObject {
 
     public void saveTheAudience() {
         $("//button[contains(span,'Save')]").withTimeoutOf(50, TimeUnit.SECONDS).waitUntilClickable().click();
-        $("//button[contains(span,'Save')]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
+        $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(10, TimeUnit.SECONDS).waitUntilVisible();
+        $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
     }
 
     public void audienceIsSavedSuccessfully() {
@@ -126,16 +129,22 @@ public class AudienceSetupPage extends PageObject {
         //the row containing the audience in the table should be deleted
         withTimeoutOf(300, TimeUnit.SECONDS).waitForAbsenceOf("//table/tbody");
     }
-    
+
+
+
+    //Rajni's Code starts here.....
+
+    ChannelSetupPage channelSetupPage;
+
     public void iWillCreateNewAudienceandSavetheAudience()
     {
-    	//@ wait for new audience page.
-    	element(newAudieceButton).withTimeoutOf(60, TimeUnit.SECONDS).shouldBeVisible();
+        //@ wait for new audience page.
+        element(newAudieceButton).withTimeoutOf(60, TimeUnit.SECONDS).shouldBeVisible();
         //Setting this variable so we can mimic the drag and drop on new audience page later on
         ((JavascriptExecutor) getDriver()).executeScript("window.APP_ENV = 'test';");
         newAudieceButton.waitUntilClickable().then().click();
-       //@ Hardcore wait removed, Dynamic wait added which is responsible for browser ready state
-        channelsSetupPage.WaitForPageLoad(60);
+        //@ Hardcore wait removed, Dynamic wait added which is responsible for browser ready state
+        channelSetupPage.WaitForPageLoad(60);
         //@ driver click has some internal wait, after performing click action
         //@ again we have created a element which was not in htmldom so previos line of code
         //@ throw error.
@@ -147,7 +156,7 @@ public class AudienceSetupPage extends PageObject {
         waitFor(genderContainer).then().click();
         WebElement femaleCandidate = $("//div[span='Female']");
         femaleCandidate.click();
-        channelsSetupPage.WaitForPageLoad(60);
+        channelSetupPage.WaitForPageLoad(60);
         Serenity.setSessionVariable("female_query").to("((Gender [Female]))");
         previewZone.shouldContainText((String)Serenity.sessionVariableCalled("female_query"));
         Serenity.setSessionVariable("new_audience_name").to("Auto_audience" + RandomGenerator.randomAlphanumeric(3));
@@ -155,7 +164,12 @@ public class AudienceSetupPage extends PageObject {
         //@ save the Audience
         //@ Remove Hardcoded Wait
         $("//button[contains(span,'Save')]").withTimeoutOf(50, TimeUnit.SECONDS).waitUntilClickable().click();
-       // $("//button[contains(span,'Save')]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
-        channelsSetupPage.WaitForPageLoad(60);
+        // $("//button[contains(span,'Save')]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
+        channelSetupPage.WaitForPageLoad(60);
     }
+
+
+    //Rajni's code ends here......
+
+
 }

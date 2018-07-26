@@ -15,11 +15,11 @@ Feature: API - Create, Update and Delete Audiences
       | Demographics | ((field("26") == 6)) | ((Age group recode 1 [55-64])) | Demographics_filterMap |
     Then audience is created to the plan into DB
 
-  Scenario: API - Audiences - Creates a new audience when Reach is 0
-    When User requests for Creates a new audience
-      | name             | filter                                       | formattedFilter                                                                                        | filterMap                  |
-      | Employment_Media | ((field("303") == 63 && field("1044") == 2)) | ((Annual HOUSEHOLD income [$250,000 or more] AND Use the Internet (on any device) [Every 2-3 months])) | Employment_Media_filterMap |
-    Then audience service throws error
+#  Scenario: API - Audiences - Creates a new audience when Reach is 0
+#    When User requests for Creates a new audience
+#      | name             | filter                                       | formattedFilter                                                                                        | filterMap                  |
+#      | Employment_Media | ((field("303") == 63 && field("1044") == 2)) | ((Annual HOUSEHOLD income [$250,000 or more] AND Use the Internet (on any device) [Every 2-3 months])) | Employment_Media_filterMap |
+#    Then audience service throws error
 
   Scenario: API - Audiences - Updates an existing audience
     When User requests for Creates a new audience

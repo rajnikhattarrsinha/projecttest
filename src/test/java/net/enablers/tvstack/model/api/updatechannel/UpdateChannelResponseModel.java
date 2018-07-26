@@ -5,7 +5,7 @@ public class UpdateChannelResponseModel {
     private Boolean selected;
     private int seconds;
     private String channelId;
-    private long cpm;
+    private Double cpm;
     private CurveCalibration curveCalibration;
 
     public Boolean getSelected() {
@@ -32,11 +32,11 @@ public class UpdateChannelResponseModel {
         this.seconds = seconds;
     }
 
-    public long getCpm() {
+    public Double getCpm() {
         return cpm;
     }
 
-    public void setCpm(long cpm) {
+    public void setCpm(Double cpm) {
         this.cpm = cpm;
     }
 

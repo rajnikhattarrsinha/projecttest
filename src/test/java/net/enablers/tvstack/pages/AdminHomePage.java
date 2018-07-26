@@ -3,19 +3,18 @@ package net.enablers.tvstack.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import net.enablers.tvstack.model.api.OktaTokenStorage;
 import net.enablers.tvstack.steps.AudienceSetupPageSteps;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
-
-import java.util.concurrent.TimeUnit;
 
 public class AdminHomePage extends PageObject {
 

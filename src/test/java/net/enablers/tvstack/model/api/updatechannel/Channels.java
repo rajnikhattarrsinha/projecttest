@@ -4,6 +4,7 @@ public class Channels {
     private String id;
     private String formatId;
     private String buyingAudienceId;
+    private Boolean selected;
 
     public String getId() {
         return id;
@@ -27,5 +28,13 @@ public class Channels {
 
     public void setBuyingAudienceId(String buyingAudienceId) {
         this.buyingAudienceId = buyingAudienceId;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 }

@@ -3,11 +3,11 @@ Feature: API - Create, Delete and Read countries
   Background:
     Given Global Admin user log into Admin to get OktaToken
 
-  Scenario: API - Countries - Gets the countries by Global Admin
+  Scenario: API - Countries - Gets the countries
     When User requests for Gets the countries
     Then countries are compared into database
 
-  Scenario: API - Countries - Creates and Delete a lead for the country by Global Admin
+  Scenario: API - Countries - Creates and Delete a lead for the country
     When User requests for Creates a lead for "IE" country
       | userId                        |
       | Subhani.Shaik@dentsuaegis.com |

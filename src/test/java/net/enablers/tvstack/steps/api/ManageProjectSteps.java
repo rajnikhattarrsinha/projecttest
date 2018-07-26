@@ -187,8 +187,8 @@ public class ManageProjectSteps extends ApiHelper {
     public void userRequestsForCreateNewPlanWithBelowValues(List<ProjectRequestModel> projectRequestModelList) throws Throwable {
         oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
 
-        loginResponse = ProjectsService.logIntoPointLogicServer(oktaAccessToken);
-        Assert.assertTrue(loginResponse.getStatusCode() == 200);
+//        loginResponse = ProjectsService.logIntoPointLogicServer(oktaAccessToken);
+//        Assert.assertTrue(loginResponse.getStatusCode() == 200);
 
         createPlanResponse = ProjectsService.createProjectWithInvalidValues(oktaAccessToken, projectRequestModelList, clientId);
         Assert.assertTrue(createPlanResponse.getStatusCode() == 400);
