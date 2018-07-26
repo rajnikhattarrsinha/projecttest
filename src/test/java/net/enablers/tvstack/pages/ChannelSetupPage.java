@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
+import static org.junit.Assert.assertThat;
 import org.openqa.selenium.support.FindBy;
 
 import cucumber.api.java.en.Then;
@@ -19,8 +19,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.inject.spi.Elements;
-
-
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
+import org.hamcrest.CoreMatchers;
 
 public class ChannelSetupPage extends PageObject {
 
@@ -215,6 +216,11 @@ public class ChannelSetupPage extends PageObject {
 		WaitForPageLoad(180);
 	}
 
+	public By textboxCPM(String ChannelsName)
+	{
+		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='text']");
+	}
+
 	public void verifyScenariosPage()
 	{
 		element(buttonName("Create new scenario")).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
@@ -379,6 +385,11 @@ public class ChannelSetupPage extends PageObject {
 		catch (Exception e)
 		{ }
 
+	}
+
+	public void getCPMvalueandverify(String ChannelName,String valuetoverify)
+	{
+		assertThat(element(textboxCPM(ChannelName)).getValue(), CoreMatchers.equalTo(valuetoverify));
 	}
 
 
