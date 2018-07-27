@@ -5,40 +5,6 @@ Feature: Manage channels
   So that I can manage channels
   
 # Rajni's code starts here.....
-
-  #Scenario 1:
-  Scenario: Calibrate TV Channel-Prepopulating configured values
-    Given I'm on Channels setup page
-    Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    And  I select Second Length/Format as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    Then I should see '12' populated in CPM textbox
-    Then I click Calibrate button
-    Then I should see GRPs Celebrated at textbox populated as '12'
-    And  I should see Reach populated as '25'
-    Then I click on ADVANCED button
-    And I should see Maximum Reach populated as '56'
-    And I should see Precision populated as '36'
-    Then I click Cancel button
-    Then It should close Calibrate screen
-
-    #Scenario 2:
-  Scenario: Add Channel to the Plan
-    Given I'm on Channels setup page
-    Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    And  I select Second Length/Format as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    And  I select Closest buying Audience as 'test 2' corresponding to Channels 'Video on Demand'
-    And  I select Second Length/Format as 'format 1' corresponding to Channels 'Video on Demand'
-    Then I select Channel 'Online+Video' checkbox
-    And  I select Closest buying Audience as 'Edited8X4vi' corresponding to Channels 'Online+Video'
-    And  I select Second Length/Format as 'asd' corresponding to Channels 'Online+Video'
-    Then I click Next: Scenarios button
-    Then I should see Scenarios page with Create new scenario button
-
-    #Scenario 3:
-
-
   Scenario: Channels setup page
     Given I'm on Channels setup page
     Then I should see multiple channels options
@@ -64,7 +30,7 @@ Feature: Manage channels
     And  I will select any Max Age option '30' corresponding to Channels 'Instagram'
     And  I will select any Gender option 'Male' corresponding to Channels 'Instagram'
     Then  I will click Next: Scenarios button
-    #Then i should see Scenarios page with Create new scenario button
+    Then i should see Scenarios page with Create new scenario button
 
   Scenario: To test validation message without selecting any Channels
     Given I'm on Channels setup page
