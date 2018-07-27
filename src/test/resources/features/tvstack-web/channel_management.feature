@@ -10,9 +10,9 @@ Feature: Manage channels
   Scenario: Calibrate TV Channel-Prepopulating configured values
     Given I'm on Channels setup page
     Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    And  I select Second Length/Format as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    Then I should see '12' populated in CPM textbox
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then I should see '12' populated in CPM textbox corresponding to Channel 'TV'
     Then I click Calibrate button
     Then I should see GRPs Celebrated at textbox populated as '12'
     And  I should see Reach populated as '25'
@@ -26,13 +26,15 @@ Feature: Manage channels
   Scenario: Add Channel to the Plan
     Given I'm on Channels setup page
     Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    And  I select Second Length/Format as 'automation_donot_DELETE' corresponding to Channels 'TV'
-    And  I select Closest buying Audience as 'test 2' corresponding to Channels 'Video on Demand'
-    And  I select Second Length/Format as 'format 1' corresponding to Channels 'Video on Demand'
-    Then I select Channel 'Online+Video' checkbox
-    And  I select Closest buying Audience as 'Edited8X4vi' corresponding to Channels 'Online+Video'
-    And  I select Second Length/Format as 'asd' corresponding to Channels 'Online+Video'
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And  I should see '12' populated in CPM textbox corresponding to Channel 'TV'
+    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And  I should see '3' populated in CPM textbox corresponding to Channel 'Video on Demand'
+    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And  I should see '13' populated in CPM textbox corresponding to Channel 'Online+Video'
     Then I click Next: Scenarios button
     Then I should see Scenarios page with Create new scenario button
 
