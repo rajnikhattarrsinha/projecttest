@@ -25,7 +25,7 @@ import org.hamcrest.CoreMatchers;
 
 public class ChannelSetupPage extends PageObject {
 
-	NewPlanSetupPage newPlanSetupPage;
+    NewPlanSetupPage newPlanSetupPage;
     
     @FindBy(xpath = "//div[@class = 'channel-setup__table']//tbody/tr")
     List<WebElementFacade> availableChannels;
@@ -149,14 +149,11 @@ public class ChannelSetupPage extends PageObject {
 	}
 
 
-	//Rajni's code starts here.....
-
-	//----- Property for listbox -> ' Youtube Age
-
+	//*************** RAJNI CODE START HERE ******************************//
+	//********************************************************************//
+	
 	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
 	WebElementFacade listboxYoutubeAge;
-
-	//----- Property for text -> headerSection
 
 	@FindBy(xpath = "//p[text()='Please select at least 1 channel buying audience and format to proceed']")
 	WebElementFacade textvalidationMessage;
@@ -175,7 +172,6 @@ public class ChannelSetupPage extends PageObject {
 
 		}
 	}
-
 	public void selectSecondLengthFormatoption(String ChannelName,String SecondLengthformat)
 	{
 		//@ If user pass some channel name then only it checkbox.
@@ -189,48 +185,43 @@ public class ChannelSetupPage extends PageObject {
 			}
 		}
 	}
-
 	public By checkboxChannels(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='checkbox']");
 	}
-
 	public By listboxbuyingAudience(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[3]//select");
 	}
-
 	public By listboxSecondLengthformat(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[4]//select");
 	}
-
 	public By buttonName(String ButtonText)
 	{
 		return By.xpath("//button//span[contains(text(),'"+ButtonText+"')]");
 	}
-
 	public void clickonNextScenariosbutton()
 	{
 		element(buttonName("Next: Scenarios")).click();
 		WaitForPageLoad(180);
 	}
-
+	public By textboxBasedonName(String TextboxName)
+	{
+		return By.xpath("//*[text()='"+TextboxName+"']/following::input");
+	}
 	public By textboxCPM(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='text']");
 	}
-
 	public void verifyScenariosPage()
 	{
 		element(buttonName("Create new scenario")).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
 	}
-
 	public void verifyChannelsPage()
 	{
 		element(buttonName("Next: Scenarios")).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
 	}
-
 	public void checkChannelscheckbox(String ChannelName)
 	{
 		//@ If user pass some channel name then only it checkbox.
@@ -245,36 +236,29 @@ public class ChannelSetupPage extends PageObject {
 				executor.executeScript("arguments[0].focus();", element(checkboxChannels(ChannelName)));
 				executor.executeScript("arguments[0].click();", element(checkboxChannels(ChannelName)));
 			}
-
 		}
 
 	}
-
 	public void selectAgeforYoutubeChannel(String Age)
 	{
 		listboxYoutubeAge.selectByVisibleText(Age);
 		WaitForPageLoad(20);
-
 	}
-
 	public void selectGender(String Gender,String Channel)
 	{
 		element(listboxGender(Channel)).selectByVisibleText(Gender);
 		WaitForPageLoad(20);
 	}
-
 	public void selectMinAge(String MinAge,String Channel)
 	{
 		element(listboxMinAge(Channel)).selectByVisibleText(MinAge);
 		WaitForPageLoad(20);
 	}
-
 	public void selectMaxAge(String MaxAge,String Channel)
 	{
 		element(listboxMaxAge(Channel)).selectByVisibleText(MaxAge);
 		WaitForPageLoad(20);
 	}
-
 	public By listboxGender(String ChannelsName)
 	{
 		if(ChannelsName.trim().toLowerCase().equals("youtube"))
@@ -287,28 +271,23 @@ public class ChannelSetupPage extends PageObject {
 		}
 
 	}
-
 	public By listboxMinAge(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[1]//select");
 	}
-
 	public By listboxMaxAge(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[2]//select");
 	}
-
 	public void verifyMessageonHeader()
 	{
 		textvalidationMessage.withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
 	}
-
 	public void clickOnNextChannelsbuttonandverifyChannelPage()
 	{
 		element(buttonName("Next: Channels")).click();
 		WaitForPageLoad(20);
 	}
-
 	public void uncheckAllChannelcheckbox()
 	{
 		JavascriptExecutor executor = (JavascriptExecutor)getDriver();
@@ -323,7 +302,6 @@ public class ChannelSetupPage extends PageObject {
 			}
 		}
 	}
-
 	public void WaitForPageLoad(int timeoutinsecond)
 	{
 		//@ Wait for browser Ready state.
@@ -386,14 +364,47 @@ public class ChannelSetupPage extends PageObject {
 		{ }
 
 	}
-
 	public void getCPMvalueandverify(String ChannelName,String valuetoverify)
 	{
 		assertThat(element(textboxCPM(ChannelName)).getValue(), CoreMatchers.equalTo(valuetoverify));
 	}
-
-
-	//Rajni's code ends here
+	public void clickonCalibratebutton()
+	{
+		element(buttonName("Calibrate")).click();
+		WaitForPageLoad(180);
+	}
+	public void getGRPsvalueandverifytouserinput(String UserGRPs)
+	{
+		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue(), CoreMatchers.equalTo(UserGRPs));
+	}
+	public void getReachvalueandComapreUserInputValue(String Reach)
+	{
+		assertThat(element(textboxBasedonName("Reach")).getValue(), CoreMatchers.equalTo(Reach));
+	}
+	public void iClickonADVANCEDbutton()
+	{
+		advancedCalibrateButton.click();
+		WaitForPageLoad(10);
+	}
+	public void getMaximumReachValueAndComapreUserInputValue(String MaximumReach)
+	{
+		assertThat(element(textboxBasedonName("Maximum Reach")).getValue(), CoreMatchers.equalTo(MaximumReach));
+	}
+	public void getPrecisionValueAndComapreUserInputValue(String Precision)
+	{
+		assertThat(element(textboxBasedonName("Precision")).getValue(), CoreMatchers.equalTo(Precision));
+	}
+	public void iclickCancelbutton()
+	{
+	     	element(buttonName("Cancel")).click();
+		WaitForPageLoad(10);
+	}
+	public void verifyCalibrateScreenIsnotDisplayed()
+	{
+		element(buttonName("Cancel")).shouldNotBeCurrentlyVisible();
+	}
+	//*************** RAJNI CODE END HERE ******************************//
+	//********************************************************************//
 
 
 
