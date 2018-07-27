@@ -5,6 +5,7 @@ import java.util.List;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.enablers.tvstack.helpers.WebHelper;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
@@ -17,6 +18,7 @@ public class ChannelSetupPageSteps {
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
     AppliEyes appliEyes;
+    WebHelper webHelper;
 
     @Steps
     TvstackLandingPageSteps landingPageSteps;
@@ -36,7 +38,7 @@ public class ChannelSetupPageSteps {
     {
         landingPageSteps.userHasChosenToCreateNewPlan();
         planSetupPageSteps.iAddPlanDetailsAndClickNextButton();
-        channelSetupPage.WaitForPageLoad(60);
+        webHelper.WaitForPageLoad(60);
         audienceSetupPage.iWillCreateNewAudienceandSavetheAudience();
         channelSetupPage.clickOnNextChannelsbuttonandverifyChannelPage();
         appliEyes.capture("User is landed on Channels setup page.");
@@ -172,7 +174,7 @@ public class ChannelSetupPageSteps {
     @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'$")
     public void i_should_see_populated_in_CPM_textbox_corresponding_to_Channel(String  CPM,String Channel) throws Throwable
     {
-        channelSetupPage.getCPMvalueandverify(CPM,Channel);
+        channelSetupPage.getCPMvalueandverify(Channel,CPM);
         appliEyes.capture("Expected Channel '"+Channel+"' CPM  value '"+CPM+"' is displayed.");
     }
 

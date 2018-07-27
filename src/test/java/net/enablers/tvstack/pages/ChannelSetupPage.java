@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertThat;
+
+import io.appium.java_client.pagefactory.WithTimeout;
+import net.enablers.tvstack.helpers.WebHelper;
 import org.openqa.selenium.support.FindBy;
 
 import cucumber.api.java.en.Then;
@@ -26,6 +29,7 @@ import org.hamcrest.CoreMatchers;
 public class ChannelSetupPage extends PageObject {
 
     NewPlanSetupPage newPlanSetupPage;
+    WebHelper webHelper;
     
     @FindBy(xpath = "//div[@class = 'channel-setup__table']//tbody/tr")
     List<WebElementFacade> availableChannels;
@@ -167,7 +171,7 @@ public class ChannelSetupPage extends PageObject {
 			if(buyingAudience.trim() !="")
 			{
 				element(listboxbuyingAudience(ChannelName)).selectByVisibleText(buyingAudience);
-				WaitForPageLoad(20);
+				webHelper.WaitForPageLoad(20);
 			}
 
 		}
@@ -181,7 +185,7 @@ public class ChannelSetupPage extends PageObject {
 			if(SecondLengthformat.trim() !="")
 			{
 				element(listboxSecondLengthformat(ChannelName)).selectByVisibleText(SecondLengthformat);
-				WaitForPageLoad(20);
+				webHelper.WaitForPageLoad(20);
 			}
 		}
 	}
@@ -204,7 +208,7 @@ public class ChannelSetupPage extends PageObject {
 	public void clickonNextScenariosbutton()
 	{
 		element(buttonName("Next: Scenarios")).click();
-		WaitForPageLoad(180);
+		webHelper.WaitForPageLoad(180);
 	}
 	public By textboxBasedonName(String TextboxName)
 	{
@@ -242,22 +246,22 @@ public class ChannelSetupPage extends PageObject {
 	public void selectAgeforYoutubeChannel(String Age)
 	{
 		listboxYoutubeAge.selectByVisibleText(Age);
-		WaitForPageLoad(20);
+		webHelper.WaitForPageLoad(20);
 	}
 	public void selectGender(String Gender,String Channel)
 	{
 		element(listboxGender(Channel)).selectByVisibleText(Gender);
-		WaitForPageLoad(20);
+		webHelper.WaitForPageLoad(20);
 	}
 	public void selectMinAge(String MinAge,String Channel)
 	{
 		element(listboxMinAge(Channel)).selectByVisibleText(MinAge);
-		WaitForPageLoad(20);
+		webHelper.WaitForPageLoad(20);
 	}
 	public void selectMaxAge(String MaxAge,String Channel)
 	{
 		element(listboxMaxAge(Channel)).selectByVisibleText(MaxAge);
-		WaitForPageLoad(20);
+		webHelper.WaitForPageLoad(20);
 	}
 	public By listboxGender(String ChannelsName)
 	{
@@ -286,7 +290,7 @@ public class ChannelSetupPage extends PageObject {
 	public void clickOnNextChannelsbuttonandverifyChannelPage()
 	{
 		element(buttonName("Next: Channels")).click();
-		WaitForPageLoad(20);
+		webHelper.WaitForPageLoad(20);
 	}
 	public void uncheckAllChannelcheckbox()
 	{
@@ -302,68 +306,6 @@ public class ChannelSetupPage extends PageObject {
 			}
 		}
 	}
-	public void WaitForPageLoad(int timeoutinsecond)
-	{
-		//@ Wait for browser Ready state.
-		waitABit(100);
-		JavascriptExecutor executor = (JavascriptExecutor)getDriver();
-		try
-		{
-			for(int i =0;i<timeoutinsecond;i++)
-			{
-				String browserState = String.valueOf(executor.executeScript("return document.readyState"));
-				if(browserState.equals("complete"))
-				{
-					break;
-				}
-				else
-				{
-					waitABit(1000);
-				}
-			}
-
-		}
-		catch (Exception e)
-		{}
-		//@ Wait for Loader
-		try
-		{
-			for (int i = 0; i < timeoutinsecond; i++)
-			{
-				WebElement elementajax = getDriver().findElement(By.xpath("//*[@aria-label='Loading']"));
-				if(elementajax.isDisplayed())
-				{
-					waitABit(1000);
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		catch (Exception e)
-		{ }
-
-		//@ Wait for Spinner
-		try
-		{
-			for (int i = 0; i < timeoutinsecond; i++)
-			{
-				WebElement elementajax = getDriver().findElement(By.xpath("//*[contains(@class,'Spinner')]"));
-				if(elementajax.isDisplayed())
-				{
-					waitABit(1000);
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		catch (Exception e)
-		{ }
-
-	}
 	public void getCPMvalueandverify(String ChannelName,String valuetoverify)
 	{
 		assertThat(element(textboxCPM(ChannelName)).getValue(), CoreMatchers.equalTo(valuetoverify));
@@ -371,7 +313,7 @@ public class ChannelSetupPage extends PageObject {
 	public void clickonCalibratebutton()
 	{
 		element(buttonName("Calibrate")).click();
-		WaitForPageLoad(180);
+		withTimeoutOf(20, TimeUnit.SECONDS).waitFor(textboxBasedonName("GRPs Calibrated at"));
 	}
 	public void getGRPsvalueandverifytouserinput(String UserGRPs)
 	{
@@ -384,7 +326,7 @@ public class ChannelSetupPage extends PageObject {
 	public void iClickonADVANCEDbutton()
 	{
 		advancedCalibrateButton.click();
-		WaitForPageLoad(10);
+		webHelper.WaitForPageLoad(10);
 	}
 	public void getMaximumReachValueAndComapreUserInputValue(String MaximumReach)
 	{
@@ -397,7 +339,7 @@ public class ChannelSetupPage extends PageObject {
 	public void iclickCancelbutton()
 	{
 	     	element(buttonName("Cancel")).click();
-		WaitForPageLoad(10);
+		webHelper.WaitForPageLoad(10);
 	}
 	public void verifyCalibrateScreenIsnotDisplayed()
 	{
