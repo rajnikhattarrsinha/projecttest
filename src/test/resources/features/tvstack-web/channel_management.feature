@@ -5,8 +5,7 @@ Feature: Manage channels
   So that I can manage channels
   
 # Rajni's code starts here.....
-
-  #Scenario 1:
+#Scenario 1:
   Scenario: Calibrate TV Channel-Prepopulating configured values
     Given I'm on Channels setup page
     Then I should see multiple channels checkboxes selected by default
@@ -39,8 +38,6 @@ Feature: Manage channels
     Then I should see Scenarios page with Create new scenario button
 
     #Scenario 3:
-
-
   Scenario: Channels setup page
     Given I'm on Channels setup page
     Then I should see multiple channels options
@@ -66,7 +63,7 @@ Feature: Manage channels
     And  I will select any Max Age option '30' corresponding to Channels 'Instagram'
     And  I will select any Gender option 'Male' corresponding to Channels 'Instagram'
     Then  I will click Next: Scenarios button
-    #Then i should see Scenarios page with Create new scenario button
+    Then i should see Scenarios page with Create new scenario button
 
   Scenario: To test validation message without selecting any Channels
     Given I'm on Channels setup page

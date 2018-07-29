@@ -130,8 +130,8 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("MaxAge '"+MaxAge+"' is successfully selected for Channel '"+Channel+"'.");
 
     }
-	
-    //########################################################################################################
+
+//########################################################################################################
     //# Scenario ID : 1
     //# Test Case Calibrate TV Channel-Prepopulating configured values
     //#------------------------------------------------------------------------------------------------------
@@ -237,6 +237,7 @@ public class ChannelSetupPageSteps {
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************//
 
+    //Rajni's code ends here......
     
     @Then("^I should be taken to audience channel page$")
     public void iShouldBeTakenToAudienceChannelPage() {
