@@ -2,6 +2,7 @@ package net.enablers.tvstack.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import net.enablers.tvstack.helpers.WebHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -135,6 +136,7 @@ public class AudienceSetupPage extends PageObject {
     //Rajni's Code starts here.....
 
     ChannelSetupPage channelSetupPage;
+    WebHelper webHelper;
 
     public void iWillCreateNewAudienceandSavetheAudience()
     {
@@ -144,7 +146,7 @@ public class AudienceSetupPage extends PageObject {
         ((JavascriptExecutor) getDriver()).executeScript("window.APP_ENV = 'test';");
         newAudieceButton.waitUntilClickable().then().click();
         //@ Hardcore wait removed, Dynamic wait added which is responsible for browser ready state
-        channelSetupPage.WaitForPageLoad(60);
+        webHelper.WaitForPageLoad(60);
         //@ driver click has some internal wait, after performing click action
         //@ again we have created a element which was not in htmldom so previos line of code
         //@ throw error.
@@ -156,7 +158,7 @@ public class AudienceSetupPage extends PageObject {
         waitFor(genderContainer).then().click();
         WebElement femaleCandidate = $("//div[span='Female']");
         femaleCandidate.click();
-        channelSetupPage.WaitForPageLoad(60);
+        webHelper.WaitForPageLoad(60);
         Serenity.setSessionVariable("female_query").to("((Gender [Female]))");
         previewZone.shouldContainText((String)Serenity.sessionVariableCalled("female_query"));
         Serenity.setSessionVariable("new_audience_name").to("Auto_audience" + RandomGenerator.randomAlphanumeric(3));
@@ -165,7 +167,7 @@ public class AudienceSetupPage extends PageObject {
         //@ Remove Hardcoded Wait
         $("//button[contains(span,'Save')]").withTimeoutOf(50, TimeUnit.SECONDS).waitUntilClickable().click();
         // $("//button[contains(span,'Save')]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
-        channelSetupPage.WaitForPageLoad(60);
+        webHelper.WaitForPageLoad(60);
     }
 
 

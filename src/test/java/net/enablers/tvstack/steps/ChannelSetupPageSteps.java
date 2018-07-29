@@ -5,6 +5,7 @@ import java.util.List;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.enablers.tvstack.helpers.WebHelper;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
@@ -17,6 +18,7 @@ public class ChannelSetupPageSteps {
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
     AppliEyes appliEyes;
+    WebHelper webHelper;
 
     @Steps
     TvstackLandingPageSteps landingPageSteps;
@@ -27,14 +29,16 @@ public class ChannelSetupPageSteps {
     
     @Steps
     AudienceSetupPageSteps audienceSetupPageSteps;
-    //Rajni's code starts here
+    
+    //****************** RAJNI CODE START HERE*****************************//
+    //*******************************************************************///
 
     @Given("^I'm on Channels setup page$")
     public void i_m_on_Channels_setup_page() throws Throwable
     {
         landingPageSteps.userHasChosenToCreateNewPlan();
         planSetupPageSteps.iAddPlanDetailsAndClickNextButton();
-        channelSetupPage.WaitForPageLoad(60);
+        webHelper.WaitForPageLoad(60);
         audienceSetupPage.iWillCreateNewAudienceandSavetheAudience();
         channelSetupPage.clickOnNextChannelsbuttonandverifyChannelPage();
         appliEyes.capture("User is landed on Channels setup page.");
@@ -127,6 +131,111 @@ public class ChannelSetupPageSteps {
 
     }
 
+//########################################################################################################
+    //# Scenario ID : 1
+    //# Test Case Calibrate TV Channel-Prepopulating configured values
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case check configured values of Channel TV
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 26-July-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+    @Then("^I should see multiple channels checkboxes selected by default$")
+    public void i_should_see_multiple_channels_checkboxes_selected_by_default() throws Throwable
+    {
+        channelSetupPage.verifyChannelsPage();
+        appliEyes.capture("Channels page is displayed multiple channels option.");
+    }
+
+    @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
+    public void i_select_Closest_buying_Audience_as_corresponding_to_Channel(String buyingAudience,String ChannelName ) throws Throwable
+    {
+        channelSetupPage.selectClosestbuyingAudienceoption(ChannelName,buyingAudience);
+        appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+ChannelName+"'.");
+    }
+
+    @Then("^I select Second Length/Format as '(.*)' corresponding to Channel '(.*)'")
+    public void i_select_Second_Length_Format_corresponding_to_Channel(String secondlengthFormatoption,String ChannelName) throws Throwable
+    {
+        channelSetupPage.selectSecondLengthFormatoption(ChannelName,secondlengthFormatoption);
+        appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+ChannelName+"'.");
+    }
+
+    @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'$")
+    public void i_should_see_populated_in_CPM_textbox_corresponding_to_Channel(String  CPM,String Channel) throws Throwable
+    {
+        channelSetupPage.getCPMvalueandverify(Channel,CPM);
+        appliEyes.capture("Expected Channel '"+Channel+"' CPM  value '"+CPM+"' is displayed.");
+    }
+
+    @Then("^I click Calibrate button$")
+    public void i_click_Calibrate_button() throws Throwable
+    {
+        channelSetupPage.clickonCalibratebutton();
+        appliEyes.capture("Button 'Calibrate' successfully clicked.");
+    }
+
+    @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'$")
+    public void i_should_see_GRPs_Celebrated_at_textbox_populated_as(String GRps) throws Throwable
+    {
+        channelSetupPage.getGRPsvalueandverifytouserinput(GRps);
+        appliEyes.capture("Expected value of GRPs Calibrated at '"+GRps+"' is displayed.");
+    }
+
+    @Then("^I should see Reach populated as '(.*)'")
+    public void i_should_see_Reach_populated_as(String Reach) throws Throwable
+    {
+        channelSetupPage.getReachvalueandComapreUserInputValue(Reach);
+        appliEyes.capture("Expected value of Reach '"+Reach+"' is displayed.");
+    }
+
+    @Then("^I click on ADVANCED button$")
+    public void i_click_on_ADVANCED_button() throws Throwable
+    {
+        channelSetupPage.iClickonADVANCEDbutton();
+        appliEyes.capture("'Advance' link clicked successfully");
+    }
+
+    @Then("^I should see Maximum Reach populated as '(.*)'")
+    public void i_should_see_Maximum_Reach_populated_as(String MaximumReach) throws Throwable
+    {
+        channelSetupPage.getMaximumReachValueAndComapreUserInputValue(MaximumReach);
+        appliEyes.capture("Expected value of 'Maximum Reach' "+MaximumReach+" is displayed.");
+    }
+
+    @Then("^I should see Precision populated as '(.*)'")
+    public void i_should_see_Precision_populated_as(String Precision) throws Throwable
+    {
+        channelSetupPage.getPrecisionValueAndComapreUserInputValue(Precision);
+        appliEyes.capture("Expected value of 'Precision' "+Precision+" is displayed.");
+    }
+
+    @Then("^I click Cancel button$")
+    public void i_click_Cancel_button() throws Throwable
+    {
+        channelSetupPage.iclickCancelbutton();
+        appliEyes.capture("'Cancel' button clicked successfully");
+    }
+
+    @Then("^It should close Calibrate screen$")
+    public void it_should_close_Calibrate_screen() throws Throwable
+    {
+        channelSetupPage.verifyCalibrateScreenIsnotDisplayed();
+        appliEyes.capture("Calibrate screen closed successfylly after clicking Cancel button");
+    }
+
+    //****************** RAJNI CODE END HERE*****************************//
+    //*******************************************************************//
 
     //Rajni's code ends here......
     
@@ -203,4 +312,5 @@ public class ChannelSetupPageSteps {
     public void allChannelsAreSelected() throws Exception {
     	channelSetupPage.allChannelsAreSelected();
     }
+
 }
