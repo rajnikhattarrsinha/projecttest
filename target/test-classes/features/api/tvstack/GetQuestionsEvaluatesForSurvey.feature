@@ -1,6 +1,5 @@
 Feature: API - Get Questions and Evaluates the filter for survey
 
-
   Background:
     Given Planner user log into Client to get OktaToken
     And User selects Market and Client
