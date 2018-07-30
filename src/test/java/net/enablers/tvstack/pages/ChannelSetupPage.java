@@ -8,29 +8,19 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertThat;
 
-import io.appium.java_client.pagefactory.WithTimeout;
-import net.enablers.tvstack.helpers.WebHelper;
-
 import org.openqa.selenium.support.FindBy;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import net.enablers.tvstack.utilities.RandomGenerator;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import com.google.inject.spi.Elements;
-
 
 
 public class ChannelSetupPage extends PageObject {
 
     NewPlanSetupPage newPlanSetupPage;
-    WebHelper webHelper;
     
     @FindBy(xpath = "//div[@class = 'channel-setup__table']//tbody/tr")
     List<WebElementFacade> availableChannels;
@@ -244,6 +234,11 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyCalibrateScreenIsnotDisplayed()
 	{
 		element(buttonName("Cancel")).shouldNotBeCurrentlyVisible();
+	}
+
+	public void verifyScenariosPageWithNewScenariosButton()
+	{
+		element(buttonName("Create new scenario")).waitUntilVisible();
 	}
 
 	//*************** RAJNI CODE END HERE ******************************//

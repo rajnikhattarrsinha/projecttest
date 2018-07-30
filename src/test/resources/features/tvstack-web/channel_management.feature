@@ -22,19 +22,18 @@ Feature: Manage channels
 
     #Scenario 2:
   Scenario: Add Channel to the Plan
-    Given I'm on Channels setup page
-    Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I should see '12' populated in CPM textbox corresponding to Channel 'TV'
-    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I should see '3' populated in CPM textbox corresponding to Channel 'Video on Demand'
-    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I should see '13' populated in CPM textbox corresponding to Channel 'Online+Video'
-    Then I click Next: Scenarios button
-    Then I should see Scenarios page with Create new scenario button
+    Given I'm on audience channels page
+    And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then  I should see '12' populated in CPM textbox corresponding to Channel 'TV'
+    And   I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And   I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
+    Then  I should see '3' populated in CPM textbox corresponding to Channel 'Video on Demand'
+    And   I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And   I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    Then  I should see '13' populated in CPM textbox corresponding to Channel 'Online+Video'
+    And   I click 'Next: Scenarios' button
+    Then  I should see Scenarios page with Create new scenario button
 
     #Scenario 3:
   Scenario: Channels setup page

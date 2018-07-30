@@ -5,12 +5,9 @@ import java.util.List;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import net.enablers.tvstack.helpers.WebHelper;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
-import net.enablers.tvstack.pages.NewPlanSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
-import net.serenitybdd.screenplay.questions.ValueOf;
 import net.thucydides.core.annotations.Steps;
 
 public class ChannelSetupPageSteps {
@@ -18,8 +15,6 @@ public class ChannelSetupPageSteps {
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
     AppliEyes appliEyes;
-    WebHelper webHelper;
-
     @Steps
     TvstackLandingPageSteps landingPageSteps;
 
@@ -121,6 +116,33 @@ public class ChannelSetupPageSteps {
         channelSetupPage.verifyCalibrateScreenIsnotDisplayed();
         appliEyes.capture("Calibrate screen closed successfylly after clicking Cancel button");
     }
+
+    //########################################################################################################
+    //# Scenario ID : 2
+    //# Test Case Calibrate Add Channel to the Plan
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case adding channel and verify next scenario page.
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 30-July-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+    @Given("^I should see Scenarios page with Create new scenario button$")
+    public void iShouldSeeScenariosPageWithCreateNewScenarioButton() throws Throwable
+    {
+        channelSetupPage.verifyScenariosPageWithNewScenariosButton();
+        appliEyes.capture("'Scenarios' page is displayed with 'Create new scenario' button.");
+    }
+
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
