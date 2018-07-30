@@ -159,10 +159,12 @@ public class ChannelSetupPage extends PageObject {
 	
 	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
 	{
+		waitABit(2000);
 		element(listboxbuyingAudience(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
 	}
 	public void selectSecondLengthFormatoption(String channelName,String secondLengthformat)
 	{
+		waitABit(2000);
 		element(listboxSecondLengthformat(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(secondLengthformat);
 	}
 	public By checkboxChannels(String ChannelsName)
