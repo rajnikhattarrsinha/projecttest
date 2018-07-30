@@ -8,8 +8,6 @@ Feature: Manage channels
 #Scenario 1:
   Scenario: Calibrate TV Channel-Prepopulating configured values
     Given I'm on audience channels page
-    And   I click 'Next: Scenarios' button
-    Then  I can see the 'Scenarios' section
     And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
     And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
     Then  I should see '12' populated in CPM textbox corresponding to Channel 'TV'
