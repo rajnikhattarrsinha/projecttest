@@ -157,38 +157,13 @@ public class ChannelSetupPage extends PageObject {
 	//*************** RAJNI CODE START HERE ******************************//
 	//********************************************************************//
 	
-	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
-	WebElementFacade listboxYoutubeAge;
-
-	@FindBy(xpath = "//p[text()='Please select at least 1 channel buying audience and format to proceed']")
-	WebElementFacade textvalidationMessage;
-
-	public void selectClosestbuyingAudienceoption(String ChannelName,String buyingAudience)
+	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
 	{
-		//@ If user pass some channel name then only it checkbox.
-		if(ChannelName.trim()!="")
-		{
-			//@ select buying Audience if input is not blank.
-			if(buyingAudience.trim() !="")
-			{
-				element(listboxbuyingAudience(ChannelName)).selectByVisibleText(buyingAudience);
-				webHelper.WaitForPageLoad(20);
-			}
-
-		}
+		element(listboxbuyingAudience(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
 	}
-	public void selectSecondLengthFormatoption(String ChannelName,String SecondLengthformat)
+	public void selectSecondLengthFormatoption(String channelName,String secondLengthformat)
 	{
-		//@ If user pass some channel name then only it checkbox.
-		if(ChannelName.trim()!="")
-		{
-			//@ select Second Length format if input is not blank.
-			if(SecondLengthformat.trim() !="")
-			{
-				element(listboxSecondLengthformat(ChannelName)).selectByVisibleText(SecondLengthformat);
-				webHelper.WaitForPageLoad(20);
-			}
-		}
+		element(listboxSecondLengthformat(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(secondLengthformat);
 	}
 	public By checkboxChannels(String ChannelsName)
 	{
@@ -206,67 +181,14 @@ public class ChannelSetupPage extends PageObject {
 	{
 		return By.xpath("//button//span[contains(text(),'"+ButtonText+"')]");
 	}
-	public void clickonNextScenariosbutton()
-	{
-		element(buttonName("Next: Scenarios")).click();
-		webHelper.WaitForPageLoad(180);
-	}
 	public By textboxBasedonName(String TextboxName)
 	{
 		return By.xpath("//*[text()='"+TextboxName+"']/following::input");
 	}
 
-  public By textboxCPM(String ChannelsName)
+	public By textboxCPM(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='text']");
-	}
-  
-
-
-	public void verifyScenariosPage()
-	{
-		element(buttonName("Create new scenario")).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
-	}
-	public void verifyChannelsPage()
-	{
-		element(buttonName("Next: Scenarios")).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
-	}
-	public void checkChannelscheckbox(String ChannelName)
-	{
-		//@ If user pass some channel name then only it checkbox.
-		if(ChannelName.trim()!="")
-		{
-			//@ check by default behaviour of checkbox if it is not checked then only it will click.
-			JavascriptExecutor executor = (JavascriptExecutor)getDriver();
-			if(!element(checkboxChannels(ChannelName)).isSelected())
-			{
-				//@ channel checkbox selection.
-				element(checkboxChannels(ChannelName)).click();
-				executor.executeScript("arguments[0].focus();", element(checkboxChannels(ChannelName)));
-				executor.executeScript("arguments[0].click();", element(checkboxChannels(ChannelName)));
-			}
-		}
-
-	}
-	public void selectAgeforYoutubeChannel(String Age)
-	{
-		listboxYoutubeAge.selectByVisibleText(Age);
-		webHelper.WaitForPageLoad(20);
-	}
-	public void selectGender(String Gender,String Channel)
-	{
-		element(listboxGender(Channel)).selectByVisibleText(Gender);
-		webHelper.WaitForPageLoad(20);
-	}
-	public void selectMinAge(String MinAge,String Channel)
-	{
-		element(listboxMinAge(Channel)).selectByVisibleText(MinAge);
-		webHelper.WaitForPageLoad(20);
-	}
-	public void selectMaxAge(String MaxAge,String Channel)
-	{
-		element(listboxMaxAge(Channel)).selectByVisibleText(MaxAge);
-		webHelper.WaitForPageLoad(20);
 	}
 	public By listboxGender(String ChannelsName)
 	{
@@ -288,69 +210,41 @@ public class ChannelSetupPage extends PageObject {
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[2]//select");
 	}
-	public void verifyMessageonHeader()
+
+	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelName,String valuetoverify)
 	{
-		textvalidationMessage.withTimeoutOf(20, TimeUnit.SECONDS).shouldBeVisible();
-	}
-	public void clickOnNextChannelsbuttonandverifyChannelPage()
-	{
-		element(buttonName("Next: Channels")).click();
-		webHelper.WaitForPageLoad(20);
-	}
-	public void uncheckAllChannelcheckbox()
-	{
-		JavascriptExecutor executor = (JavascriptExecutor)getDriver();
-		List<WebElementFacade> matchingWebElements = findAll(By.xpath("//input[contains(@id,'Checkbox')]"));
-		int Count = matchingWebElements.size();
-		for(int i=0;i<Count;i++)
-		{
-			if(matchingWebElements.get(i).isSelected())
-			{
-				executor.executeScript("arguments[0].focus();", matchingWebElements.get(i));
-				executor.executeScript("arguments[0].click();", matchingWebElements.get(i));
-			}
-		}
+		assertThat(element(textboxCPM(channelName)).getValue() == valuetoverify);
 	}
 
-	public void getCPMvalueandverify(String ChannelName,String valuetoverify)
+	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
 	{
-		assertThat(element(textboxCPM(ChannelName)).getValue(), CoreMatchers.equalTo(valuetoverify));
+		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue() == UserGRPs);
 	}
-	public void clickonCalibratebutton()
+	public void getReachvalueAndVerifyWithUserReachValue(String Reach)
 	{
-		element(buttonName("Calibrate")).click();
-		withTimeoutOf(20, TimeUnit.SECONDS).waitFor(textboxBasedonName("GRPs Calibrated at"));
-	}
-	public void getGRPsvalueandverifytouserinput(String UserGRPs)
-	{
-		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue(), CoreMatchers.equalTo(UserGRPs));
-	}
-	public void getReachvalueandComapreUserInputValue(String Reach)
-	{
-		assertThat(element(textboxBasedonName("Reach")).getValue(), CoreMatchers.equalTo(Reach));
+		assertThat(element(textboxBasedonName("Reach")).getValue()==Reach);
 	}
 	public void iClickonADVANCEDbutton()
 	{
-		advancedCalibrateButton.click();
-		webHelper.WaitForPageLoad(10);
+		advancedCalibrateButton.waitUntilClickable().click();
 	}
-	public void getMaximumReachValueAndComapreUserInputValue(String MaximumReach)
+	public void getMaximumReachValueAndVerifyWithUserMaximumReachValue(String MaximumReach)
 	{
-		assertThat(element(textboxBasedonName("Maximum Reach")).getValue(), CoreMatchers.equalTo(MaximumReach));
+		assertThat(element(textboxBasedonName("Maximum Reach")).getValue()==MaximumReach);
 	}
 	public void getPrecisionValueAndComapreUserInputValue(String Precision)
 	{
-		assertThat(element(textboxBasedonName("Precision")).getValue(), CoreMatchers.equalTo(Precision));
+		assertThat(element(textboxBasedonName("Precision")).getValue()==Precision);
 	}
 	public void iclickCancelbutton()
 	{
-	     	element(buttonName("Cancel")).click();
-		webHelper.WaitForPageLoad(10);
+		element(buttonName("Cancel")).waitUntilClickable().click();
 	}
 	public void verifyCalibrateScreenIsnotDisplayed()
 	{
 		element(buttonName("Cancel")).shouldNotBeCurrentlyVisible();
 	}
+
 	//*************** RAJNI CODE END HERE ******************************//
 	//********************************************************************//
 
