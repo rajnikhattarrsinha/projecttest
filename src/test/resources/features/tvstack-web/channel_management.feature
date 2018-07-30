@@ -7,19 +7,20 @@ Feature: Manage channels
 # Rajni's code starts here.....
 #Scenario 1:
   Scenario: Calibrate TV Channel-Prepopulating configured values
-    Given I'm on Channels setup page
-    Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    Then I should see '12' populated in CPM textbox corresponding to Channel 'TV'
-    Then I click Calibrate button
-    Then I should see GRPs Celebrated at textbox populated as '12'
-    And  I should see Reach populated as '25'
-    Then I click on ADVANCED button
-    And I should see Maximum Reach populated as '56'
-    And I should see Precision populated as '36'
-    Then I click Cancel button
-    Then It should close Calibrate screen
+    Given I'm on audience channels page
+    And   I click 'Next: Scenarios' button
+    Then  I can see the 'Scenarios' section
+    And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then  I should see '12' populated in CPM textbox corresponding to Channel 'TV'
+    And   I press calibrate button
+    Then  I should see GRPs Celebrated at textbox populated as '12'
+    Then  I should see Reach populated as '25'
+    And   I click on ADVANCED button
+    Then  I should see Maximum Reach populated as '56'
+    Then  I should see Precision populated as '36'
+    And   I click Cancel button
+    Then  It should close Calibrate screen
 
     #Scenario 2:
   Scenario: Add Channel to the Plan
