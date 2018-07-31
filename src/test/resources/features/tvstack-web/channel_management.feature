@@ -35,33 +35,24 @@ Feature: Manage channels
     And   I click 'Next: Scenarios' button
     Then  I should see Scenarios page with Create new scenario button
 
-    #Scenario 3:
-  Scenario: Channels setup page
-    Given I'm on Channels setup page
-    Then I should see multiple channels options
-    Then I will select Channel 'TV' checkbox
-    And  I will select any Closest buying Audience option 'Hello World' corresponding to Channels 'TV'
-    And  I will select any Second Length/Format option 'Test3' corresponding to Channels 'TV'
-    Then I will select Channel 'Video on Demand' checkbox
-    And  I will select any Closest buying Audience option 'test 2' corresponding to Channels 'Video on Demand'
-    And  I will select any Second Length/Format option 'format 1' corresponding to Channels 'Video on Demand'
-    Then I will select Channel 'Online+Video' checkbox
-    And  I will select any Closest buying Audience option 'Edited8X4vi' corresponding to Channels 'Online+Video'
-    And  I will select any Second Length/Format option 'asd' corresponding to Channels 'Online+Video'
-    Then I will select Channel 'Youtube' checkbox
-    And  I will select any Age option '18-34' corresponding to Channels 'Youtube'
-    And  I will select any Gender option 'Female' corresponding to Channels 'Youtube'
-    And  I will select any Second Length/Format option 'Reservation' corresponding to Channels 'Youtube'
-    Then I will select Channel 'Facebook' checkbox
-    And  I will select any Min Age option '20' corresponding to Channels 'Facebook'
-    And  I will select any Max Age option '55' corresponding to Channels 'Facebook'
-    And  I will select any Gender option 'Male' corresponding to Channels 'Facebook'
-    Then I will select Channel 'Instagram' checkbox
-    And  I will select any Min Age option '18' corresponding to Channels 'Instagram'
-    And  I will select any Max Age option '30' corresponding to Channels 'Instagram'
-    And  I will select any Gender option 'Male' corresponding to Channels 'Instagram'
-    Then  I will click Next: Scenarios button
-    Then i should see Scenarios page with Create new scenario button
+#Scenario 3: Verify CPM is uneditable for Channels youtube(Auction),facebook and Instagram
+Scenario: CPM is uneditable for Channels youtube(Auction),facebook and Instagram
+  Given I'm on audience channels page
+  And   I select Age as '18-34' corresponding to Channel 'Youtube'
+  And   I select Gender as 'Female' corresponding to Channel 'Youtube'
+  And   I select Second Length/Format as 'Auction' corresponding to Channel 'Youtube'
+  Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
+  Then  I should not be able to edit the CPM textbox corresponding to Channel 'Youtube'
+  And   I select Min Age as '20' corresponding to Channel 'Facebook'
+  And   I select Max Age as '55' corresponding to Channel 'Facebook'
+  And   I select Gender as  'Male' corresponding to Channel 'Facebook'
+  Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Facebook'
+  Then  I should not be able to edit the CPM textbox corresponding to Channel 'Facebook'
+  And   I select Min Age as '18' corresponding to Channel 'Instagram'
+  And   I select Max Age as '30' corresponding to Channel 'Instagram'
+  And   I select Gender as 'Male' corresponding to Channel 'Instagram'
+  Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Instagram'
+  Then  I should not be able to edit the CPM textbox corresponding to Channel 'Instagram'
 
   Scenario: To test validation message without selecting any Channels
     Given I'm on Channels setup page

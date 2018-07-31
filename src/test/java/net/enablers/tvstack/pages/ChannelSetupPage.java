@@ -146,7 +146,12 @@ public class ChannelSetupPage extends PageObject {
 
 	//*************** RAJNI CODE START HERE ******************************//
 	//********************************************************************//
-	
+
+	//*--------- Web Element Proprty decelation section
+
+	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
+	WebElementFacade listboxYoutubeAge;
+
 	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
 	{
 		element(listboxbuyingAudience(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
@@ -239,6 +244,30 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyScenariosPageWithNewScenariosButton()
 	{
 		element(buttonName("Create new scenario")).withTimeoutOf(180, TimeUnit.SECONDS).waitUntilClickable();
+	}
+
+	public void selectAgeforYoutubeChannel(String Age)
+	{
+		listboxYoutubeAge.waitUntilEnabled().selectByVisibleText(Age);
+	}
+
+	public void selectGender(String Gender,String Channel)
+	{
+		element(listboxGender(Channel)).waitUntilEnabled().selectByVisibleText(Gender);
+	}
+
+	public void selectMinAge(String MinAge,String Channel)
+	{
+		element(listboxMinAge(Channel)).selectByVisibleText(MinAge);
+	}
+	public void selectMaxAge(String MaxAge,String Channel)
+	{
+		element(listboxMaxAge(Channel)).selectByVisibleText(MaxAge);
+	}
+
+	public void verifyNoneditableCPMtextbox(String channelName)
+	{
+		assertThat(element(textboxCPM(channelName)).getAttribute("readonly") !=null);
 	}
 
 	//*************** RAJNI CODE END HERE ******************************//

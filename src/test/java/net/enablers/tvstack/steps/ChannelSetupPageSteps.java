@@ -143,6 +143,59 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("'Scenarios' page is displayed with 'Create new scenario' button.");
     }
 
+    //########################################################################################################
+    //# Scenario ID : 3
+    //# Test Case CPM is uneditable for Channels youtube(Auction),facebook and Instagram
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case verify CPM field is uneditable for channels youtube(Auction),facebook and Instagram
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 31-July-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+    @Given("^I select Age as '(.*)' corresponding to Channel 'Youtube'$")
+    public void iSelectAgeForChannelYoutube(String ageforYouTube) throws Throwable
+    {
+        channelSetupPage.selectAgeforYoutubeChannel(ageforYouTube);
+        appliEyes.capture("Age '"+ageforYouTube+"' is successfully selected for Channel 'YouTube'");
+    }
+
+    @Given("^I select Gender as '(.*)' corresponding to Channel '(.*)'")
+    public void iSelectGenderCorrespondingToChannel(String Gender,String Channel ) throws Throwable
+    {
+        channelSetupPage.selectGender(Gender, Channel);
+        appliEyes.capture("Gender '"+Gender+"' is successfully selected for Channel '"+Channel+"'.");
+    }
+
+    @Then("^I should not be able to edit the CPM textbox corresponding to Channel '(.*)'")
+    public void iShouldSeeNonEditableCPMtextboxCorrespondingToChannel(String channelName) throws Throwable
+    {
+        channelSetupPage.verifyNoneditableCPMtextbox(channelName);
+        appliEyes.capture("CPM textbox is non editable for Channel '"+channelName+".");
+    }
+
+    @Then("^I select Min Age as '(.*)' corresponding to Channel '(.*)'")
+    public void iSelectMinAgeCorrespondingToChannel(String MinAge,String channelName) throws Throwable
+    {
+        channelSetupPage.selectMinAge(MinAge, channelName);
+        appliEyes.capture("Min Age '"+MinAge+"' is successfully selected for Channel '"+channelName+"'.");
+    }
+
+    @Then("^I select Max Age as '(.*)' corresponding to Channel '(.*)'")
+    public void iSelectMaxAgeCorrespondingToChannel(String MaxAge,String channelName) throws Throwable
+    {
+        channelSetupPage.selectMaxAge(MaxAge, channelName);
+        appliEyes.capture("Max Age '"+MaxAge+"' is successfully selected for Channel '"+channelName+"'.");
+    }
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
