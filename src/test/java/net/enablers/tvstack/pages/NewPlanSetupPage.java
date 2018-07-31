@@ -6,7 +6,7 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.support.FindBy;
-
+import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -83,13 +83,14 @@ public class NewPlanSetupPage extends PageObject {
         $("//button[span='Compare scenario']").shouldBePresent();
     }
 
+    /*
     public void submitNewPlan() {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd");
         int startDate = Integer.parseInt(sdf.format(date));
-        int endDate = Integer.parseInt(sdf.format(date)) + 1;
+        int endDate = Integer.parseInt(sdf.format(date)) + 10;
 
         plan.setMarket("United Kingdom");
         plan.setClient("JD Sports");
@@ -102,8 +103,34 @@ public class NewPlanSetupPage extends PageObject {
         videoBudget.type(plan.getBudget().toString());
 
         dateField.waitUntilClickable().then().click();
-        $("//td[text() = '" + plan.getStartDate() + "'][@tabindex = '0']").waitUntilClickable().click();
-        $("//td[text() = '" + plan.getEndDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+        $("//td[text()='"+plan.getStartDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
+        $("//td[text()='"+plan.getEndDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
+        $("//button[span='Create Plan']").waitUntilEnabled().and().waitUntilClickable().click();
+    }
+    */
+
+    public void submitNewPlan()
+    {
+        Date today = new Date();
+        SimpleDateFormat formattedDate = new SimpleDateFormat("dd");
+        Calendar c = Calendar.getInstance();
+        int startDate = Integer.parseInt(formattedDate.format(c.getTime()));
+        c.add(Calendar.DATE, 1);
+        int endDate = Integer.parseInt(formattedDate.format(c.getTime()));
+
+        plan.setMarket("United Kingdom");
+        plan.setClient("JD Sports");
+        plan.setPlanName("AutoPlan" + RandomGenerator.randomAlphanumeric(3));
+        Serenity.setSessionVariable("planName").to(plan.getPlanName());
+        plan.setBudget(100000);
+        plan.setStartDate(startDate);
+        plan.setEndDate(endDate);
+        planName.type(plan.getPlanName());
+        videoBudget.type(plan.getBudget().toString());
+
+        dateField.waitUntilClickable().then().click();
+        $("//td[text()='"+plan.getStartDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
+        $("//td[text()='"+plan.getEndDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
         $("//button[span='Create Plan']").waitUntilEnabled().and().waitUntilClickable().click();
     }
 
