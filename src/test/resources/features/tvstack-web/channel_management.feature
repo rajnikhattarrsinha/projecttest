@@ -54,6 +54,40 @@ Scenario: CPM is uneditable for Channels youtube(Auction),facebook and Instagram
   Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Instagram'
   Then  I should not be able to edit the CPM textbox corresponding to Channel 'Instagram'
 
+Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
+    Given I'm on audience channels page
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
+    #Then I should be able to enter value '15.1' in CPM textbox corresponding to Channel 'TV'
+    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
+    #Then I should be able to enter value '16.1' in CPM textbox corresponding to Channel 'Video on Demand'
+    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Online+Video'
+    #Then I should be able to enter value '17.1' in CPM textbox corresponding to Channel 'Online+Video'
+    Then I click 'Next: Scenarios' button
+    Then I can see the 'Scenarios' section
+    Then I click 'Create new scenario' button
+    Then I click 'Update' button on Scenarios Builder  screen
+    Then I click 'Close' button on Scenarios Builder screen
+    Then I can see the 'Scenarios' section
+    Then I click 'Create new scenario' button
+    Then I click 'Update' button on Scenarios Builder  screen
+    Then I click 'Close' button on Scenarios Builder screen
+    Then I click 'Next: Scenario Comparison >' button
+    And  I will select 'valueforScenarioA' from scenario A listbox
+    And  I will select 'valueforScenarioB' from scenario B listbox
+    And I will select created plan 'valueforScenarioc' from Planning Audience listbox
+    Then I click 'Compare' button
+    Then I click on Plan Name available on top left
+    Then I navigate till Channels set up page
+   # Then  I should see '15.1' populated in CPM textbox corresponding to Channel 'TV'
+   # Then  I should see '16.1' populated in CPM textbox corresponding to Channel 'Video on Demand'
+   # Then  I should see '17.1' populated in CPM textbox corresponding to Channel 'Online+Video'
+
   Scenario: To test validation message without selecting any Channels
     Given I'm on Channels setup page
     Then I will uncheck all channels options

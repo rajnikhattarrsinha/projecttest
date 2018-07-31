@@ -197,6 +197,71 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("Max Age '"+MaxAge+"' is successfully selected for Channel '"+channelName+"'.");
     }
 
+    //########################################################################################################
+    //# Scenario ID : 5
+    //# Test Case Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case verify user is able to override CPM value of channel
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 01-Aug-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+    @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
+    public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
+    {
+
+    }
+
+    @Then("^I click 'Update' button on Scenarios Builder  screen$")
+    public void iClickUpdateButtonFromScenariosPage() throws Throwable
+    {
+
+    }
+
+    @Then("^I click 'Close' button on Scenarios Builder screen$")
+    public void iClickCloseButtonFromScenariosPage() throws Throwable
+    {
+
+    }
+
+    @Given("^I will select '(.*)' from scenario A listbox")
+    public void iWillSelectscenarioAValue(String scenarioA ) throws Throwable
+    {
+    }
+
+    @Given("^I will select '(.*)' from scenario B listbox")
+    public void iWillSelectscenarioBValue(String scenarioB) throws Throwable
+    {
+
+    }
+
+    @Given("^I will select created plan '(.*)' from Planning Audience listbox")
+    public void iWillSelectPlanningAudienceValue(String PlanningAudience) throws Throwable
+    {
+
+    }
+
+    @Then("^I click on Plan Name available on top left$")
+    public void iClickOnPlanNameFromTopOfThePage() throws Throwable
+    {
+    }
+
+    @Then("^I navigate till Channels set up page$")
+    public void iNavigateChannelsSetUpPage() throws Throwable
+    {
+
+    }
+
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
     
