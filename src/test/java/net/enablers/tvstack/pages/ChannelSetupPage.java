@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.JavascriptExecutor;
 import static org.junit.Assert.assertThat;
 
 import org.openqa.selenium.support.FindBy;
@@ -319,12 +319,19 @@ public class ChannelSetupPage extends PageObject {
 			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
 		}
 		catch(Exception e) {}
-		element(buttonName(buttonName)).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().then().click();
+		element(buttonName(buttonName)).withTimeoutOf(10, TimeUnit.SECONDS).waitUntilClickable().then().click();
 		try
 		{
 			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
 		}
+
 		catch(Exception e) {}
+		Boolean readyStateComplete = false;
+		while (!readyStateComplete)
+		{
+			JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+			readyStateComplete = ((String) executor.executeScript("return document.readyState")).equals("complete");
+		}
 	}
 
 
