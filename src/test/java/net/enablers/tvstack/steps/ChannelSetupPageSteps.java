@@ -8,6 +8,7 @@ import cucumber.api.java.en.When;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 
 public class ChannelSetupPageSteps {
@@ -223,25 +224,28 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
     }
 
-    @Given("^I will select '(.*)' from scenario A listbox")
-    public void iWillSelectscenarioAValue(String scenarioA ) throws Throwable
+    @Then("^I will select newly created scenario A from scenario A listbox$")
+    public void i_will_select_newly_created_scenario_A_from_scenario_A_listbox() throws Throwable
     {
+        String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
         channelSetupPage.selectScenarioAValue(scenarioA);
         appliEyes.capture("'"+scenarioA+"' selected from Scenario A listbox");
     }
 
-    @Given("^I will select '(.*)' from scenario B listbox")
-    public void iWillSelectscenarioBValue(String scenarioB) throws Throwable
+    @Then("^I will select newly created scenario B  from scenario B listbox$")
+    public void i_will_select_newly_created_scenario_B_from_scenario_B_listbox() throws Throwable
     {
+        String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
         channelSetupPage.selectScenarioBValue(scenarioB);
         appliEyes.capture("'"+scenarioB+"' selected from Scenario B listbox");
     }
 
-    @Given("^I will select created plan '(.*)' from Planning Audience listbox")
-    public void iWillSelectPlanningAudienceValue(String PlanningAudience) throws Throwable
+    @Then("^I will select created plan from Planning Audience listbox$")
+    public void i_will_select_created_plan_from_Planning_Audience_listbox() throws Throwable
     {
+        String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
         channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
-        appliEyes.capture("'"+PlanningAudience+"' selected from Planning Audience listbox");
+        appliEyes.capture("'"+PlanningAudience+"' selected from Planning Audience listbox");// Write code here that turns the phrase above into concrete actions
     }
 
     @Then("^I click on Plan Name available on top left$")
