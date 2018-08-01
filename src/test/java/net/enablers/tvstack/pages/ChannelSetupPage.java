@@ -285,17 +285,6 @@ public class ChannelSetupPage extends PageObject {
 		element(textboxCPM(channelName)).waitUntilClickable().clear();
 		element(textboxCPM(channelName)).sendKeys(cpmValue);
 	}
-
-	public void clickingUpdateButton()
-	{
-		element(buttonName("update")).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().click();
-	}
-
-	public void clickingCloseButton()
-	{
-		element(buttonName("Close")).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilPresent().waitUntilClickable().click();
-	}
-
 	public void selectScenarioAValue(String ScenarioAvalue)
 	{
 		element(listboxonScenarioComparison("Scenario A")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(ScenarioAvalue);
@@ -318,10 +307,7 @@ public class ChannelSetupPage extends PageObject {
 		headerTag.shouldBeVisible();
 		assertThat(headerTag.getText() =="Edit plan");
 	}
-	public void clickOnNextNextScenarioComparisonButton()
-	{
-		element(buttonName("Next: Scenario Comparison")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilClickable().click();
-	}
+
 
 	//*************** RAJNI CODE END HERE ******************************//
 	//********************************************************************//
