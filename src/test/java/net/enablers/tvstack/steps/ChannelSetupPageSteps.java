@@ -223,20 +223,6 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
     }
 
-    @Then("^I click 'Update' button on Scenarios Builder  screen$")
-    public void iClickUpdateButtonFromScenariosPage() throws Throwable
-    {
-        channelSetupPage.clickingUpdateButton();
-        appliEyes.capture("Button 'update' clicked successfully.");
-    }
-
-    @Then("^I click 'Close' button on Scenarios Builder screen$")
-    public void iClickCloseButtonFromScenariosPage() throws Throwable
-    {
-        channelSetupPage.clickingCloseButton();
-        appliEyes.capture("Button 'Close' clicked successfully.");
-    }
-
     @Given("^I will select '(.*)' from scenario A listbox")
     public void iWillSelectscenarioAValue(String scenarioA ) throws Throwable
     {
@@ -271,13 +257,7 @@ public class ChannelSetupPageSteps {
         channelSetupPage.verifyEditPlanPage();
         appliEyes.capture("'Edit' Plan page is displayed.");
     }
-
-    @Then("^I click Next: scenario Comparison button$")
-    public void i_click_Next_scenario_Comparison_button() throws Throwable
-    {
-        channelSetupPage.clickOnNextNextScenarioComparisonButton();
-        appliEyes.capture("Button 'Next: Scenario Comparison' clicked successfully.");
-    }
+    
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
