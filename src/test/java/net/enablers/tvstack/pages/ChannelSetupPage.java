@@ -152,6 +152,12 @@ public class ChannelSetupPage extends PageObject {
 	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
 	WebElementFacade listboxYoutubeAge;
 
+	@FindBy(xpath = "//a[contains(@href,'edit') and contains(@href,'plan')]")
+	WebElementFacade linkEditforPlan;
+
+	@FindBy(xpath = "//h1")
+	WebElementFacade headerTag;
+
 	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
 	{
 		element(listboxbuyingAudience(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
@@ -172,6 +178,10 @@ public class ChannelSetupPage extends PageObject {
 	public By listboxSecondLengthformat(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[4]//select");
+	}
+	public By listboxonScenarioComparison(String listboxName)
+	{
+		return By.xpath("//label[text()='P"+listboxName+"']/parent::div/parent::div/parent::div//select");
 	}
 	public By buttonName(String ButtonText)
 	{
@@ -268,6 +278,45 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyNoneditableCPMtextbox(String channelName)
 	{
 		assertThat(element(textboxCPM(channelName)).getAttribute("readonly") !=null);
+	}
+
+	public void enterCPMValueCorrespondingToChannel(String channelName,String cpmValue)
+	{
+		element(textboxCPM(channelName)).waitUntilClickable().clear();
+		element(textboxCPM(channelName)).sendKeys(cpmValue);
+	}
+
+	public void clickingUpdateButton()
+	{
+		element(buttonName("update")).waitUntilClickable().click();
+	}
+
+	public void clickingCloseButton()
+	{
+		element(buttonName("Close")).waitUntilClickable().click();
+	}
+
+	public void selectScenarioAValue(String ScenarioAvalue)
+	{
+		element(listboxonScenarioComparison("Scenario A")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(ScenarioAvalue);
+	}
+	public void selectScenarioBValue(String ScenarioBvalue)
+	{
+		element(listboxonScenarioComparison("Scenario B")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(ScenarioBvalue);
+	}
+	public void selectPlanningAudienceValue(String PlanningAudience)
+	{
+		element(listboxonScenarioComparison("Planning Audience")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(PlanningAudience);
+	}
+
+	public void clickonEditLinkFromPlanSection()
+	{
+		linkEditforPlan.waitUntilClickable().click();
+	}
+	public void verifyEditPlanPage()
+	{
+		headerTag.shouldBeVisible();
+		assertThat(headerTag.getText() =="Edit plan");
 	}
 
 	//*************** RAJNI CODE END HERE ******************************//

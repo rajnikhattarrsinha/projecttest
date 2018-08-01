@@ -54,6 +54,7 @@ Scenario: CPM is uneditable for Channels youtube(Auction),facebook and Instagram
   Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Instagram'
   Then  I should not be able to edit the CPM textbox corresponding to Channel 'Instagram'
 
+#Scenario 5: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
 Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
     Given I'm on audience channels page
     And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'

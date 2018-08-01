@@ -219,41 +219,50 @@ public class ChannelSetupPageSteps {
     @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
     public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
     {
-
+        channelSetupPage.enterCPMValueCorrespondingToChannel(channelName,cpmValue);
+        appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
     }
 
     @Then("^I click 'Update' button on Scenarios Builder  screen$")
     public void iClickUpdateButtonFromScenariosPage() throws Throwable
     {
-
+        channelSetupPage.clickingUpdateButton();
+        appliEyes.capture("Button 'update' clicked successfully.");
     }
 
     @Then("^I click 'Close' button on Scenarios Builder screen$")
     public void iClickCloseButtonFromScenariosPage() throws Throwable
     {
-
+        channelSetupPage.clickingCloseButton();
+        appliEyes.capture("Button 'Close' clicked successfully.");
     }
 
     @Given("^I will select '(.*)' from scenario A listbox")
     public void iWillSelectscenarioAValue(String scenarioA ) throws Throwable
     {
+        channelSetupPage.selectScenarioAValue(scenarioA);
+        appliEyes.capture("'"+scenarioA+"' selected from Scenario A listbox");
     }
 
     @Given("^I will select '(.*)' from scenario B listbox")
     public void iWillSelectscenarioBValue(String scenarioB) throws Throwable
     {
-
+        channelSetupPage.selectScenarioBValue(scenarioB);
+        appliEyes.capture("'"+scenarioB+"' selected from Scenario B listbox");
     }
 
     @Given("^I will select created plan '(.*)' from Planning Audience listbox")
     public void iWillSelectPlanningAudienceValue(String PlanningAudience) throws Throwable
     {
-
+        channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
+        appliEyes.capture("'"+PlanningAudience+"' selected from Planning Audience listbox");
     }
 
     @Then("^I click on Plan Name available on top left$")
     public void iClickOnPlanNameFromTopOfThePage() throws Throwable
     {
+        channelSetupPage.clickonEditLinkFromPlanSection();
+        appliEyes.capture("Link 'Edit' along with Plan name clicked successfully.");
     }
 
     @Then("^I navigate till Channels set up page$")
