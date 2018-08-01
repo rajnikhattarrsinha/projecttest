@@ -288,12 +288,12 @@ public class ChannelSetupPage extends PageObject {
 
 	public void clickingUpdateButton()
 	{
-		element(buttonName("update")).waitUntilClickable().click();
+		element(buttonName("update")).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().click();
 	}
 
 	public void clickingCloseButton()
 	{
-		element(buttonName("Close")).waitUntilClickable().click();
+		element(buttonName("Close")).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilPresent().waitUntilClickable().click();
 	}
 
 	public void selectScenarioAValue(String ScenarioAvalue)
@@ -317,6 +317,10 @@ public class ChannelSetupPage extends PageObject {
 	{
 		headerTag.shouldBeVisible();
 		assertThat(headerTag.getText() =="Edit plan");
+	}
+	public void clickOnNextNextScenarioComparisonButton()
+	{
+		element(buttonName("Next: Scenario Comparison")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilClickable().click();
 	}
 
 	//*************** RAJNI CODE END HERE ******************************//

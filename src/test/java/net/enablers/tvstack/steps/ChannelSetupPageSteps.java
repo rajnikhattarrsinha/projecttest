@@ -268,7 +268,15 @@ public class ChannelSetupPageSteps {
     @Then("^I navigate till Channels set up page$")
     public void iNavigateChannelsSetUpPage() throws Throwable
     {
+        channelSetupPage.verifyEditPlanPage();
+        appliEyes.capture("'Edit' Plan page is displayed.");
+    }
 
+    @Then("^I click Next: scenario Comparison button$")
+    public void i_click_Next_scenario_Comparison_button() throws Throwable
+    {
+        channelSetupPage.clickOnNextNextScenarioComparisonButton();
+        appliEyes.capture("Button 'Next: Scenario Comparison' clicked successfully.");
     }
 
     //****************** RAJNI CODE END HERE*****************************//
