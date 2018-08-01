@@ -326,12 +326,7 @@ public class ChannelSetupPage extends PageObject {
 		}
 
 		catch(Exception e) {}
-		Boolean readyStateComplete = false;
-		while (!readyStateComplete)
-		{
-			JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-			readyStateComplete = ((String) executor.executeScript("return document.readyState")).equals("complete");
-		}
+
 	}
 
 
