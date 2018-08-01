@@ -71,13 +71,13 @@ public class ChannelSetupPage extends PageObject {
 	{
 		try
 		{
-			$(".inner").withTimeoutOf(60, TimeUnit.SECONDS).waitUntilNotVisible();
+			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
 		}
 		catch(Exception e) {}
 		element(newPlanSetupPage.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().then().click();
 		try
 		{
-			$(".inner").withTimeoutOf(60, TimeUnit.SECONDS).waitUntilNotVisible();
+			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
 		}
 		catch(Exception e) {}
 	}
