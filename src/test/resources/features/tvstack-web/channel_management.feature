@@ -72,11 +72,11 @@ Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
     Then I click 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
     Then I click 'Create new scenario' button
-    Then I click 'Update' button
+    Then I click 'update' button
     Then I click 'Close' button
     Then I can see the 'Scenarios' section
     Then I click 'Create new scenario' button
-    Then I click 'Update' button
+    Then I click 'update' button
     Then I click 'Close' button
     Then I click 'Next: Scenario Comparison >' button
     Then I will select 'valueforScenarioA' from scenario A listbox

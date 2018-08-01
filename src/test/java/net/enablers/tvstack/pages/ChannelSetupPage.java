@@ -67,8 +67,19 @@ public class ChannelSetupPage extends PageObject {
 		}		
 	}
 
-	public void iClickScenariosButton(String buttonType) {
-		element(newPlanSetupPage.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilClickable().then().click();				
+	public void iClickScenariosButton(String buttonType)
+	{
+		try
+		{
+			$(".inner").withTimeoutOf(60, TimeUnit.SECONDS).waitUntilNotVisible();
+		}
+		catch(Exception e) {}
+		element(newPlanSetupPage.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().then().click();
+		try
+		{
+			$(".inner").withTimeoutOf(60, TimeUnit.SECONDS).waitUntilNotVisible();
+		}
+		catch(Exception e) {}
 	}
 
 	public void clickOnCalibrate() {

@@ -257,7 +257,7 @@ public class ChannelSetupPageSteps {
         channelSetupPage.verifyEditPlanPage();
         appliEyes.capture("'Edit' Plan page is displayed.");
     }
-    
+
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
