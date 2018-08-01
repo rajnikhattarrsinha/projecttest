@@ -225,7 +225,7 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I will select newly created scenario A from scenario A listbox$")
-    public void i_will_select_newly_created_scenario_A_from_scenario_A_listbox() throws Throwable
+    public void iWillSelectScenarioA() throws Throwable
     {
         String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
         channelSetupPage.selectScenarioAValue(scenarioA);
@@ -233,7 +233,7 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I will select newly created scenario B  from scenario B listbox$")
-    public void i_will_select_newly_created_scenario_B_from_scenario_B_listbox() throws Throwable
+    public void iWillSelectScenarioB() throws Throwable
     {
         String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
         channelSetupPage.selectScenarioBValue(scenarioB);
@@ -241,25 +241,32 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I will select created plan from Planning Audience listbox$")
-    public void i_will_select_created_plan_from_Planning_Audience_listbox() throws Throwable
+    public void iWillSelectPlanningAudience() throws Throwable
     {
         String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
         channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
         appliEyes.capture("'"+PlanningAudience+"' selected from Planning Audience listbox");// Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("^I click on Plan Name available on top left$")
-    public void iClickOnPlanNameFromTopOfThePage() throws Throwable
+    @Then("^I click on '(.*)' from header breadcrumb$")
+    public void iClickOnChannelLinkFromBreadcrumb(String breadcrumbChannel) throws Throwable
     {
-        channelSetupPage.clickonEditLinkFromPlanSection();
+        channelSetupPage.clickonBreadCrumbLink(breadcrumbChannel);
         appliEyes.capture("Link 'Edit' along with Plan name clicked successfully.");
     }
 
-    @Then("^I navigate till Channels set up page$")
-    public void iNavigateChannelsSetUpPage() throws Throwable
+    @Then("^I navigate till (.*) set up page$")
+    public void iNavigateChannelsSetUpPage(String PageHeader) throws Throwable
     {
-        channelSetupPage.verifyEditPlanPage();
-        appliEyes.capture("'Edit' Plan page is displayed.");
+        channelSetupPage.verifyPageHeader(PageHeader);
+        appliEyes.capture("'"+PageHeader+"'page is displayed.");
+    }
+
+    @Then("^I will click on '(.*)' button$")
+    public void iWillClickonanyButton(String buttonText) throws Throwable
+    {
+        channelSetupPage.iWillClickonButton(buttonText);
+        appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
     }
 
 

@@ -69,17 +69,8 @@ public class ChannelSetupPage extends PageObject {
 
 	public void iClickScenariosButton(String buttonType)
 	{
-		try
-		{
-			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
-		}
-		catch(Exception e) {}
+		$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
 		element(newPlanSetupPage.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().then().click();
-		try
-		{
-			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
-		}
-		catch(Exception e) {}
 	}
 
 	public void clickOnCalibrate() {
@@ -163,9 +154,6 @@ public class ChannelSetupPage extends PageObject {
 	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
 	WebElementFacade listboxYoutubeAge;
 
-	@FindBy(xpath = "//a[contains(@href,'edit') and contains(@href,'plan')]")
-	WebElementFacade linkEditforPlan;
-
 	@FindBy(xpath = "//h1")
 	WebElementFacade headerTag;
 
@@ -192,7 +180,7 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public By listboxonScenarioComparison(String listboxName)
 	{
-		return By.xpath("//label[text()='P"+listboxName+"']/parent::div/parent::div/parent::div//select");
+		return By.xpath("//label[text()='"+listboxName+"']/parent::div/parent::div/parent::div//select");
 	}
 	public By buttonName(String ButtonText)
 	{
@@ -226,6 +214,10 @@ public class ChannelSetupPage extends PageObject {
 	public By listboxMaxAge(String ChannelsName)
 	{
 		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[2]//select");
+	}
+	public By linkBreadCrumb(String breadcrumbName)
+	{
+		return By.xpath("//ol//li//a[text()='"+breadcrumbName+"']");
 	}
 
 	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelName,String valuetoverify)
@@ -309,14 +301,30 @@ public class ChannelSetupPage extends PageObject {
 		element(listboxonScenarioComparison("Planning Audience")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(PlanningAudience);
 	}
 
-	public void clickonEditLinkFromPlanSection()
+	public void clickonBreadCrumbLink(String breadcrumbLinkName)
 	{
-		linkEditforPlan.waitUntilClickable().click();
+		element(linkBreadCrumb("Channels")).waitUntilClickable().click();
 	}
-	public void verifyEditPlanPage()
+	public void verifyPageHeader(String PageHeader)
 	{
 		headerTag.shouldBeVisible();
-		assertThat(headerTag.getText() =="Edit plan");
+		assertThat(headerTag.getText() ==PageHeader);
+	}
+
+	public void iWillClickonButton(String buttonName)
+	{
+
+		try
+		{
+			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
+		}
+		catch(Exception e) {}
+		element(buttonName(buttonName)).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().then().click();
+		try
+		{
+			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
+		}
+		catch(Exception e) {}
 	}
 
 
