@@ -269,6 +269,13 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
     }
 
+    @Then("^I can see the newly created scenario '(.*)' on Scenarios page$")
+    public void iWillVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
+    {
+        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
+        appliEyes.capture("New Created Scenario id displayed on Scenario page");
+    }
+
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///

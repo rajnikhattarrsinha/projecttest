@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import net.serenitybdd.core.Serenity;
 import org.openqa.selenium.JavascriptExecutor;
 import static org.junit.Assert.assertThat;
 
@@ -329,6 +331,11 @@ public class ChannelSetupPage extends PageObject {
 
 	}
 
+	public void verifyNewlyCreatedScenario(String ScenarioNumber)
+	{
+		String ScenarioName = Serenity.sessionVariableCalled("new_audience_name")+"-scenario"+ScenarioNumber;
+		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(30, TimeUnit.SECONDS).waitUntilVisible();
+	}
 
 	//*************** RAJNI CODE END HERE ******************************//
 	//********************************************************************//
