@@ -74,16 +74,17 @@ Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
     Then I will click on 'Create new scenario' button
     Then I will click on 'update' button
     Then I will click on 'Close' button
-    Then I can see the 'Scenarios' section
+    Then I can see the newly created scenario '1' on Scenarios page
     Then I will click on 'Create new scenario' button
     Then I will click on 'update' button
     Then I will click on 'Close' button
+    Then I can see the newly created scenario '2' on Scenarios page
     Then I will click on 'Next: Scenario Comparison' button
     Then I will select newly created scenario A from scenario A listbox
     Then I will select newly created scenario B  from scenario B listbox
     Then I will select created plan from Planning Audience listbox
     Then I will click on 'Compare' button
-    Then I click on Channels from header breadcrumb
+    Then I click on 'Channels' from header breadcrumb
     Then I navigate till 'Channels' set up page
     Then I should see '22.00' populated in CPM textbox corresponding to Channel 'TV'
     Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
