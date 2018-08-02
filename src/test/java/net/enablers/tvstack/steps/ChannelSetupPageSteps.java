@@ -224,7 +224,7 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
     }
 
-    @Then("^I will select newly created scenario A from scenario A listbox$")
+    @Then("^I select newly created scenario A from scenario A listbox$")
     public void iWillSelectScenarioA() throws Throwable
     {
         String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
@@ -232,7 +232,7 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("'"+scenarioA+"' selected from Scenario A listbox");
     }
 
-    @Then("^I will select newly created scenario B  from scenario B listbox$")
+    @Then("^I select newly created scenario B  from scenario B listbox$")
     public void iWillSelectScenarioB() throws Throwable
     {
         String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
@@ -240,7 +240,7 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("'"+scenarioB+"' selected from Scenario B listbox");
     }
 
-    @Then("^I will select created plan from Planning Audience listbox$")
+    @Then("^I select created plan from Planning Audience listbox$")
     public void iWillSelectPlanningAudience() throws Throwable
     {
         String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
@@ -262,14 +262,14 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("'"+PageHeader+"'page is displayed.");
     }
 
-    @Then("^I will click on '(.*)' button$")
+    @Then("^I click on '(.*)' button$")
     public void iWillClickonanyButton(String buttonText) throws Throwable
     {
         channelSetupPage.iWillClickonButton(buttonText);
         appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
     }
 
-    @Then("^I can see the newly created scenario '(.*)' on Scenarios page$")
+    @Then("^I should see the newly created scenario '(.*)' on Scenarios page$")
     public void iWillVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
     {
         channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
