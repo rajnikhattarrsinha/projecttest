@@ -3,75 +3,7 @@ Feature: Manage channels
   As a tvstack user
   I can land on welcome TV stack page
   So that I can manage channels
-  
-# Rajni's code starts here.....
-#Scenario 1:
-  Scenario: Calibrate TV Channel-Prepopulating configured values
-    Given I'm on Channels setup page
-    Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    Then I should see '12' populated in CPM textbox corresponding to Channel 'TV'
-    Then I click Calibrate button
-    Then I should see GRPs Celebrated at textbox populated as '12'
-    And  I should see Reach populated as '25'
-    Then I click on ADVANCED button
-    And I should see Maximum Reach populated as '56'
-    And I should see Precision populated as '36'
-    Then I click Cancel button
-    Then It should close Calibrate screen
 
-    #Scenario 2:
-  Scenario: Add Channel to the Plan
-    Given I'm on Channels setup page
-    Then I should see multiple channels checkboxes selected by default
-    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I should see '12' populated in CPM textbox corresponding to Channel 'TV'
-    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I should see '3' populated in CPM textbox corresponding to Channel 'Video on Demand'
-    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I should see '13' populated in CPM textbox corresponding to Channel 'Online+Video'
-    Then I click Next: Scenarios button
-    Then I should see Scenarios page with Create new scenario button
-
-    #Scenario 3:
-  Scenario: Channels setup page
-    Given I'm on Channels setup page
-    Then I should see multiple channels options
-    Then I will select Channel 'TV' checkbox
-    And  I will select any Closest buying Audience option 'Hello World' corresponding to Channels 'TV'
-    And  I will select any Second Length/Format option 'Test3' corresponding to Channels 'TV'
-    Then I will select Channel 'Video on Demand' checkbox
-    And  I will select any Closest buying Audience option 'test 2' corresponding to Channels 'Video on Demand'
-    And  I will select any Second Length/Format option 'format 1' corresponding to Channels 'Video on Demand'
-    Then I will select Channel 'Online+Video' checkbox
-    And  I will select any Closest buying Audience option 'Edited8X4vi' corresponding to Channels 'Online+Video'
-    And  I will select any Second Length/Format option 'asd' corresponding to Channels 'Online+Video'
-    Then I will select Channel 'Youtube' checkbox
-    And  I will select any Age option '18-34' corresponding to Channels 'Youtube'
-    And  I will select any Gender option 'Female' corresponding to Channels 'Youtube'
-    And  I will select any Second Length/Format option 'Reservation' corresponding to Channels 'Youtube'
-    Then I will select Channel 'Facebook' checkbox
-    And  I will select any Min Age option '20' corresponding to Channels 'Facebook'
-    And  I will select any Max Age option '55' corresponding to Channels 'Facebook'
-    And  I will select any Gender option 'Male' corresponding to Channels 'Facebook'
-    Then I will select Channel 'Instagram' checkbox
-    And  I will select any Min Age option '18' corresponding to Channels 'Instagram'
-    And  I will select any Max Age option '30' corresponding to Channels 'Instagram'
-    And  I will select any Gender option 'Male' corresponding to Channels 'Instagram'
-    Then  I will click Next: Scenarios button
-    Then i should see Scenarios page with Create new scenario button
-
-  Scenario: To test validation message without selecting any Channels
-    Given I'm on Channels setup page
-    Then I will uncheck all channels options
-    Then I will click Next: Scenarios button
-    And I should see message 'Please select at least 1 channel buying audience and format to proceed'
-
-    # Rajni's code ends here.....
   Scenario: Channel setup page
     Given I'm on audience channels page
     Then I should see 6 channels displayed
@@ -99,7 +31,6 @@ Feature: Manage channels
       | false |
     Then an error is displayed in the form
 
-  @issue:DPTV-685 
   Scenario: Deselect all channels and check error
     Given I'm on audience channels page
     When I deselect all channels
@@ -111,7 +42,108 @@ Feature: Manage channels
     And I click 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
 
-  #Scenario: Overwrite values in channel setup table
-    #Given I'm on audience channels page
-    #When I change the values of all input fields
-    #Then the values have changed
+    # Rajni's code starts here.....
+#Scenario 1:
+  Scenario: Calibrate TV Channel-Prepopulating configured values
+    Given I'm on audience channels page
+    And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
+    And   I press calibrate button
+    Then  I should see GRPs Celebrated at textbox populated as '60'
+    Then  I should see Reach populated as '50'
+    And   I click on ADVANCED button
+    Then  I should see Maximum Reach populated as '80'
+    Then  I should see Precision populated as '70'
+    And   I click Cancel button
+    Then  It should close Calibrate screen
+
+    #Scenario 2:Add Channel to the Plan with Values selected for TV,Video on Demand and Online Videos
+
+
+  Scenario: Add Channel to the Plan with Values selected for TV,Video on Demand and Online Videos
+    Given I'm on audience channels page
+    And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
+    And   I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And   I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
+    And   I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And   I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel 'Online+Video'
+    And   I click 'Next: Scenarios' button
+    Then  I should see Scenarios page with Create new scenario button
+
+#Scenario 3: Verify CPM is uneditable for Channels youtube(Auction),facebook and Instagram
+
+  Scenario: CPM is uneditable for Channels youtube(Auction),facebook and Instagram
+    Given I'm on audience channels page
+    And   I select Age as '18-34' corresponding to Channel 'Youtube'
+    And   I select Gender as 'Female' corresponding to Channel 'Youtube'
+    And   I select Second Length/Format as 'Auction' corresponding to Channel 'Youtube'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
+    Then  I should not be able to edit the CPM textbox corresponding to Channel 'Youtube'
+    And   I select Min Age as '20' corresponding to Channel 'Facebook'
+    And   I select Max Age as '55' corresponding to Channel 'Facebook'
+    And   I select Gender as 'Male' corresponding to Channel 'Facebook'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Facebook'
+    Then  I should not be able to edit the CPM textbox corresponding to Channel 'Facebook'
+    And   I select Min Age as '18' corresponding to Channel 'Instagram'
+    And   I select Max Age as '30' corresponding to Channel 'Instagram'
+    And   I select Gender as 'Male' corresponding to Channel 'Instagram'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Instagram'
+    Then  I should not be able to edit the CPM textbox corresponding to Channel 'Instagram'
+
+   #Scenario 4: Verify CPM is editable for Channel youtube(Reservation,GooglePreferred)
+  Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
+    Given I'm on audience channels page
+    And  I select Age as '18-34' corresponding to Channel 'Youtube'
+    And  I select Gender as 'Female' corresponding to Channel 'Youtube'
+    And  I select Second Length/Format as 'Reservation' corresponding to Channel 'Youtube'
+    And  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
+    Then I should be able to enter value '12' in CPM textbox corresponding to Channel 'Youtube'
+    And  I select Second Length/Format as 'GooglePreferred' corresponding to Channel 'Youtube'
+    And  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
+    Then I should be able to enter value '14' in CPM textbox corresponding to Channel 'Youtube'
+
+
+    #Scenario 5: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
+  Scenario: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
+    Given I'm on audience channels page
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
+    Then I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
+    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel 'TV'
+    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
+    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
+    Then I enter value '22.00' in CPM textbox corresponding to Channel 'Video on Demand'
+    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
+    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Online+Video'
+    Then I enter value '22.00' in CPM textbox corresponding to Channel 'Online+Video'
+    Then I click on 'Next: Scenarios' button
+    Then I can see the 'Scenarios' section
+    Then I click on 'Create new scenario' button
+    Then I click on 'update' button
+    Then I click on 'Close' button
+    Then I should see the newly created scenario '1' on Scenarios page
+    Then I click on 'Create new scenario' button
+    Then I click on 'update' button
+    Then I click on 'Close' button
+    Then I should see the newly created scenario '2' on Scenarios page
+    Then I click on 'Next: Scenario Comparison' button
+    Then I select newly created scenario A from scenario A listbox
+    Then I select newly created scenario B  from scenario B listbox
+    Then I select created plan from Planning Audience listbox
+    Then I click on 'Compare' button
+    Then I click on 'Channels' from header breadcrumb
+    Then I navigate till 'Channels' set up page
+    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'TV'
+    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
+    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Online+Video'
+
+
+
+    # Rajni's code ends here.....

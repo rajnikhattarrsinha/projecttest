@@ -1,7 +1,7 @@
 package net.enablers.tvstack.steps;
 
 import com.typesafe.config.Config;
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,6 +14,7 @@ import net.enablers.tvstack.utilities.AppliEyes;
 import net.enablers.tvstack.utilities.ConfigLoader;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 public class TvstackLandingPageSteps extends ScenarioSteps {
@@ -21,7 +22,8 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
     AdminHomePage adminHomePage;
     NewPlanSetupPage newPlanSetupPage;
     HomePage homePage;
-
+    @Steps
+    NewPlanSetupPageSteps planSetupPageSteps;
     public AppliEyes appliEyes;
     private static Config conf = ConfigLoader.load();
     private String DEFAULT_MARKET = "United Kingdom";
@@ -36,14 +38,6 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
             homePage.openUrl(conf.getString("webdriver.base.url") + "logout");
             homePage.openUrl(conf.getString("webdriver.base.url"));
         }
-        //* As per serenity. Properties file browser width and height is hardcoded,
-        //* but on standard practice execution machine size should be vary so it’s better to write a maximize the browser.
-        try
-        {
-            getDriver().manage().window().maximize();
-        }
-        catch(Exception e)
-        {}
         adminHomePage.loginAs(username);
         homePage.verifyPageHeaderIsCorrect();
         appliEyes.capture("Landed on landing page");
@@ -52,36 +46,43 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
 
     @Then("^I should see the option to select the market$")
     public void iShoudSeeTheOptionToSelectTheMarket() {
+
         homePage.verifyMarketSelectionIsPresent();
     }
 
     @When("^I select '(.*)' market$")
     public void iSelectTheMarket(String arg0) {
+
         homePage.selectMarket(arg0);
     }
 
     @Then("^I should be presented with option to select a client$")
     public void iShouldBePresentedWithOptionToSelectAClient() {
+
         homePage.verifyClientSelectionIsPresent();
     }
 
     @When("^I select the client '(.*)'$")
     public void iSelectTheClient(String arg0) {
+
         homePage.selectClient(arg0);
     }
 
     @Then("^I should be presented with existing plans section$")
     public void iShouldBePresentedWithExistingPlansSection() {
+
         homePage.verifyExistingPlansSectionPresent();
     }
 
     @Then("^I should see the option to create a new plan$")
     public void iShouldSeeTheOptionToCreateANewPlan() {
+
         homePage.verifyCreateNewPlanOptionPresent();
     }
 
     @Then("^I should see Plan name, Owner, Date Created fields under existing plans$")
     public void iShouldSeePlanNameOwnerDateCreatedFieldsUnderExistingPlans() {
+
         homePage.checkExistingPlansFields();
     }
 
@@ -117,7 +118,8 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
     public void selectDefaultMarketAndClient() {
         this.iLoginWith("Tvstack.user2@dentsuaegis.com");
         Serenity.setSessionVariable("user").to("Tvstack.user2@dentsuaegis.com");
-        this.iSelectTheMarket(DEFAULT_MARKET);
+
+        //this.iSelectTheMarket(DEFAULT_MARKET);
         this.iSelectTheClient(DEFAULT_CLIENT);
     }
 
@@ -127,70 +129,45 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
         selectDefaultMarketAndClient();
         iClickOnCreateNewPlan();
     }
-//----------------------------------------------------------------------------------------------------------------------------
 
-    @Given("^Login with '(.*)'$")
-    public void loginWithTvstackUserDentsuaegisCom(String username) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        if (conf.getBoolean("appli_eyes")) {
-            appliEyes.load(conf.getString("webdriver.base.url"));
-        } else {
-            homePage.openUrl(conf.getString("webdriver.base.url") + "logout");
-            homePage.openUrl(conf.getString("webdriver.base.url"));
-        }
-        adminHomePage.loginAs(username);
-        homePage.verifyPageHeaderIsCorrect();
-        appliEyes.capture("Landed on landing page");
-        waitABit(500);
-    }
+    //Scenario: Set definitive and Remove definitive from home page plan list
 
 
-    @Then("^See the option to create new plan$")
-    public void seeTheOptionToCreateNewPlan() throws Throwable {
-        homePage.verifyCreateNewPlanOptionPresent();
-    }
 
-    @Then("^click on create new plan$")
-    public void clickOnCreateNewPlan() throws Throwable {
-        appliEyes.capture("Selected market and clients and now going to click new plan button");
+    @Given("^A new plan is there on landing page$")
+    public void createAPlan() throws Throwable {
+
+        this.selectDefaultMarketAndClient();
         homePage.createNewPlan();
-        newPlanSetupPage.submitNewPlan();
-    }
-
-    @Then("^plan is saved successfully$")
-    public void planIsSavedSuccessfully() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+        planSetupPageSteps.iAddPlanDetailsAndClickNextButton();
         PlanModel plan = newPlanSetupPage.clickOnLogo();
-        homePage.verifyNewPlanIsShown(plan.getPlanName());
-        System.out.println(plan);
-    }
+       }
 
-    @Then("^mark plan as definitive$")
+    @Then("^I marked the plan as definitive$")
     public void markPlanAsDefinitive() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        homePage.DefinitiveButton(Serenity.sessionVariableCalled("planName"));
-        waitABit(5000);
+        homePage.clickOnDefinitiveButton(Serenity.sessionVariableCalled("planName"));
     }
 
-    @Then("^see plan is marked as definitive$")
+    @And("^I checked the marked plan is definitive$")
     public void verifyDefinitiveButtonIsShown() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
         homePage.verifyDefinitiveButtonIsShown(Serenity.sessionVariableCalled("planName"));
+
     }
 
-    @Then("^mark plan as not definitive$")
+    @Then("^I marked the plan as not definitive$")
     public void markPlanAsNotDefinitive() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        homePage.RemoveDefinitiveButton(Serenity.sessionVariableCalled("planName"));
-        waitABit(5000);
 
+        homePage.clickOnRmoveDefinitiveButton(Serenity.sessionVariableCalled("planName"));
+        waitABit(5000);
     }
 
-    @Then("^see plan is marked as not definitive$")
+    @And("^I checked marked plan is not definitive$")
     public void seePlanIsMarkedAsNotDefinitive() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        homePage.verifyDefinitiveBadgeIsRemoved(Serenity.sessionVariableCalled("planName"));
-        waitABit(5000);
+       homePage.verifyDefinitiveBadgeIsRemoved(Serenity.sessionVariableCalled("planName"));
+       waitABit(5000);
+
+
     }
+
 
 }

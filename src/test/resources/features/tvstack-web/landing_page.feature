@@ -26,18 +26,12 @@ Feature: Manage plans
     And the plan is saved successfully
 
   @issue:DPTV-356
-  Scenario: Set definitive and Remove definitive from home page list
-    Given Login with 'Tvstack.user2@dentsuaegis.com'
-    When I select 'United Kingdom' market
-    When I select the client 'John Lewis'
-    Then See the option to create new plan
-    Then click on create new plan
-    Then plan is saved successfully
-    Then mark plan as definitive
-    Then see plan is marked as definitive
-    Then mark plan as not definitive
-    Then see plan is marked as not definitive
+  Scenario: Set definitive and Remove definitive from home page plan list
+    Given A new plan is there on landing page
+    Then I marked the plan as definitive
+    And I checked the marked plan is definitive
+    Then I marked the plan as not definitive
+    And I checked marked plan is not definitive
 
-  @issue:DPTV-356
-  Scenario: Set definitive and Remove definitive from Edit page
+
 

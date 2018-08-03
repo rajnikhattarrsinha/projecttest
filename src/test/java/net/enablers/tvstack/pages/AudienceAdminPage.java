@@ -24,6 +24,9 @@ public class AudienceAdminPage extends PageObject {
     @FindBy(xpath = "//button/span[span='New Audience']")
     WebElementFacade newAudienceButton;
 
+    @FindBy(xpath = "//button/span[span='Add Audience']")
+    WebElementFacade addAudienceButton;
+
     @FindBy(xpath = "//button/span[span='Rename Channel']")
     WebElementFacade renameButton;
 
@@ -88,13 +91,24 @@ public class AudienceAdminPage extends PageObject {
     }
 
     public void newAudienceOptionExists() {
-        newAudienceButton.shouldBePresent();
+        if (newAudienceButton.isPresent()) {
+            newAudienceButton.shouldBePresent();
+        } else {
+        	//this is when there are no existing buying audience present
+            addAudienceButton.shouldBePresent();
+        }
     }
 
     public void clickNewAudienceButton() {
         //Setting this variable so we can mimic the drag and drop on new audience page later on
         ((JavascriptExecutor) getDriver()).executeScript("window.APP_ENV = 'test';");
-        newAudienceButton.click();
+        waitABit(500);
+        if (newAudienceButton.isPresent()) {
+            newAudienceButton.click();
+        } else {
+            //this is when there are no existing buying audience present
+            addAudienceButton.click();
+        }
         waitABit(1000);
     }
 

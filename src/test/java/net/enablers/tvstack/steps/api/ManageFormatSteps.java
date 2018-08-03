@@ -27,7 +27,7 @@ public class ManageFormatSteps extends ApiHelper {
     private static final Logger log = LoggerFactory.getLogger(ManageFormatSteps.class);
 
     private String oktaAccessToken;
-    private Response formatsResponse, createFormatResponse, deleteFormatResponse;
+    private Response formatsResponse, createFormatResponse, deleteFormatResponse, updateFormatResponse;
     private MongoDbConnection dbConnection = new MongoDbConnection();
     private MongoCollection<Document> formatsCollection, createFormatsCollection;
     private String buyingAudienceId;
@@ -113,5 +113,27 @@ public class ManageFormatSteps extends ApiHelper {
 
         Assert.assertTrue(formatCountBeforeDelete - 1 == formatCountAfterDelete);
         log.info("Format Count After delete : " + formatCountAfterDelete);
+    }
+
+    @When("^User requests for Updates an existing format$")
+    public void userRequestsForUpdatesAnExistingFormat(List<FormatRequestModel> formatRequestModelList) throws Throwable {
+        buyingAudienceId = ManageBuyingAudienceSteps.getBuyingAudienceId();
+        oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
+
+        updateFormatResponse = FormatsService.updateFormat(oktaAccessToken, formatRequestModelList, formatId);
+        Assert.assertTrue(updateFormatResponse.getStatusCode() == 204);
+    }
+
+    @Then("^format is updated into DB$")
+    public void formatIsUpdatedIntoDB() throws Throwable {
+
+        dbConnection.connect();
+
+        createFormatsCollection = dbConnection.queryFormats();
+        String updatedFormatName = (String) createFormatsCollection.find(eq("name", FormatsService.getUpdatedFormatName())).first().get("name");
+
+        Assert.assertEquals(FormatsService.getUpdatedFormatName(), updatedFormatName);
+
+        dbConnection.disconnect();
     }
 }

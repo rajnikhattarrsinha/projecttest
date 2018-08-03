@@ -2,7 +2,7 @@ package net.enablers.tvstack.model.api;
 
 public class Channels {
     private String id;
-    private Integer budget;
+    private Double budget;
     private BuyingAudienceResults buyingAudienceResults;
     private PlanningAudienceResults planningAudienceResults;
 
@@ -30,11 +30,11 @@ public class Channels {
         this.planningAudienceResults = planningAudienceResults;
     }
 
-    public Integer getBudget() {
+    public Double getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(Double budget) {
         this.budget = budget;
     }
 }

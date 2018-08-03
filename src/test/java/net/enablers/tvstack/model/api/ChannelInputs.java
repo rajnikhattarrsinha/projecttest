@@ -2,7 +2,7 @@ package net.enablers.tvstack.model.api;
 
 public class ChannelInputs {
     private String id;
-    private Integer budget;
+    private Double budget;
 
     public String getId() {
         return id;
@@ -12,11 +12,11 @@ public class ChannelInputs {
         this.id = id;
     }
 
-    public Integer getBudget() {
+    public Double getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(Double budget) {
         this.budget = budget;
     }
 }

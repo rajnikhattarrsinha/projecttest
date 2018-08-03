@@ -34,7 +34,7 @@ public class ManageScenarioSteps extends ApiHelper {
     private Long scenariosCountBeforeDelete, scenariosCountAfterDelete;
     private String scenarioId;
     private String oktaAccessToken;
-    private int expBudget;
+    private Double expBudget;
     List<String> scenarios = new ArrayList<String>();
 
     @When("^User requests for Creates a new scenario$")
@@ -138,7 +138,8 @@ public class ManageScenarioSteps extends ApiHelper {
     @Then("^Scenario is Optimized to the plan$")
     public void scenarioIsOptimizedToThePlanIntoDB() throws Throwable {
         scenarioResponseModel = gson().fromJson(optimizeScenarioResponse.body().prettyPrint(), ScenarioResponseModel.class);
-        int totalBudget = 0;
+        double totalBudget = 0;
+        double expTotalBudget = 10000;
         Channels[] channels = scenarioResponseModel.getChannels();
         for (int count = 0; count < channels.length; count++) {
             if (channels[count].getId().equals("TV") && channels[count].getBudget().equals(expBudget)) {
@@ -153,7 +154,7 @@ public class ManageScenarioSteps extends ApiHelper {
             totalBudget = totalBudget + channels[count].getBudget();
         }
 
-        Assert.assertEquals(10000, totalBudget);
+        Assert.assertTrue(expTotalBudget == totalBudget);
 
         log.info("All the channels budget is equal to total budget");
     }

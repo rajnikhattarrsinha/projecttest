@@ -1,18 +1,21 @@
 package net.enablers.tvstack.pages;
 import static org.assertj.core.api.Assertions.assertThat;
-import net.enablers.tvstack.model.web.PlanModel;
-import net.enablers.tvstack.utilities.RandomGenerator;
-import net.serenitybdd.core.Serenity;
-import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.support.FindBy;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
+
+import net.enablers.tvstack.model.web.PlanModel;
+import net.enablers.tvstack.utilities.RandomGenerator;
+import net.serenitybdd.core.Serenity;
+import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.pages.PageObject;
 
 public class NewPlanSetupPage extends PageObject {
 
@@ -44,7 +47,13 @@ public class NewPlanSetupPage extends PageObject {
 
     @FindBy(xpath = "//button[span='Create Plan']")
     WebElementFacade createPlanButton;
+    
+    @FindBy(xpath = "//td[@tabindex='0']")
+    List<WebElementFacade> lastOfMonth;
 
+    @FindBy(xpath = "//td[text() = '1'][not(contains(@class, 'blocked'))]")
+    List<WebElementFacade> firstOfMonth;
+    
     public By getPageHeaderBasedOnSection(String section) {
     	return By.xpath("//h1[contains(.,'"+section+"')]");
     }
@@ -53,8 +62,9 @@ public class NewPlanSetupPage extends PageObject {
     	return By.xpath("//button[contains(span,'" + text + "')]");
     }
     
-    public void verifyPageTitle() {
-    	element(this.getPageHeaderBasedOnSection("Create new plan")).shouldBeVisible();
+    public void verifyPageTitle(String section) {
+        withTimeoutOf(180, TimeUnit.SECONDS).waitFor(this.getPageHeaderBasedOnSection(section));
+        element(this.getPageHeaderBasedOnSection(section)).shouldBeVisible();
     }
 
     public void verifyPlanSetupSelected() {
@@ -68,7 +78,7 @@ public class NewPlanSetupPage extends PageObject {
 
     public void verifyButtonIsEnabled(String arg0) {
         element(this.getPlanSetupButtonBasedOn(arg0)).shouldBePresent();
-        element(this.getPlanSetupButtonBasedOn(arg0)).shouldBeEnabled();
+        element(this.getPlanSetupButtonBasedOn(arg0)).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeEnabled();
     }
 
     public void verifyButtonIsDisabled(String arg0) {
@@ -103,7 +113,11 @@ public class NewPlanSetupPage extends PageObject {
 
         dateField.waitUntilClickable().then().click();
         $("//td[text() = '" + plan.getStartDate() + "'][@tabindex = '0']").waitUntilClickable().click();
-        $("//td[text() = '" + plan.getEndDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+        if (lastOfMonth.size()==1) {
+			firstOfMonth.get(0).waitUntilClickable().click();
+		} else {
+			$("//td[text() = '" + plan.getEndDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+		}        
         $("//button[span='Create Plan']").waitUntilEnabled().and().waitUntilClickable().click();
     }
 
@@ -136,5 +150,9 @@ public class NewPlanSetupPage extends PageObject {
 
 	public void verifyEditPageTitle() {
 		element(this.getPageHeaderBasedOnSection("Edit plan")).shouldBeVisible();
+	}
+	
+	public void iClickNextButton(String buttonType) {
+		element(this.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilClickable().then().click();				
 	}
 }

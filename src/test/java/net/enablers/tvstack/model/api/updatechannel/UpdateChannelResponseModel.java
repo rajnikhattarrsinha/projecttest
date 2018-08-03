@@ -7,6 +7,7 @@ public class UpdateChannelResponseModel {
     private String channelId;
     private Double cpm;
     private CurveCalibration curveCalibration;
+    private Options options;
 
     public Boolean getSelected() {
         return selected;
@@ -46,5 +47,13 @@ public class UpdateChannelResponseModel {
 
     public void setCurveCalibration(CurveCalibration curveCalibration) {
         this.curveCalibration = curveCalibration;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
     }
 }

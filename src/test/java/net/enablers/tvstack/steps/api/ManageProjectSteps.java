@@ -85,9 +85,6 @@ public class ManageProjectSteps extends ApiHelper {
     public void userRequestForCreateNewPlan(List<ProjectRequestModel> projectRequestModelList) throws Throwable {
         oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
 
-//        loginResponse = ProjectsService.logIntoPointLogicServer(oktaAccessToken);
-//        Assert.assertTrue(loginResponse.getStatusCode() == 200);
-
         createPlanResponse = ProjectsService.createProject(oktaAccessToken, projectRequestModelList, clientId);
         createPlanResponseModel = gson().fromJson(createPlanResponse.body().prettyPrint(), PlanResponseModel.class);
         Assert.assertTrue(createPlanResponse.getStatusCode() == 201);
@@ -186,9 +183,6 @@ public class ManageProjectSteps extends ApiHelper {
     @When("^User requests for Create new plan with below values$")
     public void userRequestsForCreateNewPlanWithBelowValues(List<ProjectRequestModel> projectRequestModelList) throws Throwable {
         oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
-
-//        loginResponse = ProjectsService.logIntoPointLogicServer(oktaAccessToken);
-//        Assert.assertTrue(loginResponse.getStatusCode() == 200);
 
         createPlanResponse = ProjectsService.createProjectWithInvalidValues(oktaAccessToken, projectRequestModelList, clientId);
         Assert.assertTrue(createPlanResponse.getStatusCode() == 400);
