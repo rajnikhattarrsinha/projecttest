@@ -1,18 +1,21 @@
 package net.enablers.tvstack.pages;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
+
 import net.enablers.tvstack.model.web.PlanModel;
 import net.enablers.tvstack.utilities.RandomGenerator;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.support.FindBy;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-
-import org.openqa.selenium.By;
 
 public class NewPlanSetupPage extends PageObject {
 
@@ -44,7 +47,13 @@ public class NewPlanSetupPage extends PageObject {
 
     @FindBy(xpath = "//button[span='Create Plan']")
     WebElementFacade createPlanButton;
+    
+    @FindBy(xpath = "//td[@tabindex='0']")
+    List<WebElementFacade> lastOfMonth;
 
+    @FindBy(xpath = "//td[text() = '1'][not(contains(@class, 'blocked'))]")
+    List<WebElementFacade> firstOfMonth;
+    
     public By getPageHeaderBasedOnSection(String section) {
     	return By.xpath("//h1[contains(.,'"+section+"')]");
     }
@@ -53,8 +62,9 @@ public class NewPlanSetupPage extends PageObject {
     	return By.xpath("//button[contains(span,'" + text + "')]");
     }
     
-    public void verifyPageTitle() {
-    	element(this.getPageHeaderBasedOnSection("Create new plan")).shouldBeVisible();
+    public void verifyPageTitle(String section) {
+        withTimeoutOf(180, TimeUnit.SECONDS).waitFor(this.getPageHeaderBasedOnSection(section));
+        element(this.getPageHeaderBasedOnSection(section)).shouldBeVisible();
     }
 
     public void verifyPlanSetupSelected() {
@@ -68,7 +78,7 @@ public class NewPlanSetupPage extends PageObject {
 
     public void verifyButtonIsEnabled(String arg0) {
         element(this.getPlanSetupButtonBasedOn(arg0)).shouldBePresent();
-        element(this.getPlanSetupButtonBasedOn(arg0)).shouldBeEnabled();
+        element(this.getPlanSetupButtonBasedOn(arg0)).withTimeoutOf(20, TimeUnit.SECONDS).shouldBeEnabled();
     }
 
     public void verifyButtonIsDisabled(String arg0) {
@@ -83,14 +93,13 @@ public class NewPlanSetupPage extends PageObject {
         $("//button[span='Compare scenario']").shouldBePresent();
     }
 
-    /*
     public void submitNewPlan() {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd");
         int startDate = Integer.parseInt(sdf.format(date));
-        int endDate = Integer.parseInt(sdf.format(date)) + 10;
+        int endDate = Integer.parseInt(sdf.format(date)) + 1;
 
         plan.setMarket("United Kingdom");
         plan.setClient("JD Sports");
@@ -103,34 +112,12 @@ public class NewPlanSetupPage extends PageObject {
         videoBudget.type(plan.getBudget().toString());
 
         dateField.waitUntilClickable().then().click();
-        $("//td[text()='"+plan.getStartDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
-        $("//td[text()='"+plan.getEndDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
-        $("//button[span='Create Plan']").waitUntilEnabled().and().waitUntilClickable().click();
-    }
-    */
-
-    public void submitNewPlan()
-    {
-        Date today = new Date();
-        SimpleDateFormat formattedDate = new SimpleDateFormat("dd");
-        Calendar c = Calendar.getInstance();
-        int startDate = Integer.parseInt(formattedDate.format(c.getTime()));
-        c.add(Calendar.DATE, 1);
-        int endDate = Integer.parseInt(formattedDate.format(c.getTime()));
-
-        plan.setMarket("United Kingdom");
-        plan.setClient("JD Sports");
-        plan.setPlanName("AutoPlan" + RandomGenerator.randomAlphanumeric(3));
-        Serenity.setSessionVariable("planName").to(plan.getPlanName());
-        plan.setBudget(100000);
-        plan.setStartDate(startDate);
-        plan.setEndDate(endDate);
-        planName.type(plan.getPlanName());
-        videoBudget.type(plan.getBudget().toString());
-
-        dateField.waitUntilClickable().then().click();
-        $("//td[text()='"+plan.getStartDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
-        $("//td[text()='"+plan.getEndDate()+"' and contains(@aria-label,'Choose')]").waitUntilClickable().click();
+        $("//td[text() = '" + plan.getStartDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+        if (lastOfMonth.size()==1) {
+			firstOfMonth.get(0).waitUntilClickable().click();
+		} else {
+			$("//td[text() = '" + plan.getEndDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+		}        
         $("//button[span='Create Plan']").waitUntilEnabled().and().waitUntilClickable().click();
     }
 
@@ -163,5 +150,9 @@ public class NewPlanSetupPage extends PageObject {
 
 	public void verifyEditPageTitle() {
 		element(this.getPageHeaderBasedOnSection("Edit plan")).shouldBeVisible();
+	}
+	
+	public void iClickNextButton(String buttonType) {
+		element(this.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilClickable().then().click();				
 	}
 }

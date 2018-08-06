@@ -109,7 +109,7 @@ public class AudienceSetupPage extends PageObject {
     public void saveTheAudience() {
         $("//button[contains(span,'Save')]").withTimeoutOf(50, TimeUnit.SECONDS).waitUntilClickable().click();
         $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(10, TimeUnit.SECONDS).waitUntilVisible();
-        $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(100, TimeUnit.SECONDS).waitUntilNotVisible();
+        $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(180, TimeUnit.SECONDS).waitUntilNotVisible();
     }
 
     public void audienceIsSavedSuccessfully() {
@@ -129,5 +129,4 @@ public class AudienceSetupPage extends PageObject {
         //the row containing the audience in the table should be deleted
         withTimeoutOf(300, TimeUnit.SECONDS).waitForAbsenceOf("//table/tbody");
     }
-
 }

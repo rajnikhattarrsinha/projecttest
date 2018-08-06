@@ -5,6 +5,7 @@ public class Channels {
     private String formatId;
     private String buyingAudienceId;
     private Boolean selected;
+    private Options options;
 
     public String getId() {
         return id;
@@ -36,5 +37,13 @@ public class Channels {
 
     public void setSelected(Boolean selected) {
         this.selected = selected;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
     }
 }

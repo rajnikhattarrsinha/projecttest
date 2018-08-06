@@ -21,7 +21,7 @@ public class NewPlanSetupPageSteps extends ScenarioSteps {
 
     @Then("^I should be taken to Create new plan page$")
     public void iShouldBeTakenToNewPlanSetupPage() {
-        newPlanSetupPage.verifyPageTitle();
+        newPlanSetupPage.verifyPageTitle("Create new plan");
         appliEyes.capture("Landed on new plan setup page");
     }
     

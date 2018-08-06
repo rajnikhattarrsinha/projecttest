@@ -20,8 +20,8 @@ public class ApiHelper {
     static String pointLogicApiUrl = "http://tvstack-api-stg.azurewebsites.net/api";
     static String tvstackApiUrl = "http://ec2-52-56-105-109.eu-west-2.compute.amazonaws.com:35000";
     static String tvstackAdminApiUrl = "http://ec2-18-130-118-42.eu-west-2.compute.amazonaws.com:35000";
-    static String roleManagerApiUrl = "http://ec2-18-130-37-40.eu-west-2.compute.amazonaws.com:3010";
-
+    //    static String roleManagerApiUrl = "http://ec2-18-130-37-40.eu-west-2.compute.amazonaws.com:3010";
+    static String roleManagerApiUrl = "http://ec2-18-130-69-200.eu-west-2.compute.amazonaws.com:3010";
 
     public static String getTvstackApiUrl() {
         return tvstackApiUrl;

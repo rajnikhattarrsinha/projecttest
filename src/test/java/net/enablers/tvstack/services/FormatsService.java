@@ -12,7 +12,7 @@ import java.util.List;
 public class FormatsService extends ApiHelper {
 
     private static final Logger log = LoggerFactory.getLogger(CountryService.class);
-    private static String formatName;
+    private static String formatName, updatedFormatName;
 
     public static String getFormatName() {
         return formatName;
@@ -20,6 +20,14 @@ public class FormatsService extends ApiHelper {
 
     public static void setFormatName(String formatName) {
         FormatsService.formatName = formatName;
+    }
+
+    public static String getUpdatedFormatName() {
+        return updatedFormatName;
+    }
+
+    public static void setUpdatedFormatName(String updatedFormatName) {
+        FormatsService.updatedFormatName = updatedFormatName;
     }
 
     public static Response getFormats(String oktaAccessToken) {
@@ -40,5 +48,17 @@ public class FormatsService extends ApiHelper {
 
     public static Response deleteFormat(String oktaAccessToken, String formatId) {
         return getTvstackAdminConfig(oktaAccessToken).delete("/api/formats/" + formatId);
+    }
+
+
+    public static Response updateFormat(String oktaToken, List<FormatRequestModel> formatRequestModelList, String formatId) {
+        Response updateFormatResponse = null;
+
+        for (FormatRequestModel formatRequestModel : formatRequestModelList) {
+            updatedFormatName = formatRequestModel.getName() + RandomGenerator.randomAlphanumeric(3);
+            formatRequestModel.setName(updatedFormatName);
+            updateFormatResponse = getTvstackAdminConfig(oktaToken).body(gson().toJson(formatRequestModel)).put("/api/formats/" + formatId);
+        }
+        return updateFormatResponse;
     }
 }

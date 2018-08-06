@@ -7,22 +7,16 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import net.serenitybdd.core.Serenity;
-import org.openqa.selenium.JavascriptExecutor;
-import static org.junit.Assert.assertThat;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 
-import org.openqa.selenium.By;
-
-
 public class ChannelSetupPage extends PageObject {
 
-    NewPlanSetupPage newPlanSetupPage;
+	NewPlanSetupPage newPlanSetupPage;
     
     @FindBy(xpath = "//div[@class = 'channel-setup__table']//tbody/tr")
     List<WebElementFacade> availableChannels;
@@ -47,11 +41,9 @@ public class ChannelSetupPage extends PageObject {
     
     @FindBy(xpath = "//label[//input[@type = 'checkbox']]")
     List<WebElementFacade> channelCheckboxes;
-
-    public void verifyPageTitle(String section) {
-        withTimeoutOf(180, TimeUnit.SECONDS).waitFor(newPlanSetupPage.getPageHeaderBasedOnSection(section));
-        element(newPlanSetupPage.getPageHeaderBasedOnSection(section)).shouldBePresent();
-    }
+    
+    @FindBy(xpath = "//div[contains(@class, 'statusCritical')]")
+    WebElementFacade errorBanner;
 
 	public void iClickChannelsButton() {
 		waitABit(1500);
@@ -67,12 +59,6 @@ public class ChannelSetupPage extends PageObject {
 		for (int i = 0; i < options.size(); i++) {
 			assertThat(channelSetupHeader.containsText(options.get(i)));		
 		}		
-	}
-
-	public void iClickScenariosButton(String buttonType)
-	{
-		$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
-		element(newPlanSetupPage.getPlanSetupButtonBasedOn(buttonType)).withTimeoutOf(120, TimeUnit.SECONDS).waitUntilClickable().then().click();
 	}
 
 	public void clickOnCalibrate() {
@@ -133,19 +119,10 @@ public class ChannelSetupPage extends PageObject {
 	
 	@Then("^an error is displayed$")
 	public void anErrorIsDisplayed() throws Exception {
-		// Error to be mapped once the the issue is fixed
-	}
-	
-	@When("^I change the values of all input fields$")
-	public void iChangeTheValuesOfAllInputFields() throws Exception {
-		
+		assertThat(errorBanner.waitUntilVisible().then().isCurrentlyVisible());
 	}
 
 
-	@Then("^the values have changed$")
-	public void theValuesHaveChanged() throws Exception {
-		
-	}
 
 
 	//*************** RAJNI CODE START HERE ******************************//
@@ -225,6 +202,13 @@ public class ChannelSetupPage extends PageObject {
 	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelName,String valuetoverify)
 	{
 		assertThat(element(textboxCPM(channelName)).getValue() == valuetoverify);
+	}
+
+
+	public void setCPMvalue(String ChannelName,String NewCPMValue)
+	{
+		element(textboxCPM(ChannelName)).typeAndTab(NewCPMValue);
+
 	}
 
 	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
@@ -339,7 +323,6 @@ public class ChannelSetupPage extends PageObject {
 
 	//*************** RAJNI CODE END HERE ******************************//
 	//********************************************************************//
-
 
 
 }

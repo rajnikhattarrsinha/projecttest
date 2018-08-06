@@ -39,10 +39,6 @@ public class ProjectsService extends ApiHelper {
         return getTvstackConfig(oktaToken).post("/api/login");
     }
 
-//    public static Response logIntoPointLogicServer() {
-//        return getTvstackConfig().post("/api/login");
-//    }
-
     public static Response createProject(String oktaToken, List<ProjectRequestModel> projectRequestModels, Object clientId) {
         Response createProjectResponse = null;
 
@@ -51,7 +47,10 @@ public class ProjectsService extends ApiHelper {
             projectRequestModel.setName(projectName);
             projectRequestModel.setClientId(clientId.toString());
             projectRequestModel.setStartDate(new SimpleDateFormat("yyyyMMdd").format(new Date()));
-            projectRequestModel.setEndDate(new SimpleDateFormat("yyyyMMdd").format(new Date()));
+
+            Date current = new Date();
+            current.setMonth(current.getMonth() + 1);
+            projectRequestModel.setEndDate(new SimpleDateFormat("yyyyMMdd").format(current));
             createProjectResponse = getTvstackConfig(oktaToken).body(gson().toJson(projectRequestModel)).post("/api/projects");
         }
         return createProjectResponse;

@@ -4,8 +4,8 @@ Feature: API - Create, Optimize and Delete scenario
     Given Planner user log into Client to get OktaToken
     And User selects Market and Client
     When User requests for Create new plan
-      | name         | clientId | budget | startDate    | endDate      |
-      | TvStack_Plan | client   | 10000  | CURRENT_DATE | CURRENT_DATE |
+      | name         | clientId | budget | startDate    | endDate        |
+      | TvStack_Plan | client   | 10000  | CURRENT_DATE | NEXTMONTH_DATE |
     Then New plan is created into DB
     When User requests for Creates a new audience
       | name         | filter               | formattedFilter                | filterMap              |
@@ -26,7 +26,7 @@ Feature: API - Create, Optimize and Delete scenario
     When User requests for Optimize a existing scenario
       | id | budget |
       | TV | 5000   |
-   Then Scenario is Optimized to the plan
+    Then Scenario is Optimized to the plan
 
   Scenario: API - Scenario - Delete a existing scenario
     When User requests for Creates a new scenario
@@ -52,7 +52,7 @@ Feature: API - Create, Optimize and Delete scenario
       | TvStack_NewScenario | audience   |
     Then scenario is created to the plan into DB
     When User requests for Creates a new scenario
-      | name                | audienceId |
+      | name                    | audienceId |
       | TvStack_CompareScenario | audience   |
     Then scenario is created to the plan into DB
     When User requests for Compare scenarios for an audience

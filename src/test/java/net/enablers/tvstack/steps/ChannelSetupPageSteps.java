@@ -7,24 +7,27 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
+import net.enablers.tvstack.pages.NewPlanSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 
 public class ChannelSetupPageSteps {
 	
+	NewPlanSetupPage newPlanSetupPage;
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
     AppliEyes appliEyes;
+
     @Steps
     TvstackLandingPageSteps landingPageSteps;
-
 
     @Steps
     NewPlanSetupPageSteps planSetupPageSteps;
     
     @Steps
     AudienceSetupPageSteps audienceSetupPageSteps;
+
 
     //****************** RAJNI CODE START HERE*****************************//
     //*******************************************************************///
@@ -67,6 +70,14 @@ public class ChannelSetupPageSteps {
     {
         channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelName,userCPMInput);
         appliEyes.capture("Expected Channel '"+channelName+"' CPM  value '"+userCPMInput+"' is displayed.");
+    }
+
+
+    @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'$")
+    public void iShouldBeAbleToEnterValueInCPMTextboxCorrespondingToChannel(String  CPM,String Channel) throws Throwable
+    {
+        channelSetupPage.setCPMvalue(Channel,CPM);
+        appliEyes.capture("In Channel '"+Channel+"' CPM  value '"+CPM+"' is entered.");
     }
 
     @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'")
@@ -217,7 +228,7 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-    @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
+    @Then("^I enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
     public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
     {
         channelSetupPage.enterCPMValueCorrespondingToChannel(channelName,cpmValue);
@@ -277,12 +288,14 @@ public class ChannelSetupPageSteps {
     }
 
 
+
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
+
     
     @Then("^I should be taken to audience channel page$")
     public void iShouldBeTakenToAudienceChannelPage() {
-    	channelSetupPage.verifyPageTitle("Channel");
+    	newPlanSetupPage.verifyPageTitle("Channel");
         appliEyes.capture("Landed on audience channel page");
     }
 
@@ -309,12 +322,12 @@ public class ChannelSetupPageSteps {
     
     @Given("^I click '(.*)' button$")
     public void iClickButton(String buttonType) throws Exception {
-    	channelSetupPage.iClickScenariosButton(buttonType);
+    	newPlanSetupPage.iClickNextButton(buttonType);
     }
 
     @Then("^I can see the '(.*)' section$")
     public void iCanSeeTheSelected_Channel(String section) throws Exception {
-    	channelSetupPage.verifyPageTitle(section);
+    	newPlanSetupPage.verifyPageTitle(section);
     }
     
     @When("^I press calibrate button$")
@@ -352,6 +365,8 @@ public class ChannelSetupPageSteps {
     @Then("^all channels are selected$")
     public void allChannelsAreSelected() throws Exception {
     	channelSetupPage.allChannelsAreSelected();
+
     }
+
 
 }
