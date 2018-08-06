@@ -276,7 +276,7 @@ public class ChannelSetupPageSteps {
     @Then("^I click on '(.*)' button$")
     public void iClickonanyButton(String buttonText) throws Throwable
     {
-        channelSetupPage.iWillClickonButton(buttonText);
+        channelSetupPage.iClickonButton(buttonText);
         appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
     }
 
@@ -285,6 +285,20 @@ public class ChannelSetupPageSteps {
     {
         channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
         appliEyes.capture("New Created Scenario id displayed on Scenario page");
+    }
+
+    @Then("^I click plan name edit link from top of the page$")
+    public void iClickPlanName() throws Throwable
+    {
+        channelSetupPage.clickonPlanNamefromHeaderSection();
+        appliEyes.capture("Plan name edit link click successfully.");
+    }
+
+    @Then("^I should see '(.*)' page")
+    public void iShouldSeePageHeaderName(String PageName) throws Throwable
+    {
+        channelSetupPage.verifyPageHeader(PageName);
+        appliEyes.capture(PageName+" Page is displayed.");
     }
 
 
