@@ -229,14 +229,14 @@ public class ChannelSetupPageSteps {
     //########################################################################################################
 
     @Then("^I enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
-    public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
+    public void iEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
     {
         channelSetupPage.enterCPMValueCorrespondingToChannel(channelName,cpmValue);
         appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
     }
 
     @Then("^I select newly created scenario A from scenario A listbox$")
-    public void iWillSelectScenarioA() throws Throwable
+    public void iSelectScenarioA() throws Throwable
     {
         String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
         channelSetupPage.selectScenarioAValue(scenarioA);
@@ -244,7 +244,7 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I select newly created scenario B  from scenario B listbox$")
-    public void iWillSelectScenarioB() throws Throwable
+    public void iSelectScenarioB() throws Throwable
     {
         String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
         channelSetupPage.selectScenarioBValue(scenarioB);
@@ -252,7 +252,7 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I select created plan from Planning Audience listbox$")
-    public void iWillSelectPlanningAudience() throws Throwable
+    public void iSelectPlanningAudience() throws Throwable
     {
         String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
         channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
@@ -274,14 +274,14 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I click on '(.*)' button$")
-    public void iWillClickonanyButton(String buttonText) throws Throwable
+    public void iClickonanyButton(String buttonText) throws Throwable
     {
         channelSetupPage.iWillClickonButton(buttonText);
         appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
     }
 
     @Then("^I should see the newly created scenario '(.*)' on Scenarios page$")
-    public void iWillVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
+    public void iVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
     {
         channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
         appliEyes.capture("New Created Scenario id displayed on Scenario page");
