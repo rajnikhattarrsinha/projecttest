@@ -150,15 +150,15 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public By checkboxChannels(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='checkbox']");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='checkbox']");
 	}
 	public By listboxbuyingAudience(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[3]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/../td[3]//select");
 	}
 	public By listboxSecondLengthformat(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[4]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/../td[4]//select");
 	}
 	public By listboxonScenarioComparison(String listboxName)
 	{
@@ -175,7 +175,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public By textboxCPM(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='text']");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='text']");
 	}
 	public By listboxGender(String ChannelsName)
 	{
