@@ -261,13 +261,6 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("'"+PlanningAudience+"' selected from Planning Audience listbox");// Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("^I click on '(.*)' from header breadcrumb$")
-    public void iClickOnChannelLinkFromBreadcrumb(String breadcrumbChannel) throws Throwable
-    {
-        channelSetupPage.clickonBreadCrumbLink(breadcrumbChannel);
-        appliEyes.capture("Link 'Edit' along with Plan name clicked successfully.");
-    }
-
     @Then("^I navigate till (.*) set up page$")
     public void iNavigateChannelsSetUpPage(String PageHeader) throws Throwable
     {

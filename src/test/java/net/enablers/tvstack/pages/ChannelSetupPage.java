@@ -154,15 +154,15 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public By listboxbuyingAudience(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/../td[3]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='All Adults']/..");
 	}
 	public By listboxSecondLengthformat(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/../td[4]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Select']/..");
 	}
 	public By listboxonScenarioComparison(String listboxName)
 	{
-		return By.xpath("//label[text()='"+listboxName+"']/parent::div/parent::div/parent::div//select");
+		return By.xpath("//label[text()='"+listboxName+"']/../../../..//select");
 	}
 	public By buttonName(String ButtonText)
 	{
@@ -179,41 +179,27 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public By listboxGender(String ChannelsName)
 	{
-		if(ChannelsName.trim().toLowerCase().equals("youtube"))
-		{
-			return By.xpath("//td[text()='Youtube']/parent::tr//child::div/child::div[2]//select");
-		}
-		else
-		{
-			return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[3]//select");
-		}
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Gender']/..");
 
 	}
 	public By listboxMinAge(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[1]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Min Age']/..");
 	}
 	public By listboxMaxAge(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[2]//select");
-	}
-	public By linkBreadCrumb(String breadcrumbName)
-	{
-		return By.xpath("//ol//li//a[text()='"+breadcrumbName+"']");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Max Age']/..");
 	}
 
 	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelName,String valuetoverify)
 	{
 		assertThat(element(textboxCPM(channelName)).getValue() == valuetoverify);
 	}
-
-
 	public void setCPMvalue(String ChannelName,String NewCPMValue)
 	{
 		element(textboxCPM(ChannelName)).typeAndTab(NewCPMValue);
 
 	}
-
 	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
 	{
 		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue() == UserGRPs);
@@ -290,20 +276,14 @@ public class ChannelSetupPage extends PageObject {
 		element(listboxonScenarioComparison("Planning Audience")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(PlanningAudience);
 	}
 
-	public void clickonBreadCrumbLink(String breadcrumbLinkName)
-	{
-		element(linkBreadCrumb("Channels")).waitUntilClickable().click();
-	}
 	public void verifyPageHeader(String PageHeader)
 	{
 		headerTag.shouldBeVisible();
 		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase()));
 
 	}
-
 	public void iClickonButton(String buttonName)
 	{
-
 		try
 		{
 			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
