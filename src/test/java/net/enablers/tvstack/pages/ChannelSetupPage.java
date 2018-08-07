@@ -130,14 +130,11 @@ public class ChannelSetupPage extends PageObject {
 
 	//*--------- Web Element Proprty decelation section
 
-	@FindBy(xpath = "//td[text()='Youtube']/..//select")
+	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
 	WebElementFacade listboxYoutubeAge;
 
 	@FindBy(xpath = "//h1")
 	WebElementFacade headerTag;
-
-	@FindBy(xpath = "//a[contains(@href,'edit') and contains(@href,'plan')]")
-	WebElementFacade linkPlan;
 
 	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
 	{
@@ -294,17 +291,13 @@ public class ChannelSetupPage extends PageObject {
 	{
 		element(linkBreadCrumb("Channels")).waitUntilClickable().click();
 	}
-	public void clickonPlanNamefromHeaderSection()
-	{
-		linkPlan.waitUntilClickable().click();
-	}
 	public void verifyPageHeader(String PageHeader)
 	{
 		headerTag.shouldBeVisible();
-		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase()));
+		assertThat(headerTag.getText() ==PageHeader);
 	}
 
-	public void iClickonButton(String buttonName)
+	public void iWillClickonButton(String buttonName)
 	{
 
 		try

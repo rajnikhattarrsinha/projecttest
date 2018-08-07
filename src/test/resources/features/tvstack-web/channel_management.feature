@@ -138,10 +138,8 @@ Feature: Manage channels
     Then I select newly created scenario B  from scenario B listbox
     Then I select created plan from Planning Audience listbox
     Then I click on 'Compare' button
-    And  I click plan name edit link from top of the page
-    Then I should see 'Edit plan' page
-    And  I click on 'Update' button
-    And  I click on 'Next: Channels' button
+    Then I click on 'Channels' from header breadcrumb
+    Then I navigate till 'Channels' set up page
     Then I should see '22.00' populated in CPM textbox corresponding to Channel 'TV'
     Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
     Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Online+Video'
