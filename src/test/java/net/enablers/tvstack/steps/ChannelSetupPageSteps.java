@@ -8,6 +8,7 @@ import cucumber.api.java.en.When;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
+import net.enablers.tvstack.pages.ScenariosSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
@@ -17,6 +18,7 @@ public class ChannelSetupPageSteps {
 	NewPlanSetupPage newPlanSetupPage;
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
+    ScenariosSetupPage scenariosSetupPage;
     AppliEyes appliEyes;
 
     @Steps
@@ -274,16 +276,18 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I click on '(.*)' button$")
-    public void iWillClickonanyButton(String buttonText) throws Throwable
+    public void iClickonanyButton(String buttonText) throws Throwable
     {
         channelSetupPage.iWillClickonButton(buttonText);
         appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
     }
 
     @Then("^I should see the newly created scenario '(.*)' on Scenarios page$")
-    public void iWillVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
+    public void iShouldseeNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
     {
-        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
+        //channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
+        String ScenarioName = Serenity.sessionVariableCalled("new_audience_name")+"-scenario"+scenarioNumber;
+        scenariosSetupPage.checkNewlyCreatedScenario(scenarioNumber);
         appliEyes.capture("New Created Scenario id displayed on Scenario page");
     }
 
