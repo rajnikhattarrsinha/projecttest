@@ -130,11 +130,14 @@ public class ChannelSetupPage extends PageObject {
 
 	//*--------- Web Element Proprty decelation section
 
-	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
+	@FindBy(xpath = "//td[text()='Youtube']/..//select")
 	WebElementFacade listboxYoutubeAge;
 
 	@FindBy(xpath = "//h1")
 	WebElementFacade headerTag;
+
+	@FindBy(xpath = "//a[contains(@href,'edit') and contains(@href,'plan')]")
+	WebElementFacade linkPlan;
 
 	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
 	{
@@ -294,10 +297,11 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyPageHeader(String PageHeader)
 	{
 		headerTag.shouldBeVisible();
-		assertThat(headerTag.getText() ==PageHeader);
+		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase()));
+
 	}
 
-	public void iWillClickonButton(String buttonName)
+	public void iClickonButton(String buttonName)
 	{
 
 		try
@@ -319,6 +323,11 @@ public class ChannelSetupPage extends PageObject {
 	{
 		String ScenarioName = Serenity.sessionVariableCalled("new_audience_name")+"-scenario"+ScenarioNumber;
 		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(30, TimeUnit.SECONDS).waitUntilVisible();
+	}
+
+	public void clickonPlanNamefromHeaderSection()
+	{
+		linkPlan.waitUntilClickable().click();
 	}
 
 	//*************** RAJNI CODE END HERE ******************************//
