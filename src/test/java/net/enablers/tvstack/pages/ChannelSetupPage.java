@@ -186,9 +186,9 @@ public class ChannelSetupPage extends PageObject {
 			case "tv":
 				return By.xpath("//table//tbody//tr[1]//select//option[text()='Select']/../..//select");
 			case "video on demand":
-				return By.xpath("//table//tbody//tr[2]//select//option[text()='Select']/../..//select[2]");
+				return By.xpath("//table//tbody//tr[2]//select//option[text()='Select']/../..//select");
 			case "online+video":
-				return By.xpath("//table//tbody//tr[3]//select//option[text()='Select']/../..//select[3]");
+				return By.xpath("//table//tbody//tr[3]//select//option[text()='Select']/../..//select");
 			default :
 				return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Select']/..");
 		}
