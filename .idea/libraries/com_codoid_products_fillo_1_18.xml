@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.codoid.products:fillo:1.18" type="repository">
+    <properties maven-id="com.codoid.products:fillo:1.18" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/codoid/products/fillo/1.18/fillo-1.18.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
