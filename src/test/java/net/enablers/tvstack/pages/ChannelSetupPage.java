@@ -150,15 +150,49 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public By checkboxChannels(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='checkbox']");
+		switch(ChannelsName.trim().toLowerCase())
+		{
+			case "tv":
+				 return By.xpath("//table//tbody//tr[1]//input[@type = 'checkbox']");
+			case "video on demand":
+				return By.xpath("//table//tbody//tr[2]//input[@type = 'checkbox']");
+			case "online+video":
+				return By.xpath("//table//tbody//tr[3]//input[@type = 'checkbox']");
+			default :
+				return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='checkbox']");
+
+		}
+
 	}
 	public By listboxbuyingAudience(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='All Adults']/..");
+		switch(ChannelsName.trim().toLowerCase())
+		{
+			case "tv":
+				return By.xpath("//table//tbody//tr[1]//select//option[text()='All Adults']/../..//select");
+			case "video on demand":
+				return By.xpath("//table//tbody//tr[2]//select//option[text()='All Adults']/../..//select");
+			case "online+video":
+				return By.xpath("//table//tbody//tr[3]//select//option[text()='All Adults']/../..//select");
+			default :
+				return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='All Adults']/..");
+		}
+
 	}
 	public By listboxSecondLengthformat(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Select']/..");
+		switch(ChannelsName.trim().toLowerCase())
+		{
+			case "tv":
+				return By.xpath("//table//tbody//tr[1]//select//option[text()='Select']/../..//select");
+			case "video on demand":
+				return By.xpath("//table//tbody//tr[2]//select//option[text()='Select']/../..//select[2]");
+			case "online+video":
+				return By.xpath("//table//tbody//tr[3]//select//option[text()='Select']/../..//select[3]");
+			default :
+				return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Select']/..");
+		}
+
 	}
 	public By listboxonScenarioComparison(String listboxName)
 	{
@@ -175,7 +209,18 @@ public class ChannelSetupPage extends PageObject {
 
 	public By textboxCPM(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='text']");
+		switch(ChannelsName.trim().toLowerCase())
+		{
+			case "tv":
+				return By.xpath("//table//tbody//tr[1]//input[@type='text']");
+			case "video on demand":
+				return By.xpath("//table//tbody//tr[2]//input[@type='text']");
+			case "online+video":
+				return By.xpath("//table//tbody//tr[3]//input[@type='text']");
+			default :
+				return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='text']");
+		}
+
 	}
 	public By listboxGender(String ChannelsName)
 	{
