@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-core/2.3.0/cucumber-core-2.3.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/cucumber-core-2.3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -2,9 +2,12 @@ package net.enablers.tvstack.steps;
 
 import java.util.List;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import net.enablers.tvstack.helpers.WebHelper;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
@@ -20,6 +23,7 @@ public class ChannelSetupPageSteps {
     ChannelSetupPage channelSetupPage;
     ScenariosSetupPage scenariosSetupPage;
     AppliEyes appliEyes;
+    WebHelper webHelper;
 
     @Steps
     TvstackLandingPageSteps landingPageSteps;
@@ -34,6 +38,13 @@ public class ChannelSetupPageSteps {
     //****************** RAJNI CODE START HERE*****************************//
     //*******************************************************************///
 
+    @Before
+    public void before()
+    {
+        //@ get Mater Test Data Path
+        String MasterTestdata  = System.getProperty("user.dir")+"\\"+"\\src\\test\\resources\\TestData\\MasterTestData.xlsx";
+        webHelper.fn_AddTestDataforApplication("1",MasterTestdata,"channel_management");
+    }
     //########################################################################################################
     //# Scenario ID : 1
     //# Test Case Calibrate TV Channel-Prepopulating configured values
@@ -56,6 +67,14 @@ public class ChannelSetupPageSteps {
     @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
     public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience,String channelName) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(buyingAudience))
+        {
+            buyingAudience = WebHelper.dictTestData.get(buyingAudience);
+        }
+        if(WebHelper.dictTestData.containsKey(channelName))
+        {
+            channelName = WebHelper.dictTestData.get(channelName);
+        }
         channelSetupPage.selectClosestbuyingAudienceoption(channelName,buyingAudience);
         appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelName+"'.");
     }
@@ -63,6 +82,14 @@ public class ChannelSetupPageSteps {
     @Then("^I select Second Length/Format as '(.*)' corresponding to Channel '(.*)'")
     public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelName) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(secondlengthFormatoption))
+        {
+            secondlengthFormatoption = WebHelper.dictTestData.get(secondlengthFormatoption);
+        }
+        if(WebHelper.dictTestData.containsKey(channelName))
+        {
+            channelName = WebHelper.dictTestData.get(channelName);
+        }
         channelSetupPage.selectSecondLengthFormatoption(channelName,secondlengthFormatoption);
         appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+channelName+"'.");
     }
@@ -70,6 +97,14 @@ public class ChannelSetupPageSteps {
     @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'")
     public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelName) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(userCPMInput))
+        {
+            userCPMInput = WebHelper.dictTestData.get(userCPMInput);
+        }
+        if(WebHelper.dictTestData.containsKey(channelName))
+        {
+            channelName = WebHelper.dictTestData.get(channelName);
+        }
         channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelName,userCPMInput);
         appliEyes.capture("Expected Channel '"+channelName+"' CPM  value '"+userCPMInput+"' is displayed.");
     }
@@ -85,6 +120,10 @@ public class ChannelSetupPageSteps {
     @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'")
     public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(String userGRPs) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(userGRPs))
+        {
+            userGRPs = WebHelper.dictTestData.get(userGRPs);
+        }
         channelSetupPage.getGRPsValueAndverifyWithUserGRPs(userGRPs);
         appliEyes.capture("Expected value of GRPs Calibrated at '"+userGRPs+"' is displayed.");
     }
@@ -92,6 +131,10 @@ public class ChannelSetupPageSteps {
     @Then("^I should see Reach populated as '(.*)'")
     public void iShouldSeeReachpopulatedTextValueAndVerifyWithUserReachValue(String Reach) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(Reach))
+        {
+            Reach = WebHelper.dictTestData.get(Reach);
+        }
         channelSetupPage.getReachvalueAndVerifyWithUserReachValue(Reach);
         appliEyes.capture("Expected value of Reach '"+Reach+"' is displayed.");
     }
@@ -106,6 +149,10 @@ public class ChannelSetupPageSteps {
     @Then("^I should see Maximum Reach populated as '(.*)'")
     public void iShouldSeeMaximumReachPopulatedTextValueAndVerifyUserMaximumReach(String MaximumReach) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(MaximumReach))
+        {
+            MaximumReach = WebHelper.dictTestData.get(MaximumReach);
+        }
         channelSetupPage.getMaximumReachValueAndVerifyWithUserMaximumReachValue(MaximumReach);
         appliEyes.capture("Expected value of 'Maximum Reach' "+MaximumReach+" is displayed.");
     }
@@ -113,6 +160,10 @@ public class ChannelSetupPageSteps {
     @Then("^I should see Precision populated as '(.*)'")
     public void iShouldSeePrecisionPopulatedValueAndVerifyWithUserPrecisionValue(String Precision) throws Throwable
     {
+        if(WebHelper.dictTestData.containsKey(Precision))
+        {
+            Precision = WebHelper.dictTestData.get(Precision);
+        }
         channelSetupPage.getPrecisionValueAndComapreUserInputValue(Precision);
         appliEyes.capture("Expected value of 'Precision' "+Precision+" is displayed.");
     }

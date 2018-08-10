@@ -77,12 +77,12 @@ public class WebHelper extends PageObject
 
     }
 
-    private void fn_AddTestDataforApplication(String TestId, String WorkSheetPath, String WorkSheetName)
+    public void fn_AddTestDataforApplication(String scenarioId, String WorkSheetPath, String WorkSheetName)
     {
         dictTestData.clear();
         try
         {
-            String strQuery = "Select * from "+WorkSheetName+" where TESTCASEID='"+TestId+"' and ExecutionFlag='YES'";
+            String strQuery = "Select * from "+WorkSheetName+" where ScenarioID='"+scenarioId+"'";
             Fillo fillo=new Fillo();
             Connection connection=fillo.getConnection(WorkSheetPath);
             Recordset recordset=connection.executeQuery(strQuery);

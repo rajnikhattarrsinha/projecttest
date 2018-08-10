@@ -46,15 +46,15 @@ Feature: Manage channels
 #Scenario 1:
   Scenario: Calibrate TV Channel-Prepopulating configured values
     Given I'm on audience channels page
-    And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    Then  I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
+    And   I select Closest buying Audience as 'TVbuyingAudience' corresponding to Channel 'ChannelNameTV'
+    And   I select Second Length/Format as 'TVSecondLengthFormat' corresponding to Channel 'ChannelNameTV'
+    Then  I should see 'DefaultCPMforTV' populated in CPM textbox corresponding to Channel 'ChannelNameTV'
     And   I press calibrate button
-    Then  I should see GRPs Celebrated at textbox populated as '60'
-    Then  I should see Reach populated as '50'
+    Then  I should see GRPs Celebrated at textbox populated as 'DefaultGRPs'
+    Then  I should see Reach populated as 'DefaultReach'
     And   I click on ADVANCED button
-    Then  I should see Maximum Reach populated as '80'
-    Then  I should see Precision populated as '70'
+    Then  I should see Maximum Reach populated as 'DefaultMaximumReach'
+    Then  I should see Precision populated as 'DefaultPrecision'
     And   I click Cancel button
     Then  It should close Calibrate screen
 
