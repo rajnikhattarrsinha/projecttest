@@ -29,7 +29,7 @@ public class AudienceSetupPage extends PageObject {
     @FindBy(xpath = "//table/thead/tr")
     WebElementFacade existingAudienceHeader;
 
-    @FindBy(xpath = "//button/span/span[text() = 'Create new audience']")
+    @FindBy(xpath = "//button/span/span[text() = 'Create audience']")
     WebElementFacade newAudieceButton;
 
     @FindBy(xpath = "//input[contains(@class,'title-input')]")
