@@ -139,59 +139,28 @@ public class ChannelSetupPage extends PageObject {
 	@FindBy(xpath = "//a[contains(@href,'edit') and contains(@href,'plan')]")
 	WebElementFacade linkPlan;
 
-	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
+	public void selectClosestbuyingAudienceoption(String channelNumber,String buyingAudience)
 	{
-		element(listboxbuyingAudience(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
+		element(listboxbuyingAudience(channelNumber)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
 	}
-	public void selectSecondLengthFormatoption(String channelName,String secondLengthformat)
+	public void selectSecondLengthFormatoption(String channelNumber,String secondLengthformat)
 	{
 		waitABit(2000);
-		element(listboxSecondLengthformat(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(secondLengthformat);
+		element(listboxSecondLengthformat(channelNumber)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(secondLengthformat);
 	}
-	public By checkboxChannels(String ChannelsName)
+	public By checkboxChannels(String ChannelsNumber)
 	{
-		switch(ChannelsName.trim().toLowerCase())
-		{
-			case "tv":
-				 return By.xpath("//table//tbody//tr[1]//input[@type = 'checkbox']");
-			case "video on demand":
-				return By.xpath("//table//tbody//tr[2]//input[@type = 'checkbox']");
-			case "online+video":
-				return By.xpath("//table//tbody//tr[3]//input[@type = 'checkbox']");
-			default :
-				return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='checkbox']");
-
-		}
+		return By.xpath("//table//tbody//tr["+ChannelsNumber+"]//input[@type = 'checkbox']");
 
 	}
-	public By listboxbuyingAudience(String ChannelsName)
+	public By listboxbuyingAudience(String ChannelNumber)
 	{
-		switch(ChannelsName.trim().toLowerCase())
-		{
-			case "tv":
-				return By.xpath("//table//tbody//tr[1]//select//option[text()='All Adults']/../..//select");
-			case "video on demand":
-				return By.xpath("//table//tbody//tr[2]//select//option[text()='All Adults']/../..//select");
-			case "online+video":
-				return By.xpath("//table//tbody//tr[3]//select//option[text()='All Adults']/../..//select");
-			default :
-				return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='All Adults']/..");
-		}
+		return By.xpath("//table//tbody//tr["+ChannelNumber+"]//select//option[text()='All Adults']/../..//select");
 
 	}
-	public By listboxSecondLengthformat(String ChannelsName)
+	public By listboxSecondLengthformat(String ChannelsNumber)
 	{
-		switch(ChannelsName.trim().toLowerCase())
-		{
-			case "tv":
-				return By.xpath("//table//tbody//tr[1]//select//option[text()='Select']/../..//select");
-			case "video on demand":
-				return By.xpath("//table//tbody//tr[2]//select//option[text()='Select']/../..//select");
-			case "online+video":
-				return By.xpath("//table//tbody//tr[3]//select//option[text()='Select']/../..//select");
-			default :
-				return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Select']/..");
-		}
+		return By.xpath("//table//tbody//tr["+ChannelsNumber+"]//select//option[text()='Select']/../..//select");
 
 	}
 	public By listboxonScenarioComparison(String listboxName)
@@ -207,19 +176,9 @@ public class ChannelSetupPage extends PageObject {
 		return By.xpath("//*[text()='"+TextboxName+"']/following::input");
 	}
 
-	public By textboxCPM(String ChannelsName)
+	public By textboxCPM(String ChannelsNumber)
 	{
-		switch(ChannelsName.trim().toLowerCase())
-		{
-			case "tv":
-				return By.xpath("//table//tbody//tr[1]//input[@type='text']");
-			case "video on demand":
-				return By.xpath("//table//tbody//tr[2]//input[@type='text']");
-			case "online+video":
-				return By.xpath("//table//tbody//tr[3]//input[@type='text']");
-			default :
-				return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='text']");
-		}
+		return By.xpath("//table//tbody//tr["+ChannelsNumber+"]//input[@type='text']");
 
 	}
 	public By listboxGender(String ChannelsName)
@@ -236,9 +195,9 @@ public class ChannelSetupPage extends PageObject {
 		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Max Age']/..");
 	}
 
-	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelName,String valuetoverify)
+	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelNumber,String valuetoverify)
 	{
-		assertThat(element(textboxCPM(channelName)).getValue() == valuetoverify);
+		assertThat(element(textboxCPM(channelNumber)).getValue() == valuetoverify);
 	}
 	public void setCPMvalue(String ChannelName,String NewCPMValue)
 	{

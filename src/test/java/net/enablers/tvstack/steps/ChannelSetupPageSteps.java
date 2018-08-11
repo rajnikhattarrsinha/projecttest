@@ -64,48 +64,36 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-    @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience,String channelName) throws Throwable
+    @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel number '(.*)' '(.*)'$")
+    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience,String channelNumber,String channelName) throws Throwable
     {
         if(WebHelper.dictTestData.containsKey(buyingAudience))
         {
             buyingAudience = WebHelper.dictTestData.get(buyingAudience);
         }
-        if(WebHelper.dictTestData.containsKey(channelName))
-        {
-            channelName = WebHelper.dictTestData.get(channelName);
-        }
-        channelSetupPage.selectClosestbuyingAudienceoption(channelName,buyingAudience);
+        channelSetupPage.selectClosestbuyingAudienceoption(channelNumber,buyingAudience);
         appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelName+"'.");
     }
 
-    @Then("^I select Second Length/Format as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelName) throws Throwable
+    @Then("^I select Second Length/Format as '(.*)' corresponding to Channel number '(.*)' '(.*)'$")
+    public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelNumber,String channelName) throws Throwable
     {
         if(WebHelper.dictTestData.containsKey(secondlengthFormatoption))
         {
             secondlengthFormatoption = WebHelper.dictTestData.get(secondlengthFormatoption);
         }
-        if(WebHelper.dictTestData.containsKey(channelName))
-        {
-            channelName = WebHelper.dictTestData.get(channelName);
-        }
         channelSetupPage.selectSecondLengthFormatoption(channelName,secondlengthFormatoption);
         appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+channelName+"'.");
     }
 
-    @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'")
-    public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelName) throws Throwable
+    @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel number '(.*)' '(.*)'$")
+    public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelNumber,String channelName) throws Throwable
     {
         if(WebHelper.dictTestData.containsKey(userCPMInput))
         {
             userCPMInput = WebHelper.dictTestData.get(userCPMInput);
         }
-        if(WebHelper.dictTestData.containsKey(channelName))
-        {
-            channelName = WebHelper.dictTestData.get(channelName);
-        }
-        channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelName,userCPMInput);
+        channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelNumber,userCPMInput);
         appliEyes.capture("Expected Channel '"+channelName+"' CPM  value '"+userCPMInput+"' is displayed.");
     }
 
