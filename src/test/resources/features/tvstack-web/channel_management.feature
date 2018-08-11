@@ -81,48 +81,48 @@ Feature: Manage channels
     Given I'm on audience channels page
     And   I select Age as '18-34' corresponding to Channel 'Youtube'
     And   I select Gender as 'Female' corresponding to Channel 'Youtube'
-    And   I select Second Length/Format as 'Auction' corresponding to Channel 'Youtube'
-    Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
-    Then  I should not be able to edit the CPM textbox corresponding to Channel 'Youtube'
+    And   I select Second Length/Format as 'Auction' corresponding to Channel number '4' 'Youtube'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel number '4' 'Youtube'
+    Then  I should not be able to edit the CPM textbox corresponding to Channel number '4' 'Youtube'
     And   I select Min Age as '20' corresponding to Channel 'Facebook'
     And   I select Max Age as '55' corresponding to Channel 'Facebook'
     And   I select Gender as 'Male' corresponding to Channel 'Facebook'
-    Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Facebook'
-    Then  I should not be able to edit the CPM textbox corresponding to Channel 'Facebook'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel number '5' 'Facebook'
+    Then  I should not be able to edit the CPM textbox corresponding to Channel number '5' 'Facebook'
     And   I select Min Age as '18' corresponding to Channel 'Instagram'
     And   I select Max Age as '30' corresponding to Channel 'Instagram'
     And   I select Gender as 'Male' corresponding to Channel 'Instagram'
-    Then  I should see '11.69' populated in CPM textbox corresponding to Channel 'Instagram'
-    Then  I should not be able to edit the CPM textbox corresponding to Channel 'Instagram'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel number '6' 'Instagram'
+    Then  I should not be able to edit the CPM textbox corresponding to Channel number '6' 'Instagram'
 
    #Scenario 4: Verify CPM is editable for Channel youtube(Reservation,GooglePreferred)
   Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
     Given I'm on audience channels page
     And  I select Age as '18-34' corresponding to Channel 'Youtube'
     And  I select Gender as 'Female' corresponding to Channel 'Youtube'
-    And  I select Second Length/Format as 'Reservation' corresponding to Channel 'Youtube'
-    And  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
-    Then I should be able to enter value '12' in CPM textbox corresponding to Channel 'Youtube'
-    And  I select Second Length/Format as 'GooglePreferred' corresponding to Channel 'Youtube'
-    And  I should see '11.69' populated in CPM textbox corresponding to Channel 'Youtube'
-    Then I should be able to enter value '14' in CPM textbox corresponding to Channel 'Youtube'
+    And   I select Second Length/Format as 'Reservation' corresponding to Channel number '4' 'Youtube'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel number '4' 'Youtube'
+    Then I should be able to enter value '12' in CPM textbox corresponding to Channel number '4' 'Youtube'
+    And   I select Second Length/Format as 'GooglePreferred' corresponding to Channel number '4' 'Youtube'
+    Then  I should see '11.69' populated in CPM textbox corresponding to Channel number '4' 'Youtube'
+    Then I should be able to enter value '14' in CPM textbox corresponding to Channel number '4' 'Youtube'
 
 
     #Scenario 5: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
   Scenario: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
     Given I'm on audience channels page
-    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    Then I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
-    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel 'TV'
-    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
-    Then I enter value '22.00' in CPM textbox corresponding to Channel 'Video on Demand'
-    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Online+Video'
-    Then I enter value '22.00' in CPM textbox corresponding to Channel 'Online+Video'
+    And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel number '1' 'TV'
+    And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel number '1' 'TV'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel number '1' 'TV'
+    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel number '1' 'TV'
+    And   I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel number '2' 'Video on Demand'
+    And   I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel number '2' 'Video on Demand'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel number '2' 'Video on Demand'
+    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel number '2' 'Video on Demand'
+    And   I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel number '3' 'Online+Video'
+    And   I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel number '3' 'Online+Video'
+    Then  I should see '20.00' populated in CPM textbox corresponding to Channel number '3' 'Online+Video'
+    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel number '3' 'Online+Video'
     Then I click on 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
     Then I click on 'Create new scenario' button
@@ -142,9 +142,9 @@ Feature: Manage channels
     Then I should see 'Edit plan' page
     And  I click on 'Update' button
     And  I click on 'Next: Channels' button
-    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'TV'
-    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
-    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Online+Video'
+    Then  I should see '22.00' populated in CPM textbox corresponding to Channel number '1' 'TV'
+    Then  I should see '22.00' populated in CPM textbox corresponding to Channel number '2' 'Video on Demand'
+    Then  I should see '22.00' populated in CPM textbox corresponding to Channel number '3' 'Online+Video'
 
 
 

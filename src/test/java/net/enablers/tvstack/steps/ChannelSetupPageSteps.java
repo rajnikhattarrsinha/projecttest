@@ -229,11 +229,11 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("Gender '"+Gender+"' is successfully selected for Channel '"+Channel+"'.");
     }
 
-    @Then("^I should not be able to edit the CPM textbox corresponding to Channel '(.*)'")
-    public void iShouldSeeNonEditableCPMtextboxCorrespondingToChannel(String channelName) throws Throwable
+    @Then("^^Then  I should not be able to edit the CPM textbox corresponding to Channel number '(.*)' '(.*)'$")
+    public void iShouldSeeNonEditableCPMtextboxCorrespondingToChannel(String channelnumber,String ChannelName) throws Throwable
     {
-        channelSetupPage.verifyNoneditableCPMtextbox(channelName);
-        appliEyes.capture("CPM textbox is non editable for Channel '"+channelName+".");
+        channelSetupPage.verifyNoneditableCPMtextbox(channelnumber);
+        appliEyes.capture("CPM textbox is non editable for Channel '"+ChannelName+".");
     }
 
     @Then("^I select Min Age as '(.*)' corresponding to Channel '(.*)'")
@@ -269,10 +269,10 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-    @Then("^I enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
-    public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
+    @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel number '(.*)' '(.*)'$")
+    public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String Channelnumber,String channelName) throws Throwable
     {
-        channelSetupPage.enterCPMValueCorrespondingToChannel(channelName,cpmValue);
+        channelSetupPage.enterCPMValueCorrespondingToChannel(Channelnumber,cpmValue);
         appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
     }
 
