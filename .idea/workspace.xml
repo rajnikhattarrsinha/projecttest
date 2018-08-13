@@ -2,133 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9613aca3-47ab-4ed7-b811-f729771d4d09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/RunAdminApiTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/RunTVStackApiTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/RunTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/model/Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/model/ListingItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/model/OrderCostSummary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/model/Pet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/model/SessionVariables.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/pages/CartPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/pages/EtsyPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/pages/ListingPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/pages/SearchResultsPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/steps/BuyerSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/steps/DisplayProductDetailsScenarioSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/steps/PetStoreSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/steps/SearchScenarioSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/steps/ShoppingCartScenarioSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/tests/AddItemToShoppingCart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/tests/AddStuffToTheShoppingCartTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/tests/AppliTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/tests/DisplayProductDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/tests/Petstore.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/example/tests/SearchByKeyword.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/helpers/ApiHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/helpers/Hooks.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/helpers/WebHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/AccessToken.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/Audience.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/AudienceRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/AudienceResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/BuyingAudienceRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/BuyingAudienceResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/BuyingAudienceResults.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/CampaignLenghts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ChannelInputs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/Channels.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/DuplicateRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/EvaluateFilterRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/EvaluateFilterResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/IdToken.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/MetaData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/OktaTokenStorage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/OptimizeScenarioRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/PlAuthenticateResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/PlMarketResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/PlanningAudienceResults.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ProjectErrorModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ProjectRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ProjectUpdateRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/QuestionsResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ScenarioCompareRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ScenarioRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/ScenarioResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/SelectAudienceRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/ClientResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/ClientsLeadRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/ClientsPlannerRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/CountryLeadRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/CountryResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/Data.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/FormatRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/FormatResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/UserDetailsResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/UserRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/UsersResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/roles/Data.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/roles/RoleDefinitionsResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/userroles/Data.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/userroles/UserRoleCreateModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/admin/userroles/UserRolesResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/duplicateaudience/Audience.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/duplicateaudience/DuplicateAudienceRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/scenariocompare/ComparisonData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/scenariocompare/ScenarioCompareResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/scenariocompare/Scenarios.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/updatechannel/Channels.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/updatechannel/CurveCalibration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/updatechannel/UpdateChannelRequestModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/api/updatechannel/UpdateChannelResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/model/web/PlanModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/AdminHomePage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/AudienceAdminPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/AudienceSetupPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/ChannelSetupPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/HomePage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/NewPlanSetupPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/pages/PlannerAdminPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/AudiencesService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/BuyingAudienceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/ChannelService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/ClientsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/CountryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/FormatsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/PointLogicService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/ProjectsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/RoleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/ScenarioService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/UserRoleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/services/VersionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/AdminSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/AudienceAdminSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/AudienceSetupPageSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/ChannelSetupPageSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/NewPlanSetupPageSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/PlannerAdminSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/TvstackLandingPageSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/AccessTokenSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageAudienceSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageBuyingAudienceSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageClientsSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageCountriesSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageFormatSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageProjectSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/ManageScenarioSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/PLMarketsSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/PlanResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/RolesSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/UpdateChannelSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/UserRolesSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/UserSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/VersionSteps$VersionModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/steps/api/VersionSteps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/utilities/AppliEyes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/utilities/ConfigLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/utilities/MongoDbConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/net/enablers/tvstack/utilities/RandomGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/tvstack-web/channel_selection.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/tvstack-web/channel_selection.feature" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,10 +19,62 @@
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="feature" value="1" />
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+          <entry key="Substeps" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="feature" value="16" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Substeps" value="16" />
+        </counts>
+      </usages-collector>
     </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/features/tvstack-web/channel_selection.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="146" column="82" selection-start-line="146" selection-start-column="82" selection-end-line="146" selection-end-column="82" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/net/enablers/tvstack/steps/ChannelSetupPageSteps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="84" column="40" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/test/java/net/enablers/tvstack/steps/ChannelSetupPageSteps.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/features/tvstack-web/channel_selection.feature" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
@@ -169,6 +95,65 @@
             <path>
               <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
               <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="tvstack" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="tvstack" type="462c0819:PsiDirectoryNode" />
+              <item name="steps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="features" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecttest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecttest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="features" type="462c0819:PsiDirectoryNode" />
+              <item name="tvstack-web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -209,6 +194,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -220,6 +206,7 @@
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.3289689" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -239,5 +226,96 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/enablers/tvstack/steps/ChannelSetupPageSteps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="84" column="40" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/features/tvstack-web/channel_selection.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="146" column="82" selection-start-line="146" selection-start-column="82" selection-end-line="146" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Invalid</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>9</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>dan-tvstack-bdd</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
