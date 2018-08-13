@@ -241,7 +241,7 @@ public class ChannelSetupPageSteps {
     //########################################################################################################
 
     @Then("^I click on '(.*)' button$")
-    public void iClickonanyButton(String buttonText) throws Throwable
+    public void iClickonButton(String buttonText) throws Throwable
     {
         channelSetupPage.iClickonButton(buttonText);
         appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
@@ -267,12 +267,6 @@ public class ChannelSetupPageSteps {
         channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
         appliEyes.capture("New Created Scenario id displayed on Scenario page");
     }
-    public void iShouldseeNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
-    {
-        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
-        appliEyes.capture("New Created Scenario id displayed on Scenario page");
-    }
-
     @Then("^I select newly created scenario A from scenario A listbox$")
     public void iSelectScenarioA() throws Throwable
     {
