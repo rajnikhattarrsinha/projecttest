@@ -51,34 +51,36 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
+//    @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
+//    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience,String channelName) throws Throwable
+//    {
+//        channelSetupPage.selectClosestbuyingAudienceoption(channelName,buyingAudience);
+//        appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelName+"'.");
+//    }
+
     @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience,String channelName) throws Throwable
+    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience, String channelNo) throws Throwable
     {
-        channelSetupPage.selectClosestbuyingAudienceoption(channelName,buyingAudience);
-        appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelName+"'.");
+        channelSetupPage.selectClosestbuyingAudienceoption(channelNo,buyingAudience);
+        appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelNo+"'.");
     }
 
+
     @Then("^I select Second Length/Format as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelName) throws Throwable
+    public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelNo) throws Throwable
     {
-        channelSetupPage.selectSecondLengthFormatoption(channelName,secondlengthFormatoption);
-        appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+channelName+"'.");
+        channelSetupPage.selectSecondLengthFormatoption(channelNo,secondlengthFormatoption);
+        appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+channelNo+"'.");
     }
 
     @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'")
-    public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelName) throws Throwable
+    public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelNo) throws Throwable
     {
-        channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelName,userCPMInput);
-        appliEyes.capture("Expected Channel '"+channelName+"' CPM  value '"+userCPMInput+"' is displayed.");
+        channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelNo,userCPMInput);
+        appliEyes.capture("Expected Channel '"+channelNo+"' CPM  value '"+userCPMInput+"' is displayed.");
     }
 
 
-    @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'$")
-    public void iShouldBeAbleToEnterValueInCPMTextboxCorrespondingToChannel(String  CPM,String Channel) throws Throwable
-    {
-        channelSetupPage.setCPMvalue(Channel,CPM);
-        appliEyes.capture("In Channel '"+Channel+"' CPM  value '"+CPM+"' is entered.");
-    }
 
     @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'")
     public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(String userGRPs) throws Throwable
@@ -148,15 +150,18 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-    @Given("^I should see Scenarios page with Create new scenario button$")
+   @Given("^I should see Scenarios page with Create new scenario button$")
     public void iShouldSeeScenariosPageWithCreateNewScenarioButton() throws Throwable
-    {
+   {
         channelSetupPage.verifyScenariosPageWithNewScenariosButton();
-        appliEyes.capture("'Scenarios' page is displayed with 'Create new scenario' button.");
+       appliEyes.capture("'Scenarios' page is displayed with 'Create scenario' button.");
     }
 
+
+
+
     //########################################################################################################
-    //# Scenario ID : 3
+    //# Scenario ID : 3 & 4
     //# Test Case CPM is uneditable for Channels youtube(Auction),facebook and Instagram
     //#------------------------------------------------------------------------------------------------------
     //# Description: This test case verify CPM field is uneditable for channels youtube(Auction),facebook and Instagram
@@ -174,7 +179,7 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-    @Given("^I select Age as '(.*)' corresponding to Channel 'Youtube'$")
+    @Given("^I select Age as '(.*)' corresponding to Channel Youtube")
     public void iSelectAgeForChannelYoutube(String ageforYouTube) throws Throwable
     {
         channelSetupPage.selectAgeforYoutubeChannel(ageforYouTube);
@@ -189,10 +194,10 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I should not be able to edit the CPM textbox corresponding to Channel '(.*)'")
-    public void iShouldSeeNonEditableCPMtextboxCorrespondingToChannel(String channelName) throws Throwable
+    public void iShouldSeeNonEditableCPMtextboxCorrespondingToChannel(String channelNo) throws Throwable
     {
-        channelSetupPage.verifyNoneditableCPMtextbox(channelName);
-        appliEyes.capture("CPM textbox is non editable for Channel '"+channelName+".");
+        channelSetupPage.verifyNoneditableCPMtextbox(channelNo);
+        appliEyes.capture("CPM textbox is non editable for Channel '"+channelNo+".");
     }
 
     @Then("^I select Min Age as '(.*)' corresponding to Channel '(.*)'")
@@ -209,90 +214,18 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("Max Age '"+MaxAge+"' is successfully selected for Channel '"+channelName+"'.");
     }
 
-    //########################################################################################################
-    //# Scenario ID : 5
-    //# Test Case Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
-    //#------------------------------------------------------------------------------------------------------
-    //# Description: This test case verify user is able to override CPM value of channel
-    //#------------------------------------------------------------------------------------------------------
-    //# Pre-conditions: NA
-    //# Post-conditions: NA
-    //# Limitations: NA
-    //#------------------------------------------------------------------------------------------------------
-    //# Owner:  Rajni
-    //# Created on: 01-Aug-2018
-    //#------------------------------------------------------------------------------------------------------
-    //# Reviewer:
-    //# Review Date:
-    //#------------------------------------------------------------------------------------------------------
-    //# History Notes:
-    //########################################################################################################
-
-    @Then("^I enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'")
-    public void iWillEnterCPMValueCorrespondingToChannel(String cpmValue,String channelName) throws Throwable
+    @Then("^I should be able to enter value '(.*)' in CPM textbox corresponding to Channel '(.*)'$")
+    public void iShouldBeAbleToEnterValueInCPMTextboxCorrespondingToChannel(String  CPM,String channelNo) throws Throwable
     {
-        channelSetupPage.enterCPMValueCorrespondingToChannel(channelName,cpmValue);
-        appliEyes.capture("CPM value '"+cpmValue+"' enter successfully for Channel '"+channelName+".");
+        channelSetupPage.setCPMvalue(channelNo,CPM);
+        appliEyes.capture("In Channel '"+channelNo+"' CPM  value '"+CPM+"' is entered.");
     }
-
-    @Then("^I select newly created scenario A from scenario A listbox$")
-    public void iWillSelectScenarioA() throws Throwable
-    {
-        String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
-        channelSetupPage.selectScenarioAValue(scenarioA);
-        appliEyes.capture("'"+scenarioA+"' selected from Scenario A listbox");
-    }
-
-    @Then("^I select newly created scenario B  from scenario B listbox$")
-    public void iWillSelectScenarioB() throws Throwable
-    {
-        String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
-        channelSetupPage.selectScenarioBValue(scenarioB);
-        appliEyes.capture("'"+scenarioB+"' selected from Scenario B listbox");
-    }
-
-    @Then("^I select created plan from Planning Audience listbox$")
-    public void iWillSelectPlanningAudience() throws Throwable
-    {
-        String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
-        channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
-        appliEyes.capture("'"+PlanningAudience+"' selected from Planning Audience listbox");// Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("^I click on '(.*)' from header breadcrumb$")
-    public void iClickOnChannelLinkFromBreadcrumb(String breadcrumbChannel) throws Throwable
-    {
-        channelSetupPage.clickonBreadCrumbLink(breadcrumbChannel);
-        appliEyes.capture("Link 'Edit' along with Plan name clicked successfully.");
-    }
-
-    @Then("^I navigate till (.*) set up page$")
-    public void iNavigateChannelsSetUpPage(String PageHeader) throws Throwable
-    {
-        channelSetupPage.verifyPageHeader(PageHeader);
-        appliEyes.capture("'"+PageHeader+"'page is displayed.");
-    }
-
-    @Then("^I click on '(.*)' button$")
-    public void iWillClickonanyButton(String buttonText) throws Throwable
-    {
-        channelSetupPage.iWillClickonButton(buttonText);
-        appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
-    }
-
-    @Then("^I should see the newly created scenario '(.*)' on Scenarios page$")
-    public void iWillVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
-    {
-        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
-        appliEyes.capture("New Created Scenario id displayed on Scenario page");
-    }
-
 
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
 
-    
+
     @Then("^I should be taken to audience channel page$")
     public void iShouldBeTakenToAudienceChannelPage() {
     	newPlanSetupPage.verifyPageTitle("Channel");
@@ -309,17 +242,17 @@ public class ChannelSetupPageSteps {
         channelSetupPage.iClickChannelsButton();
         this.iShouldBeTakenToAudienceChannelPage();
     }
-    
+
     @Then("^I should see (\\d+) channels displayed$")
     public void iShouldSeeTheChannels(int channelNo) throws Exception {
     	channelSetupPage.verifyAvailableChannels(channelNo);
     }
-    
+
     @Then("^I should see the channel setup table contains$")
     public void iShouldSeeTheChannelSetupTableContainsAllOptions(List<String> options) throws Exception {
     	channelSetupPage.verifyChannelTableHeader(options);
     }
-    
+
     @Given("^I click '(.*)' button$")
     public void iClickButton(String buttonType) throws Exception {
     	newPlanSetupPage.iClickNextButton(buttonType);
@@ -329,7 +262,9 @@ public class ChannelSetupPageSteps {
     public void iCanSeeTheSelected_Channel(String section) throws Exception {
     	newPlanSetupPage.verifyPageTitle(section);
     }
-    
+
+
+
     @When("^I press calibrate button$")
     public void iPressCalibrateButton() throws Exception {
     	channelSetupPage.clickOnCalibrate();
@@ -341,12 +276,12 @@ public class ChannelSetupPageSteps {
     	channelSetupPage.addFormData(isValidDataProvided);
     	channelSetupPage.saveFormData();
     }
-    
+
     @Then("^an error is displayed in the form$")
     public void anErrorIsDisplayedInTheForm() throws Exception {
     	channelSetupPage.checkModalError();
     }
-    
+
     @When("^I deselect all channels$")
     public void iDeselectAllChannels() throws Exception {
     	channelSetupPage.deselectAllChannels();
@@ -365,8 +300,5 @@ public class ChannelSetupPageSteps {
     @Then("^all channels are selected$")
     public void allChannelsAreSelected() throws Exception {
     	channelSetupPage.allChannelsAreSelected();
-
     }
-
-
 }

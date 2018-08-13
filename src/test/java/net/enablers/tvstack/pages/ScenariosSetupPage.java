@@ -13,7 +13,7 @@ import net.thucydides.core.pages.PageObject;
 
 public class ScenariosSetupPage extends PageObject {
     
-	@FindBy(xpath = "//div[@class = 'scenario-setup__heading']/button")
+	@FindBy(xpath = "//button/span/span[text() = 'Create scenario']")
     WebElementFacade createNewScenario;
 	
 	@FindBy(xpath = "//div[@class = 'Polaris-Card__Section']//thead/tr")

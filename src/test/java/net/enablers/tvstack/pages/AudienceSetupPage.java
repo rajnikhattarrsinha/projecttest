@@ -1,7 +1,9 @@
 package net.enablers.tvstack.pages;
 
+import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -29,7 +31,7 @@ public class AudienceSetupPage extends PageObject {
     @FindBy(xpath = "//table/thead/tr")
     WebElementFacade existingAudienceHeader;
 
-    @FindBy(xpath = "//button/span/span[text() = 'Create new audience']")
+    @FindBy(xpath = "//button/span/span[text() = 'Create audience']")
     WebElementFacade newAudieceButton;
 
     @FindBy(xpath = "//input[contains(@class,'title-input')]")
@@ -43,6 +45,34 @@ public class AudienceSetupPage extends PageObject {
     
     @FindBy(xpath = "//h1[contains(.,'TV Stack')]")
     WebElementFacade homePageHeader;
+    
+    @FindBy(xpath = "//tbody//button[span/span/span]")
+    WebElementFacade deleteAudienceButton;
+    
+    @FindBy(xpath = "//button[text()='Delete']")
+    WebElementFacade deleteAudienceModalButton;
+    
+    @FindBy(xpath = "//*[@class='modal-content']")
+    WebElementFacade deleteAudienceModal;
+
+    @FindBy(xpath= "//input[@placeholder='Enter new Audience name']")
+    WebElementFacade RenameAudience;
+
+    @FindBy(xpath= "//button[contains(text(),'Save')]")
+            WebElement SaveBtn;
+
+    @FindBy(xpath = "//tr//td[8]//button[1]")
+    WebElement EditAudienceButton;
+
+    @FindBy(xpath = "//div[@class='Polaris-ButtonGroup']//div[2]//button[1]")
+    WebElement ContinueBtn;
+
+    @FindBy(xpath = "//input[@placeholder='Audience name']")
+    WebElement RenameAudienceName;
+
+    @FindBy(xpath = "//td[contains(text(),'copied')]")
+    WebElement ClonedAudience;
+
 
     NewPlanSetupPage newPlanSetupPage;
     
@@ -106,10 +136,23 @@ public class AudienceSetupPage extends PageObject {
         newAudieceInputField.type(Serenity.sessionVariableCalled("new_audience_name"));
     }
 
+    public void ClonedAudience(){
+        Serenity.setSessionVariable("clone_audience_name").to("Clone_audience" + RandomGenerator.randomAlphanumeric(3));
+        RenameAudience.type(Serenity.sessionVariableCalled("clone_audience_name"));
+
+
+    }
+
     public void saveTheAudience() {
         $("//button[contains(span,'Save')]").withTimeoutOf(50, TimeUnit.SECONDS).waitUntilClickable().click();
         $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(10, TimeUnit.SECONDS).waitUntilVisible();
         $("//button[span[@class = 'au-spinner undefined']]").withTimeoutOf(180, TimeUnit.SECONDS).waitUntilNotVisible();
+    }
+    public void verifyClonedAudienceIsPresent(){
+        this.verifyPageTitle();
+        withTimeoutOf(300, TimeUnit.SECONDS).waitForText(existingAudiencesSection, Serenity.sessionVariableCalled("clone_audience_name"));
+        $("//button[span='Preview']").click();
+
     }
 
     public void audienceIsSavedSuccessfully() {
@@ -120,9 +163,35 @@ public class AudienceSetupPage extends PageObject {
     }
 
     public void clickOnDeleteAudience() {
-        $("//button[span/span/span[not(contains(@class,'header'))]]").click();
-        waitFor("//*[@class='modal-content']").shouldContainText("Do you want to delete planning audience?");
-        $("//*[@class='modal-content']").findBy(By.xpath("//button[text()='Delete']")).click();
+        deleteAudienceButton.waitUntilClickable().click();
+        waitFor(deleteAudienceModal).shouldContainText("Do you want to delete planning audience?");
+        deleteAudienceModalButton.waitUntilClickable().then().click();
+    }
+
+    public void clickOnCopyAudience() throws InterruptedException {
+        $("//tr//td[7]//button[1]").click();
+        String popup = getDriver().getWindowHandle();
+        getDriver().switchTo().window(popup);
+
+    }
+
+
+    public void clickSaveCopiedAudience() throws InterruptedException{
+        SaveBtn.click();
+
+    }
+
+
+    public void clickEditAudienceBtn() throws InterruptedException {
+        EditAudienceButton.click();
+        String popup = getDriver().getWindowHandle();
+        System.out.println(popup);
+        getDriver().switchTo().window(popup);
+        ContinueBtn.click();
+        RenameAudienceName.clear();
+        RenameAudience.sendKeys("Renamed");
+
+
     }
 
     public void checkAudienceDeletedSuccessfully() {

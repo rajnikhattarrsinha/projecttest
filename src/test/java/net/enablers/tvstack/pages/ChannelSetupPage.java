@@ -17,7 +17,9 @@ import net.thucydides.core.pages.PageObject;
 public class ChannelSetupPage extends PageObject {
 
 	NewPlanSetupPage newPlanSetupPage;
-    
+
+
+
     @FindBy(xpath = "//div[@class = 'channel-setup__table']//tbody/tr")
     List<WebElementFacade> availableChannels;
     
@@ -124,42 +126,48 @@ public class ChannelSetupPage extends PageObject {
 
 
 
-
 	//*************** RAJNI CODE START HERE ******************************//
 	//********************************************************************//
 
 	//*--------- Web Element Proprty decelation section
 
-	@FindBy(xpath = "//td[text()='Youtube']/parent::tr//select")
+	@FindBy(xpath = "//td[text()='Youtube']/..//select")
 	WebElementFacade listboxYoutubeAge;
 
 	@FindBy(xpath = "//h1")
 	WebElementFacade headerTag;
 
-	public void selectClosestbuyingAudienceoption(String channelName,String buyingAudience)
+	@FindBy(xpath = "//a[contains(@href,'edit') and contains(@href,'plan')]")
+	WebElementFacade linkPlan;
+
+
+
+	public void selectClosestbuyingAudienceoption(String channelNo,String buyingAudience)
 	{
-		element(listboxbuyingAudience(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
+		element(listboxbuyingAudience(channelNo)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(buyingAudience);
 	}
-	public void selectSecondLengthFormatoption(String channelName,String secondLengthformat)
+	public void selectSecondLengthFormatoption(String channelNo,String secondLengthformat)
 	{
 		waitABit(2000);
-		element(listboxSecondLengthformat(channelName)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(secondLengthformat);
+		element(listboxSecondLengthformat(channelNo)).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(secondLengthformat);
 	}
 	public By checkboxChannels(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='checkbox']");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='checkbox']");
 	}
-	public By listboxbuyingAudience(String ChannelsName)
+	public By listboxbuyingAudience(String channelNo)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[3]//select");
+		//return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='All Adults']/..");
+		return By.xpath("//table//tbody//tr["+channelNo+"]//select//option[text()='All Adults']/../..//select");
 	}
-	public By listboxSecondLengthformat(String ChannelsName)
+	public By listboxSecondLengthformat(String channelNo)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr/child::td[4]//select");
+		//return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Select']/..");
+		return By.xpath("//table//tbody//tr["+channelNo+"]//select//option[text()='Select']/../..//select");
 	}
 	public By listboxonScenarioComparison(String listboxName)
 	{
-		return By.xpath("//label[text()='"+listboxName+"']/parent::div/parent::div/parent::div//select");
+		return By.xpath("//label[text()='"+listboxName+"']/../../../..//select");
 	}
 	public By buttonName(String ButtonText)
 	{
@@ -170,47 +178,34 @@ public class ChannelSetupPage extends PageObject {
 		return By.xpath("//*[text()='"+TextboxName+"']/following::input");
 	}
 
-	public By textboxCPM(String ChannelsName)
+	public By textboxCPM(String channelNo)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//input[@type='text']");
+		//return By.xpath("//td[text()='"+ChannelsName+"']/..//input[@type='text']");
+		return By.xpath("//table//tbody//tr["+channelNo+"]//input[@type='text']");
 	}
 	public By listboxGender(String ChannelsName)
 	{
-		if(ChannelsName.trim().toLowerCase().equals("youtube"))
-		{
-			return By.xpath("//td[text()='Youtube']/parent::tr//child::div/child::div[2]//select");
-		}
-		else
-		{
-			return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[3]//select");
-		}
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Gender']/..");
 
 	}
 	public By listboxMinAge(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[1]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Min Age']/..");
 	}
 	public By listboxMaxAge(String ChannelsName)
 	{
-		return By.xpath("//td[text()='"+ChannelsName+"']/parent::tr//child::div/child::div[2]//select");
+		return By.xpath("//td[text()='"+ChannelsName+"']/..//select//option[text()='Max Age']/..");
 	}
-	public By linkBreadCrumb(String breadcrumbName)
+
+	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelNo,String valuetoverify)
 	{
-		return By.xpath("//ol//li//a[text()='"+breadcrumbName+"']");
+		assertThat(element(textboxCPM(channelNo)).getValue() == valuetoverify);
 	}
-
-	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelName,String valuetoverify)
+	public void setCPMvalue(String channelNo,String NewCPMValue)
 	{
-		assertThat(element(textboxCPM(channelName)).getValue() == valuetoverify);
-	}
-
-
-	public void setCPMvalue(String ChannelName,String NewCPMValue)
-	{
-		element(textboxCPM(ChannelName)).typeAndTab(NewCPMValue);
+		element(textboxCPM(channelNo)).typeAndTab(NewCPMValue);
 
 	}
-
 	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
 	{
 		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue() == UserGRPs);
@@ -242,7 +237,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public void verifyScenariosPageWithNewScenariosButton()
 	{
-		element(buttonName("Create new scenario")).withTimeoutOf(180, TimeUnit.SECONDS).waitUntilClickable();
+		element(buttonName("Create scenario")).withTimeoutOf(180, TimeUnit.SECONDS).waitUntilEnabled();
 	}
 
 	public void selectAgeforYoutubeChannel(String Age)
@@ -264,10 +259,11 @@ public class ChannelSetupPage extends PageObject {
 		element(listboxMaxAge(Channel)).selectByVisibleText(MaxAge);
 	}
 
-	public void verifyNoneditableCPMtextbox(String channelName)
+	public void verifyNoneditableCPMtextbox(String channelNo)
 	{
-		assertThat(element(textboxCPM(channelName)).getAttribute("readonly") !=null);
+		assertThat(element(textboxCPM(channelNo)).getAttribute("readonly") !=null);
 	}
+
 
 	public void enterCPMValueCorrespondingToChannel(String channelName,String cpmValue)
 	{
@@ -287,19 +283,16 @@ public class ChannelSetupPage extends PageObject {
 		element(listboxonScenarioComparison("Planning Audience")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilEnabled().selectByVisibleText(PlanningAudience);
 	}
 
-	public void clickonBreadCrumbLink(String breadcrumbLinkName)
-	{
-		element(linkBreadCrumb("Channels")).waitUntilClickable().click();
-	}
 	public void verifyPageHeader(String PageHeader)
 	{
 		headerTag.shouldBeVisible();
-		assertThat(headerTag.getText() ==PageHeader);
+		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase()));
+
 	}
 
-	public void iWillClickonButton(String buttonName)
-	{
 
+	public void iClickonButton(String buttonName)
+	{
 		try
 		{
 			$(".inner").withTimeoutOf(120, TimeUnit.SECONDS).waitUntilNotVisible();
@@ -321,8 +314,11 @@ public class ChannelSetupPage extends PageObject {
 		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(30, TimeUnit.SECONDS).waitUntilVisible();
 	}
 
+	public void clickonPlanNamefromHeaderSection()
+	{
+		linkPlan.waitUntilClickable().click();
+	}
+
 	//*************** RAJNI CODE END HERE ******************************//
 	//********************************************************************//
-
-
 }

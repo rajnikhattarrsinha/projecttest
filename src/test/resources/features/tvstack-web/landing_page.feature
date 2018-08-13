@@ -1,12 +1,12 @@
-@component:web
-Feature: Manage plans
+@component:Client_tests
+Feature: Plan setup - Landing page
   As a tvstack user
   I can land on welcome TV stack page
   So that I can manage plans
 
   @issue:DPTV-173
   Scenario: View landing page features
-    Given I login with 'client.admin1@dentsuaegis.com'
+    Given I login with 'tvstack.user1@dentsuaegis.com'
     Then I should see the option to select the market
     When I select 'United Kingdom' market
     Then I should be presented with option to select a client
@@ -33,5 +33,19 @@ Feature: Manage plans
     Then I marked the plan as not definitive
     And I checked marked plan is not definitive
 
+  @issue:DPTV-356
+     Scenario: Set definitive from Edit page
+    Given A new plan is there on landing page
+    When I click on edit button for a plan
+    And I mark the plan as definitive on edit page
+    Then I checked the marked plan is definitive
 
+  @issue:DPTV-607
+  Scenario: Sort plans on landing page
+    Given A Plan is there on landing page with marked as definitive
+    Then I should see the definitive plan on top of the list
+    When I change the sorting to newest first
+    Then I should see the plan which is newly created on the top of list
+    When I change the sorting to oldest first
+    Then I should not be able to see the newest plan first
 

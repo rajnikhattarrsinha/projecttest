@@ -1,21 +1,24 @@
 package net.enablers.tvstack.pages;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.concurrent.TimeUnit;
 
-import net.enablers.tvstack.utilities.RandomGenerator;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+
+import java.util.concurrent.TimeUnit;
 
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 
-public class HomePage extends PageObject {
 
+public class HomePage extends PageObject {
 
     @FindBy(xpath = "//h1[contains(.,'TV Stack')]")
     WebElementFacade pageHeader;
@@ -64,32 +67,65 @@ public class HomePage extends PageObject {
 
     @FindBy(id = "okta-signin-submit")
     WebElement oktaSigninSubmit;
-
+    
     @FindBy(css = ".btn-primary")
     WebElementFacade deletePlanModalBtn;
-
+    
     @FindBy(css = ".inner")
     WebElementFacade loadingCover;
 
-    //@FindBy(xpath = "//header//span[@class = 'header__signout']")
     @FindBy(xpath = "//span[@class='Polaris-Button__Content']")
     WebElement logoutButton;
+
+
+    @FindBy(xpath = "//*[@class='Polaris-Checkbox__Backdrop']")
+    WebElement setAsDefinitiveCheckBox;
+
+    @FindBy(xpath = "//span[contains(text(),'Update')]")
+     WebElement UpdateButton;
+
+    /*@FindBy(xpath="//*[@class='Polaris-Checkbox__Backdrop'")
+    WebElement Checkbox;*/
+
+
+    //@FindBy(css = "//*[contains(text(),'Save')]")
+    @FindBy(xpath = "//div[@class='Polaris-ButtonGroup']//div[2]//button[1]")
+    WebElementFacade definitivePlanModalBtn;
+
+    @FindBy(xpath = "//*[@class='Polaris-Select__Input']")
+    WebElement selectSortBox;
+
+    @FindBy(xpath = "//*[@class='Polaris-Select__Input']//option[1]")
+    WebElement selectOptionDefinitive;
+
+    @FindBy(xpath = "//*[@class='Polaris-Select__Input']//option[3]")
+    WebElement selectOptionNewest;
+
+    @FindBy(xpath = "//*[@class='Polaris-Select__Input']//option[4]")
+    WebElement selectOptionoldest;
+
 
 
     public By getDeleteButtonForPlan(String plan) {
         return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '" + plan + "']//..//..//..//..//..//button/span/span[text() = 'Delete']");
     }
-
     public By getDefinitiveButtonForPlan(String plan) {
         return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '" + plan + "']//..//..//..//..//..//button/span/span[text() = 'Set as Definitive']");
     }
-
     public By getRemoveDefinitiveButtonForPlan(String plan) {
         return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '" + plan + "']//..//..//..//..//..//button/span/span[text() = 'Remove Definitive']");
     }
-
+    public By getPlanEditButton(String plan) {
+        return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//..//..//..//button/span/span[text() = 'Edit']");
+    }
     public By getEditButtonForPlan(String user) {
         return By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//strong[text() = '" + user + "']//..//..//..//..//..//button/span/span[text() = 'Edit']");
+    }
+
+
+
+    public By getVerifytopplaninlist(String plan) {
+        return By.xpath("//*[@class='Polaris-Card']/*/ul/li[1]");
     }
 
     public void verifyPageHeaderIsCorrect() {
@@ -112,7 +148,7 @@ public class HomePage extends PageObject {
     }
 
     public void verifyClientSelectionIsPresent() {
-        clientSelectionBox.shouldBeVisible();
+        clientSelectionBox.waitUntilEnabled().shouldBeVisible();
     }
 
     public void selectClient(String arg0) {
@@ -148,12 +184,12 @@ public class HomePage extends PageObject {
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(existingPlansSection);
         existingPlansSection.shouldContainText(plan);
     }
-
+    
     public void verifyPlanWasDeleted(String plan) {
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(existingPlansSection);
         existingPlansSection.shouldNotContainText(plan);
     }
-
+    
     public void deletePlan(String plan) {
         withAction().moveToElement(element(this.getDeleteButtonForPlan(plan))).click().build().perform();
         element(this.getDeleteButtonForPlan(plan)).waitUntilEnabled().click();
@@ -162,19 +198,18 @@ public class HomePage extends PageObject {
         loadingCover.withTimeoutOf(30, TimeUnit.SECONDS).waitUntilNotVisible();
     }
 
-
-
-      public void clickOnDefinitiveButton(String plan) {
+    public void clickOnDefinitiveButton(String plan) {
         withAction().moveToElement(element(this.getDefinitiveButtonForPlan(plan))).build().perform();
         element(this.getDefinitiveButtonForPlan(plan)).waitUntilEnabled().click();
 
     }
+    
     public void verifyDefinitiveButtonIsShown(String plan) {
-
-
         assertThat(findAll(By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '" + plan + "']//..//..//span[text() = 'Definitive']")).size()).isEqualTo(1);
-
     }
+
+    
+
     public void clickOnRmoveDefinitiveButton(String plan) {
         withAction().moveToElement(element(this.getRemoveDefinitiveButtonForPlan(plan))).build().perform();
         element(this.getRemoveDefinitiveButtonForPlan(plan)).waitUntilEnabled().click();
@@ -185,6 +220,44 @@ public class HomePage extends PageObject {
 
             assertThat(findAll(By.xpath("//li/div[contains(@class, 'Polaris-ResourceList-Item')]//h3/span[text() = '"+plan+"']//..//..//span[text() = 'Definitive']")).size()).isEqualTo(0);
         }
+
+    public void verifyFirstPlanAfterSort(String plan){
+
+        assertThat(findAll(By.xpath("//*[@class='Polaris-Card']/*/ul/li[1]//h3/span[text() = '"+plan+"']")).size()).isEqualTo(1);
+    }
+
+    public void verifyFirstPlanAfterSortOldestFirst(String plan){
+
+        assertThat(findAll(By.xpath("//*[@class='Polaris-Card']/*/ul/li[1]//h3/span[text() = '"+plan+"']")).size()).isEqualTo(0);
+    }
+
+
+    public void clickOnEditButton(String plan) {
+        withAction().moveToElement(element(this.getPlanEditButton(plan))).build().perform();
+        element(this.getPlanEditButton(plan)).waitUntilEnabled().click();
+
+    }
+
+
+    public void clickSetAsDefinitiveCheckBox(){
+        setAsDefinitiveCheckBox.click();
+
+
+
+    }
+
+
+    public void clickUpdateButton(){
+        UpdateButton.click();
+        String ConfirmPopup= getDriver().getWindowHandle();
+        System.out.println(ConfirmPopup);
+        getDriver().switchTo().window(ConfirmPopup);
+        definitivePlanModalBtn.waitUntilClickable().then().click();
+        //definitivePlanModalBtn.click();
+        //loadingCover.shouldBeCurrentlyVisible();
+        //loadingCover.withTimeoutOf(30, TimeUnit.SECONDS).waitUntilNotVisible();
+
+    }
 
 
 
@@ -197,10 +270,25 @@ public class HomePage extends PageObject {
         element(this.getEditButtonForPlan(Serenity.sessionVariableCalled("user"))).waitUntilEnabled().click();
     }
 
+    public void setSelectSortBox() {
+        selectSortBox.click();
+    }
+    public void setSelectSortOptionDefinitive() {
+        selectOptionDefinitive.click();
+        waitABit(2000);
+    }
+    public void setSelectSortOptionNewest() {
+        selectOptionNewest.click();
+        waitABit(2000);
+    }
+    public void setSelectSortOptionOldest() {
+        selectOptionoldest.click();
+        waitABit(2000);
+    }
+
     public String storeFirstPlansName() {
         return firstExistingPlanName.getText();
     }
-
 
     //This method to get Okta Token for API calls
     public String signIntoClientAndGetOktaTokenStorage(String planner) {
@@ -209,7 +297,7 @@ public class HomePage extends PageObject {
         loginButton.click();
         waitABit(2000);
         oktaSigninUsername.sendKeys(planner);
-        oktaSigninPassword.sendKeys("Great123");
+        oktaSigninPassword.sendKeys("m!ghtyM33ty");
         oktaSigninSubmit.click();
         waitABit(5000);
 
@@ -220,6 +308,4 @@ public class HomePage extends PageObject {
         logoutButton.click();
         waitFor(tvStackClientText);
     }
-
-
 }

@@ -96,7 +96,7 @@ public class AdminSteps {
 
     @When("^a user who has no roles assigned logs in to admin site$")
     public void aUserWhoHasNoRolesAssignedLogsInToAdminSite() throws Throwable {
-        iLoginAsTypeAdmin("unauthorised", "tvstack.user1@dentsuaegis.com");
+        iLoginAsTypeAdmin("unauthorised", "client.admin2@dentsuaegis.com");
     }
 
     @Then("^user should be presented with permission denied message$")
