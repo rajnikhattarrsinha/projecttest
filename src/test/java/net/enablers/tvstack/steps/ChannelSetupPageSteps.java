@@ -82,7 +82,7 @@ public class ChannelSetupPageSteps {
 
 
 
-    @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'")
+    @Then("^I should see GRPs Calibrated at textbox populated as '(.*)'")
     public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(String userGRPs) throws Throwable
     {
         channelSetupPage.getGRPsValueAndverifyWithUserGRPs(userGRPs);

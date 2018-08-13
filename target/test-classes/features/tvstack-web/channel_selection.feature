@@ -51,7 +51,7 @@ Feature: Channel selection
     And   I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel '1'
     Then  I should see '20.00' populated in CPM textbox corresponding to Channel '1'
     And   I press calibrate button
-    Then  I should see GRPs Calibrated at textbox populated as '60'
+    Then  I should see GRPs Celebrated at textbox populated as '60'
     Then  I should see Reach populated as '50'
     And   I click on ADVANCED button
     Then  I should see Maximum Reach populated as '80'

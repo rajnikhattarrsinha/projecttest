@@ -4,8 +4,8 @@ Feature: API - Get Questions and Evaluates the filter for survey
     Given Planner user log into Client to get OktaToken
     And User selects Market and Client
     When User requests for Create new plan
-      | name         | clientId | budget | startDate    | endDate      |
-      | TvStack_Plan | client   | 10000  | CURRENT_DATE | CURRENT_DATE |
+      | name         | clientId | budget | startDate    | endDate        |
+      | TvStack_Plan | client   | 10000  | CURRENT_DATE | NEXTMONTH_DATE |
     Then New plan is created into DB
 
   Scenario: API - Survey - Gets the questions for a survey
