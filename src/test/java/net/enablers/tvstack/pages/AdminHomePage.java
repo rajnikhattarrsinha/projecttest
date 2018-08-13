@@ -105,7 +105,7 @@ public class AdminHomePage extends PageObject {
         loginButton.click();
         waitABit(2000);
         oktaSigninUsername.sendKeys(user);
-        oktaSigninPassword.sendKeys("Great123");
+        oktaSigninPassword.sendKeys("m!ghtyM33ty");
         oktaSigninSubmit.click();
         waitABit(2000);
 

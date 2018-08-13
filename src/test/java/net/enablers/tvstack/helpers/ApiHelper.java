@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.specification.RequestSpecification;
+import com.typesafe.config.Config;
 import net.enablers.tvstack.steps.api.PLMarketsSteps;
+import net.enablers.tvstack.utilities.ConfigLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +17,19 @@ import static com.jayway.restassured.RestAssured.given;
 public class ApiHelper {
 
     private static final Logger log = LoggerFactory.getLogger(ApiHelper.class);
-    static String pointLogicAuthenticateUrl = "https://plrbac.pointlogic.com/v1.0/AccessRights/Authenticate";
-    // static String pointLogicApiUrl = "http://tvstack-api-dev.azurewebsites.net/api";
-    static String pointLogicApiUrl = "http://tvstack-api-stg.azurewebsites.net/api";
-    static String tvstackApiUrl = "http://ec2-52-56-105-109.eu-west-2.compute.amazonaws.com:35000";
-    static String tvstackAdminApiUrl = "http://ec2-18-130-118-42.eu-west-2.compute.amazonaws.com:35000";
-    //    static String roleManagerApiUrl = "http://ec2-18-130-37-40.eu-west-2.compute.amazonaws.com:3010";
-    static String roleManagerApiUrl = "http://ec2-18-130-69-200.eu-west-2.compute.amazonaws.com:3010";
+    static Config conf = ConfigLoader.load();
+
+//    static String pointLogicAuthenticateUrl = "https://plrbac.pointlogic.com/v1.0/AccessRights/Authenticate";
+//    static String pointLogicApiUrl = "http://tvstack-api-stg.azurewebsites.net/api";
+//    static String tvstackApiUrl = "http://ec2-52-56-105-109.eu-west-2.compute.amazonaws.com:35000";
+//    static String tvstackAdminApiUrl = "http://ec2-18-130-118-42.eu-west-2.compute.amazonaws.com:35000";
+//    static String roleManagerApiUrl = "http://ec2-18-130-69-200.eu-west-2.compute.amazonaws.com:3010";
+
+    static String pointLogicAuthenticateUrl = conf.getString("pointLogicAuthenticateUrl");
+    static String pointLogicApiUrl = conf.getString("pointLogicApiUrl");
+    static String tvstackApiUrl = conf.getString("tvstackApiUrl");
+    static String tvstackAdminApiUrl = conf.getString("tvstackAdminApiUrl");
+    static String roleManagerApiUrl = conf.getString("roleManagerApiUrl");
 
     public static String getTvstackApiUrl() {
         return tvstackApiUrl;
@@ -80,7 +88,7 @@ public class ApiHelper {
         RestAssured.baseURI = URI.create(roleManagerApiUrl).toString();
         return given()
                 .header("Accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+                .header("Content-Type", "application/json;charset=UTF-8")
                 .header("Authorization", "Bearer " + adminToken);
     }
 

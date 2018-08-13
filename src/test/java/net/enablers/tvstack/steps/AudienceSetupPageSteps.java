@@ -1,5 +1,6 @@
 package net.enablers.tvstack.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -93,4 +94,44 @@ public class AudienceSetupPageSteps {
         audienceSetupPage.createAQueryOnGender();
         audienceSetupPage.saveTheAudience();
     }
+
+    //------------------------------------------------------------------
+    //Scenario: Copy existing audience
+
+
+    @Given("^I create a new audience$")
+    public void iCreateANewAudience() throws Throwable {
+        landingPageSteps.userHasChosenToCreateNewPlan();
+        planSetupPageSteps.iAddPlanDetailsAndClickNextButton();
+        this.iShouldBeTakenToAudienceSetupPage();
+        audienceSetupPage.createNewAudience();
+        audienceSetupPage.checkAudienceBuilderLayout();
+        audienceSetupPage.createAQueryOnGender();
+        audienceSetupPage.saveTheAudience();
+        audienceSetupPage.audienceIsSavedSuccessfully();
+           }
+
+    @Then("^I clone the Audience$")
+    public void iClickOnCopyAudienceButton() throws Throwable {
+        audienceSetupPage.clickOnCopyAudience();
+        audienceSetupPage.ClonedAudience();
+        audienceSetupPage.clickSaveCopiedAudience();
+
+
+    }
+
+    @And("^I verify that the clone audience is present on the list$")
+    public void iVerifyThatTheCloneAudienceIsPresentOnTheList() throws Throwable {
+    audienceSetupPage.verifyClonedAudienceIsPresent();
+    }
+
+
+    //Scenario: Edit Audience
+
+    @Then("^I click on Edit Audience$")
+    public void iClickOnEditAudience() throws Throwable {
+        audienceSetupPage.clickEditAudienceBtn();
+
+    }
+
 }

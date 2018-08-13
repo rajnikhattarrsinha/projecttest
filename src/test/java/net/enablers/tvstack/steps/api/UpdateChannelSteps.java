@@ -50,29 +50,28 @@ public class UpdateChannelSteps extends ApiHelper {
                 Assert.assertTrue(updateChannelResponseModel.getCurveCalibration().getMaxGrp() == 4);
                 Assert.assertTrue(updateChannelResponseModel.getCurveCalibration().getReach() == 1);
                 Assert.assertTrue(updateChannelResponseModel.getCurveCalibration().getMaxReach() == 3);
-            }
-            if (updateChannelResponseModel.getChannelId().equals("Youtube")) {
+            } else if (updateChannelResponseModel.getChannelId().equals("Youtube")) {
                 Assert.assertTrue(updateChannelResponseModel.getChannelId().equals(channel));
                 Assert.assertTrue(updateChannelResponseModel.getSelected().equals(true));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getChannelId().equals(channel));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getGender().equals("Male"));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getAge().equals("25-34"));
-            }
-            if (updateChannelResponseModel.getChannelId().equals("Facebook")) {
+            } else if (updateChannelResponseModel.getChannelId().equals("Facebook")) {
                 Assert.assertTrue(updateChannelResponseModel.getChannelId().equals(channel));
                 Assert.assertTrue(updateChannelResponseModel.getSelected().equals(true));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getChannelId().equals(channel));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getGender().equals("Female"));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getAgeMin().equals(18));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getAgeMax().equals(65));
-            }
-            if (updateChannelResponseModel.getChannelId().equals("Instagram")) {
+            } else if (updateChannelResponseModel.getChannelId().equals("Instagram")) {
                 Assert.assertTrue(updateChannelResponseModel.getChannelId().equals(channel));
                 Assert.assertTrue(updateChannelResponseModel.getSelected().equals(true));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getChannelId().equals(channel));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getGender().equals("Both"));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getAgeMin().equals(18));
                 Assert.assertTrue(updateChannelResponseModel.getOptions().getAgeMax().equals(33));
+            } else {
+
             }
         }
     }
