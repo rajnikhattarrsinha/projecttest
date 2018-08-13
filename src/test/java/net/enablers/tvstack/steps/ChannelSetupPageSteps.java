@@ -221,6 +221,12 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("In Channel '"+channelNo+"' CPM  value '"+CPM+"' is entered.");
     }
 
+    public void iClickonanyButton(String buttonText) throws Throwable
+    {
+        channelSetupPage.iClickonButton(buttonText);
+        appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
+    }
+
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
