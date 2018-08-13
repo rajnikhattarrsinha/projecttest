@@ -220,7 +220,7 @@ public class ChannelSetupPageSteps {
         channelSetupPage.setCPMvalue(channelNo,CPM);
         appliEyes.capture("In Channel '"+channelNo+"' CPM  value '"+CPM+"' is entered.");
     }
-
+    @Then("^I click on '(.*)' button$")
     public void iClickonanyButton(String buttonText) throws Throwable
     {
         channelSetupPage.iClickonButton(buttonText);
