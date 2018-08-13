@@ -237,6 +237,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public void verifyScenariosPageWithNewScenariosButton()
 	{
+		verifyPageHeader("Scenario");
 		element(buttonName("Create scenario")).withTimeoutOf(180, TimeUnit.SECONDS).waitUntilEnabled();
 	}
 

@@ -72,8 +72,8 @@ Feature: Channel selection
     And   I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel '3'
     Then  I should see '20.00' populated in CPM textbox corresponding to Channel '3'
     And   I click 'Next: Scenarios' button
-    #Then  I should see Scenarios page with Create new scenario button
-    #Then I can see the 'Scenarios' section
+    Then  I should see Scenarios page with Create new scenario button
+    Then I can see the 'Scenarios' section
 
 #Scenario 3: Verify CPM is uneditable for Channels youtube(Auction),facebook and Instagram
   Scenario: CPM is uneditable for Channels youtube(Auction),facebook and Instagram
