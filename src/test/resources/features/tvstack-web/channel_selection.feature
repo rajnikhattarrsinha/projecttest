@@ -125,11 +125,11 @@ Feature: Channel selection
     Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel '3'
     Then I click on 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
-    Then I click on 'Create new scenario' button
+    Then I click on 'Create scenario' button
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '1' on Scenarios page
-    Then I click on 'Create new scenario' button
+    Then I click on 'Create scenario' button
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '2' on Scenarios page
