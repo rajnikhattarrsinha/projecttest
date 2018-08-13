@@ -311,7 +311,7 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyNewlyCreatedScenario(String ScenarioNumber)
 	{
 		String ScenarioName = Serenity.sessionVariableCalled("new_audience_name")+"-scenario"+ScenarioNumber;
-		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(30, TimeUnit.SECONDS).waitUntilVisible();
+		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(60, TimeUnit.SECONDS).waitUntilVisible();
 	}
 
 	public void clickonPlanNamefromHeaderSection()
