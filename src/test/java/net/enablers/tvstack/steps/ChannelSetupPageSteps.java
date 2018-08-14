@@ -83,7 +83,7 @@ public class ChannelSetupPageSteps {
 
 
     @Then("^I should see GRPs Calibrated at textbox populated as '(.*)'")
-    public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(String userGRPs) throws Throwable
+    public void iShouldSeeGRPsCalibratedatTextboxValueOfChannel(String userGRPs) throws Throwable
     {
         channelSetupPage.getGRPsValueAndverifyWithUserGRPs(userGRPs);
         appliEyes.capture("Expected value of GRPs Calibrated at '"+userGRPs+"' is displayed.");
@@ -150,11 +150,11 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-   @Given("^I should see Scenarios page with Create new scenario button$")
-    public void iShouldSeeScenariosPageWithCreateNewScenarioButton() throws Throwable
+   @Given("^I should see Scenarios page with Create scenario button$")
+    public void iShouldSeeScenariosPageWithCreateScenarioButton() throws Throwable
    {
         channelSetupPage.verifyScenariosPageWithNewScenariosButton();
-       appliEyes.capture("'Scenarios' page is displayed with 'Create scenario' button.");
+        appliEyes.capture("'Scenarios' page is displayed with 'Create scenario' button.");
     }
 
 
