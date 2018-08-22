@@ -5,8 +5,8 @@ Feature: API - Create, Update and Delete Audiences
     Given Planner user log into Client to get OktaToken
     And User selects Market and Client
     When User requests for Create new plan
-      | name         | clientId | budget | startDate    | endDate        |
-      | TvStack_Plan | client   | 10000  | CURRENT_DATE | NEXTMONTH_DATE |
+      | name         | clientId | budget | startDate    | endDate      |
+      | TvStack_Plan | client   | 10000  | CURRENT_DATE | CURRENT_DATE |
     Then New plan is created into DB
 
   Scenario: API - Audiences - Creates a new audience

@@ -17,21 +17,6 @@ Feature: API - Create, Delete and Read formats
       | TV        | buyingAudienceId | New_Format | 5       | 4   | 1   | 4     | 1      | 5        | 2            | 3         |
     Then New format is created into DB
 
-  Scenario: API - Formats - Updates an existing format
-    When User requests for Create buying audience
-      | channelId | name         | filter               | formattedFilter                | filterMap              |
-      | TV        | Demographics | ((field("26") == 6)) | ((Age group recode 1 [55-64])) | Demographics_filterMap |
-    Then New buying audience is created into DB
-    When User requests for Creates a new format
-      | channelId | buyingAudienceId | name       | seconds | cpm | grp | reach | maxGrp | maxReach | frequencyCap | precision |
-      | TV        | buyingAudienceId | New_Format | 5       | 4   | 1   | 4     | 1      | 5        | 2            | 3         |
-    Then New format is created into DB
-    When User requests for Updates an existing format
-      | name           | seconds | cpm | grp | reach | maxGrp | maxReach | frequencyCap | precision |
-      | Updated_Format | 4       | 5   | 2   | 5     | 2      | 6        | 2            | 3         |
-    Then format is updated into DB
-
-
   Scenario: API - Formats - Deletes an existing format
     When User requests for Create buying audience
       | channelId | name         | filter               | formattedFilter                | filterMap              |

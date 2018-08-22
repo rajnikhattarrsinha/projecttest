@@ -31,6 +31,6 @@ Feature: API - Retrieve user-roles information
     When User requests to Get all user roles matching with unique identifier
     Then user roles are retrieved matching with unique identifier into response
 
-  Scenario: API - User Roles - Create and Deletes the user role
-    When User requests to Create and Deletes role to the user
-    Then User role is Deleted to the user into response
+#  Scenario: API - User Roles - Create and Deletes the user role
+#    When User requests to Create and Deletes role to the user
+#    Then User role is Deleted to the user into response
