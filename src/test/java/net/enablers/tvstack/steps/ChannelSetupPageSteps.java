@@ -258,9 +258,18 @@ public class ChannelSetupPageSteps {
     	newPlanSetupPage.iClickNextButton(buttonType);
     }
 
+    // Line is commeneted because of assertion is based on page title.
+    // Currently application tital remains same on all page
+    /*
     @Then("^I can see the '(.*)' section$")
     public void iCanSeeTheSelected_Channel(String section) throws Exception {
     	newPlanSetupPage.verifyPageTitle(section);
+    }
+    */
+
+    @Then("^I can see the '(.*)' section$")
+    public void iCanSeeTheSelected_Channel(String section) throws Exception {
+        channelSetupPage.verifyPageHeader(section);
     }
 
 
