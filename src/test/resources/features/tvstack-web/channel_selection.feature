@@ -118,11 +118,11 @@ Feature: Channel selection
     And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel '2'
     And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel '2'
     And  I should see '20.00' populated in CPM textbox corresponding to Channel '2'
-    Then I enter value '22.00' in CPM textbox corresponding to Channel '2
+    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel '2'
     And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel '3'
     And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel '3'
     And  I should see '20.00' populated in CPM textbox corresponding to Channel '3'
-    Then I enter value '22.00' in CPM textbox corresponding to Channel '3'
+    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel '3'
     Then I click on 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
     Then I click on 'Create new scenario' button
