@@ -220,6 +220,77 @@ public class ChannelSetupPageSteps {
         channelSetupPage.setCPMvalue(channelNo,CPM);
         appliEyes.capture("In Channel '"+channelNo+"' CPM  value '"+CPM+"' is entered.");
     }
+    //########################################################################################################
+    //# Scenario ID : 5
+    //# Test Case Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case verify the updated CPM value for channel TV,VideoOnDemand and Online+Video
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 13-Aug-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+    @Then("^I click on '(.*)' button$")
+    public void iClickonButton(String buttonText) throws Throwable
+    {
+        channelSetupPage.iClickonButton(buttonText);
+        appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
+    }
+    @Then ("I should see the newly created scenario '(.*)' on Scenarios page")
+    public void iShouldseeNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
+    {
+        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
+        appliEyes.capture("New Created Scenario id displayed on Scenario page");
+    }
+
+    @Then("^I should see '(.*)' page")
+    public void iShouldSeePageHeaderName(String PageName) throws Throwable
+    {
+        channelSetupPage.verifyPageHeader(PageName);
+        appliEyes.capture(PageName+" Page is displayed.");
+    }
+
+    @Then("^I should see the newly created scenario '(.*)' on Scenarios page$")
+    public void iVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
+    {
+        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
+        appliEyes.capture("New Created Scenario id displayed on Scenario page");
+    }
+    @Then("^I select newly created scenario A from scenario A listbox$")
+    public void iSelectScenarioA() throws Throwable
+    {
+        String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
+        channelSetupPage.selectScenarioAValue(scenarioA);
+    }
+
+    @Then("^I select newly created scenario B  from scenario B listbox$")
+    public void iSelectScenarioB() throws Throwable
+    {
+        String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
+        channelSetupPage.selectScenarioBValue(scenarioB);
+    }
+    @Then("^I select created plan from Planning Audience listbox$")
+    public void iSelectPlanningAudience() throws Throwable
+    {
+        String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
+        channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
+    }
+
+    @Then("^I click plan name edit link from top of the page$")
+    public void iClickPlanName() throws Throwable
+    {
+        channelSetupPage.clickonPlanNamefromHeaderSection();
+        appliEyes.capture("Plan name edit link click successfully.");
+    }
 
 
     //****************** RAJNI CODE END HERE*****************************//
@@ -228,7 +299,7 @@ public class ChannelSetupPageSteps {
 
     @Then("^I should be taken to audience channel page$")
     public void iShouldBeTakenToAudienceChannelPage() {
-    	newPlanSetupPage.verifyPageTitle("Channel");
+        newPlanSetupPage.verifyPageTitle("Channel");
         appliEyes.capture("Landed on audience channel page");
     }
 
@@ -255,7 +326,7 @@ public class ChannelSetupPageSteps {
 
     @Given("^I click '(.*)' button$")
     public void iClickButton(String buttonType) throws Exception {
-    	newPlanSetupPage.iClickNextButton(buttonType);
+        newPlanSetupPage.iClickNextButton(buttonType);
     }
 
     // Line is commeneted because of assertion is based on page title.
