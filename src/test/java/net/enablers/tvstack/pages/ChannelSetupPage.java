@@ -199,7 +199,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelNo,String valuetoverify)
 	{
-		assertThat(element(textboxCPM(channelNo)).getValue() == valuetoverify);
+		assertThat(element(textboxCPM(channelNo)).getValue().equals(valuetoverify));
 	}
 	public void setCPMvalue(String channelNo,String NewCPMValue)
 	{
