@@ -2,16 +2,19 @@ package net.enablers.tvstack.steps;
 
 import java.util.List;
 
+import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import net.enablers.tvstack.helpers.WebHelper;
+import net.enablers.tvstack.model.api.scenariocompare.Scenarios;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
 import net.serenitybdd.core.Serenity;
+import net.thucydides.core.annotations.Feature;
 import net.thucydides.core.annotations.Steps;
 
 public class ChannelSetupPageSteps {
@@ -36,9 +39,18 @@ public class ChannelSetupPageSteps {
     //*******************************************************************///
 
     @Before
-    public void before()
+    public void before(Scenario scenario)
     {
-        webHelper.fetchTestDataForScenario("","");
+        try
+        {
+            String scenarioName = scenario.getName();
+            String rawFeatureName = scenario.getId();
+            String featureName = rawFeatureName.substring(rawFeatureName.lastIndexOf("/") + 1, rawFeatureName.length()).split(":")[0];
+            featureName = featureName.replace(".feature", "");
+            webHelper.fetchTestDataForScenario(scenarioName, featureName);
+        }
+        catch (Exception e)
+        {}
     }
     //########################################################################################################
     //# Scenario ID : 1
