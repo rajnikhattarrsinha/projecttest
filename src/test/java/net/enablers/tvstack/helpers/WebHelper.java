@@ -1,5 +1,6 @@
 package net.enablers.tvstack.helpers;
 
+import cucumber.api.Scenario;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,6 +10,7 @@ import com.codoid.products.fillo.Connection;
 import com.codoid.products.fillo.Fillo;
 import com.codoid.products.fillo.Recordset;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WebHelper extends PageObject
 {
@@ -105,6 +107,21 @@ public class WebHelper extends PageObject
         catch (Exception e)
         {}
         return ;
+
+    }
+
+    public void fetchTestDatafromExcelandPassargument(Scenario scenario)
+    {
+        try
+        {
+            String scenarioName =scenario.getName();
+            String rawFeatureName = scenario.getId();
+            String featureName = rawFeatureName.substring(rawFeatureName.lastIndexOf("/") + 1, rawFeatureName.length()).split(":")[0];
+            featureName = featureName.replace(".feature", "");
+            fetchTestDataForScenario(scenarioName, featureName);
+        }
+        catch (Exception e)
+        {}
 
     }
 }

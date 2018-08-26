@@ -1,5 +1,6 @@
 package net.enablers.tvstack.steps;
 
+import java.util.Collections;
 import java.util.List;
 
 import cucumber.api.Scenario;
@@ -41,16 +42,7 @@ public class ChannelSetupPageSteps {
     @Before
     public void before(Scenario scenario)
     {
-        try
-        {
-            String scenarioName = scenario.getName();
-            String rawFeatureName = scenario.getId();
-            String featureName = rawFeatureName.substring(rawFeatureName.lastIndexOf("/") + 1, rawFeatureName.length()).split(":")[0];
-            featureName = featureName.replace(".feature", "");
-            webHelper.fetchTestDataForScenario(scenarioName, featureName);
-        }
-        catch (Exception e)
-        {}
+        webHelper.fetchTestDatafromExcelandPassargument(scenario);
     }
     //########################################################################################################
     //# Scenario ID : 1
