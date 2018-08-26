@@ -259,12 +259,6 @@ public class ChannelSetupPageSteps {
         appliEyes.capture(PageName+" Page is displayed.");
     }
 
-    @Then("^I should see the newly created scenario '(.*)' on Scenarios page$")
-    public void iVerifyNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
-    {
-        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
-        appliEyes.capture("New Created Scenario id displayed on Scenario page");
-    }
     @Then("^I select newly created scenario A from scenario A listbox$")
     public void iSelectScenarioA() throws Throwable
     {
