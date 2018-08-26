@@ -134,7 +134,7 @@ Feature: Channel selection
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '1' on Scenarios page
-    Then I click on 'Create new scenario' button
+    Then I click on 'Create scenario' button
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '2' on Scenarios page
