@@ -13,6 +13,7 @@ Feature: Channel selection
     And I should see 'Next: Scenarios' button and it should be enabled
 
   Scenario: Add a channel to a plan
+
     Given I'm on audience channels page
     And I click 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
@@ -32,6 +33,7 @@ Feature: Channel selection
     Then an error is displayed in the form
 
   Scenario: Deselect all channels and check error
+
     Given I'm on audience channels page
     When I deselect all channels
     Then all channels are deselected
@@ -45,6 +47,7 @@ Feature: Channel selection
 
 # Rajni's code starts here.....
 #Scenario 1:Calibrate TV Channel-Prepopulating configured values
+
   Scenario: Calibrate TV Channel-Prepopulating configured values
     Given I'm on audience channels page
     And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel '1'
@@ -60,6 +63,7 @@ Feature: Channel selection
     Then  It should close Calibrate screen
 
     #Scenario 2:Add Channel to the Plan with Values selected for TV,Video on Demand and Online Videos
+
   Scenario: Add Channel to the Plan with Values selected for TV,Video on Demand and Online Videos
     Given I'm on audience channels page
     And   I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel '1'
@@ -76,6 +80,7 @@ Feature: Channel selection
     #Then I can see the 'Scenarios' section
 
 #Scenario 3: Verify CPM is uneditable for Channels youtube(Auction),facebook and Instagram
+
   Scenario: CPM is uneditable for Channels youtube(Auction),facebook and Instagram
     Given I'm on audience channels page
     And    I select Age as '18-34' corresponding to Channel Youtube
@@ -95,6 +100,7 @@ Feature: Channel selection
     Then  I should not be able to edit the CPM textbox corresponding to Channel '6'
 
    #Scenario 4: Verify CPM is editable for Channel youtube(Reservation,GooglePreferred)
+
   Scenario: CPM is editable for Channel youtube(Reservation,GooglePreferred)
     Given I'm on audience channels page
     And  I select Age as '18-34' corresponding to Channel Youtube
@@ -108,7 +114,6 @@ Feature: Channel selection
 
 
     #Scenario 5: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
-  @skip
   Scenario: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
     Given I'm on audience channels page
     And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel '1'
@@ -125,7 +130,7 @@ Feature: Channel selection
     Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel '3'
     Then I click on 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
-    Then I click on 'Create new scenario' button
+    Then I click on 'Create scenario' button
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '1' on Scenarios page
