@@ -5,6 +5,8 @@ import java.util.List;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.Before;
+import net.enablers.tvstack.helpers.WebHelper;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
@@ -18,6 +20,7 @@ public class ChannelSetupPageSteps {
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
     AppliEyes appliEyes;
+    WebHelper webHelper;
 
     @Steps
     TvstackLandingPageSteps landingPageSteps;
@@ -32,6 +35,11 @@ public class ChannelSetupPageSteps {
     //****************** RAJNI CODE START HERE*****************************//
     //*******************************************************************///
 
+    @Before
+    public void before()
+    {
+        webHelper.fetchTestDataForScenario("","");
+    }
     //########################################################################################################
     //# Scenario ID : 1
     //# Test Case Calibrate TV Channel-Prepopulating configured values

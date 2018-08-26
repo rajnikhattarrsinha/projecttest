@@ -80,7 +80,7 @@ public class WebHelper extends PageObject
     public void fetchTestDataForScenario(String scenarioName,String moduleName)
     {
         dictTestData.clear();
-        String WorkSheetPath ="C:\\Test.xlsx";
+        String WorkSheetPath  = System.getProperty("user.dir")+"\\"+"\\src\\test\\resources\\TestData\\MasterTestData.xlsx";
         try
         {
             String strQuery = "Select * from "+moduleName+" where SCENARIONAME='"+scenarioName+"'";
