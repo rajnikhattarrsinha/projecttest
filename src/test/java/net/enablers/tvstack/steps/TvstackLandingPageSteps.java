@@ -116,7 +116,7 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
     public void selectDefaultMarketAndClient() {
         this.iLoginWith("Tvstack.user2@dentsuaegis.com");
         Serenity.setSessionVariable("user").to("Tvstack.user2@dentsuaegis.com");
-        //this.iSelectTheMarket(DEFAULT_MARKET);
+        this.iSelectTheMarket(DEFAULT_MARKET);
         this.iSelectTheClient(DEFAULT_CLIENT);
     }
 
