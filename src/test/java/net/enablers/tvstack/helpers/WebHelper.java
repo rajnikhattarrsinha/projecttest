@@ -124,4 +124,10 @@ public class WebHelper extends PageObject
         {}
 
     }
+
+    public String fetchAllStepsFromScenario(String scenarioPath,String scenarioName)
+    {
+        String output ="";
+        return output;
+    }
 }
