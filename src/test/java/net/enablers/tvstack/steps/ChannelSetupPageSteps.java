@@ -2,13 +2,14 @@ package net.enablers.tvstack.steps;
 
 import java.util.Collections;
 import java.util.List;
-
+import cucumber.api.Transform;
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import net.enablers.tvstack.helpers.WebHelper;
+import net.enablers.tvstack.helpers.testData;
 import net.enablers.tvstack.model.api.scenariocompare.Scenarios;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
@@ -71,7 +72,7 @@ public class ChannelSetupPageSteps {
 //    }
 
     @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience, String channelNo) throws Throwable
+    public void iSelectClosestbuyingAudienceOfChannel(@Transform(testData.class) String buyingAudience, String channelNo) throws Throwable
     {
         channelSetupPage.selectClosestbuyingAudienceoption(channelNo,buyingAudience);
         appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelNo+"'.");
