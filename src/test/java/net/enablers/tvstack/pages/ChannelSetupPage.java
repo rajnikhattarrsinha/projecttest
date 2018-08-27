@@ -208,11 +208,11 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
 	{
-		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue() == UserGRPs);
+		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue().equals(UserGRPs));
 	}
 	public void getReachvalueAndVerifyWithUserReachValue(String Reach)
 	{
-		assertThat(element(textboxBasedonName("Reach")).getValue()==Reach);
+		assertThat(element(textboxBasedonName("Reach")).getValue().equals(Reach));
 	}
 	public void iClickonADVANCEDbutton()
 	{
@@ -220,11 +220,11 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public void getMaximumReachValueAndVerifyWithUserMaximumReachValue(String MaximumReach)
 	{
-		assertThat(element(textboxBasedonName("Maximum Reach")).getValue()==MaximumReach);
+		assertThat(element(textboxBasedonName("Maximum Reach")).getValue().equals(MaximumReach));
 	}
 	public void getPrecisionValueAndComapreUserInputValue(String Precision)
 	{
-		assertThat(element(textboxBasedonName("Precision")).getValue()==Precision);
+		assertThat(element(textboxBasedonName("Precision")).getValue().equals(Precision));
 	}
 	public void iclickCancelbutton()
 	{

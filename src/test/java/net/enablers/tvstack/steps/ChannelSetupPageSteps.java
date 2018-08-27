@@ -80,14 +80,14 @@ public class ChannelSetupPageSteps {
 
 
     @Then("^I select Second Length/Format as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelNo) throws Throwable
+    public void iSelectSecondLengthFormatOfChannel(@Transform(testData.class) String secondlengthFormatoption,String channelNo) throws Throwable
     {
         channelSetupPage.selectSecondLengthFormatoption(channelNo,secondlengthFormatoption);
         appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+channelNo+"'.");
     }
 
     @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'")
-    public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelNo) throws Throwable
+    public void iShouldSeePopulatedCPMtextboxValueOfChannel(@Transform(testData.class) String userCPMInput,String channelNo) throws Throwable
     {
         channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelNo,userCPMInput);
         appliEyes.capture("Expected Channel '"+channelNo+"' CPM  value '"+userCPMInput+"' is displayed.");
@@ -96,14 +96,14 @@ public class ChannelSetupPageSteps {
 
 
     @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'")
-    public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(String userGRPs) throws Throwable
+    public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(@Transform(testData.class) String userGRPs) throws Throwable
     {
         channelSetupPage.getGRPsValueAndverifyWithUserGRPs(userGRPs);
         appliEyes.capture("Expected value of GRPs Calibrated at '"+userGRPs+"' is displayed.");
     }
 
     @Then("^I should see Reach populated as '(.*)'")
-    public void iShouldSeeReachpopulatedTextValueAndVerifyWithUserReachValue(String Reach) throws Throwable
+    public void iShouldSeeReachpopulatedTextValueAndVerifyWithUserReachValue(@Transform(testData.class) String Reach) throws Throwable
     {
         channelSetupPage.getReachvalueAndVerifyWithUserReachValue(Reach);
         appliEyes.capture("Expected value of Reach '"+Reach+"' is displayed.");
@@ -117,14 +117,14 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I should see Maximum Reach populated as '(.*)'")
-    public void iShouldSeeMaximumReachPopulatedTextValueAndVerifyUserMaximumReach(String MaximumReach) throws Throwable
+    public void iShouldSeeMaximumReachPopulatedTextValueAndVerifyUserMaximumReach(@Transform(testData.class) String MaximumReach) throws Throwable
     {
         channelSetupPage.getMaximumReachValueAndVerifyWithUserMaximumReachValue(MaximumReach);
         appliEyes.capture("Expected value of 'Maximum Reach' "+MaximumReach+" is displayed.");
     }
 
     @Then("^I should see Precision populated as '(.*)'")
-    public void iShouldSeePrecisionPopulatedValueAndVerifyWithUserPrecisionValue(String Precision) throws Throwable
+    public void iShouldSeePrecisionPopulatedValueAndVerifyWithUserPrecisionValue(@Transform(testData.class) String Precision) throws Throwable
     {
         channelSetupPage.getPrecisionValueAndComapreUserInputValue(Precision);
         appliEyes.capture("Expected value of 'Precision' "+Precision+" is displayed.");
