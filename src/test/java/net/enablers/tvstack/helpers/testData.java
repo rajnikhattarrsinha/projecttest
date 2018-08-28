@@ -7,7 +7,7 @@ public class testData extends Transformer<String> {
     {
         if(WebHelper.dictTestData.containsKey(value))
         {
-            value = WebHelper.dictTestData.get("value");
+            value = WebHelper.dictTestData.get(value);
         }
         return value;
     }
