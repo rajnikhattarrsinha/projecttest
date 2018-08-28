@@ -118,7 +118,9 @@ public class WebHelper extends PageObject
             String rawFeatureName = scenario.getId();
             String featureName = rawFeatureName.substring(rawFeatureName.lastIndexOf("/") + 1, rawFeatureName.length()).split(":")[0];
             featureName = featureName.replace(".feature", "");
-            fetchTestDataForScenario(scenarioName, featureName);
+            if(scenarioName.equals("Calibrate TV Channel-Prepopulating configured values")) {
+                fetchTestDataForScenario(scenarioName, featureName);
+            }
         }
         catch (Exception e)
         {}

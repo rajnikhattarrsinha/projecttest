@@ -31,3 +31,20 @@ Feature: Scenario builder
     Given I'm on scenarios page
     When I navigate to add a new scenario page
     Then the slider, piechart and compare table should be visible
+
+    #****************RAJNI CODE START HERE ***************************######
+  Scenario:Verifying Buying Audience on Create Scenario screen to show values as selected on Channel Page
+    Given I'm on audience channels page
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel '1'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel '1'
+    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel '2'
+    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel '2'
+    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel '3'
+    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel '3'
+    Then I click on 'Next: Scenarios' button
+    Then I can see the 'Scenarios' section
+    Then I click on 'Create scenario' button
+    Then I should see Buying Audience 'TVDONOTDELETE' on Scenarios page corresponding to Channel '1'
+    Then I should see Buying Audience 'VideoDONOTDELETE' on Scenarios page corresponding to Channel '2'
+    Then I should see Buying Audience 'OnlineVideoDONOTDELETE' on Scenarios page corresponding to Channel '3'
+

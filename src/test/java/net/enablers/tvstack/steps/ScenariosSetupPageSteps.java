@@ -75,4 +75,35 @@ public class ScenariosSetupPageSteps {
     public void theSliderPiechartAndCompareTableAreVsible() throws Exception {
     	scenariosSetupPage.checkScenarioElements();
     }
+
+    //****************** RAJNI CODE START HERE*****************************//
+    //*******************************************************************///
+
+    //########################################################################################################
+    //# Scenario ID : 1
+    //# Test Case : Verifying Buying Audience on Create Scenario screen to show values as selected on Channel Page
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case verify selected buying Audience option on channel page is exactly equal to
+    //# on Scenario page
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 28-Aug-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+   @Then("^I should see Buying Audience '(.*)' on Scenarios page corresponding to Channel '(.*)'")
+
+   public void iShouldSeebuyingAudienceOnScenarioPage(String buyingAudience,String channelNumber) throws Throwable
+   {
+       scenariosSetupPage.verifybuyingAudienceTextonScenariopage(buyingAudience,channelNumber);
+      appliEyes.capture("Buying Audience  '"+buyingAudience+"' is displayed for channel number '"+channelNumber+"'.");
+   }
 }

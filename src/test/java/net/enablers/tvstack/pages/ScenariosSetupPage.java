@@ -91,4 +91,19 @@ public class ScenariosSetupPage extends PageObject {
 		waitABit(7000);
 		element(this.getScenarioName(scenarioName)).withTimeoutOf(20, TimeUnit.SECONDS).isCurrentlyVisible();
 	}
+
+	//*************** RAJNI CODE START HERE ******************************//
+	//********************************************************************//
+
+	//*--------- Web Element Proprty decelation section
+
+	public By textbuyingAudience(String channelNo)
+	{
+		return By.xpath("//table[@class='compare-table']//tbody//tr["+channelNo+"]//td[5]");
+	}
+
+	public void verifybuyingAudienceTextonScenariopage(String buyingAudience,String channelNo)
+	{
+		assertThat(element(textbuyingAudience(channelNo)).getText().equals(buyingAudience));
+	}
 }
