@@ -21,7 +21,11 @@ public class MongoDbConnection {
     MongoCollection<Document> clientsCollection, marketsCollection, projectsCollection, audiencesCollection, surveysCollection, scenariosCollection, buyingAudiencesCollection, countriesCollection;
 
     public void connect() {
+        //AWS mongo dev
         uri = new MongoClientURI("mongodb://admin:admin@ec2-35-176-240-97.eu-west-2.compute.amazonaws.com:27017/?authSource=tvstack");
+
+        //Kubernetes mongo DEV
+        //uri = new MongoClientURI("mongodb://tvstack01-dev:fsdfasdJJKHJHK@tvstack01-dev-mdb-mongodb.tvstack01-dev.svc.cluster.local:27017/?authSource=tvstack");
         mongoClient = new MongoClient(uri);
         database = mongoClient.getDatabase("tvstack");
         log.info("Connected to database");

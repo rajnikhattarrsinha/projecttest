@@ -2,9 +2,7 @@ package net.enablers.tvstack.steps;
 
 import com.typesafe.config.Config;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,9 +16,6 @@ import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
-import org.apache.bcel.generic.Select;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class TvstackLandingPageSteps extends ScenarioSteps {
 
@@ -66,6 +61,7 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
 
     @When("^I select the client '(.*)'$")
     public void iSelectTheClient(String arg0) {
+        waitABit(20000);
         homePage.selectClient(arg0);
     }
 
@@ -235,4 +231,35 @@ public class TvstackLandingPageSteps extends ScenarioSteps {
         homePage.verifyFirstPlanAfterSortOldestFirst(Serenity.sessionVariableCalled("planName"));
 
     }
+
+    //Scenario: Pagination of landing page plan list
+
+    @Given("^there are at least 15 existing plans on landing page$")
+    public void thereIsAListOfPlansOnLandingPage() throws Throwable {
+        this.selectDefaultMarketAndClient();
+        homePage.countOfPlansOnlistPage();
+    }
+
+    @Then("^I will check for presence of pagination on landing page$")
+    public void iWillCheckForPresenceOfPaginationWhenPlansAreEqualOrMoreThenThePageLimit() throws Throwable {
+        homePage.verifyPaginationExists();
+    }
+
+
+
+
+    @Given("^there are less then (\\d+) plans on landing page$")
+    public void thereAreLessThenPlansOnLandingPage(int arg0) throws Throwable {
+        this.iLoginWith("Tvstack.user2@dentsuaegis.com");
+        Serenity.setSessionVariable("user").to("Tvstack.user2@dentsuaegis.com");
+        this.iSelectTheClient("PayPal");
+        waitABit(5000);
+
+    }
+
+    @Then("^I will check that pagination does not exists$")
+    public void iWillCheckThatPaginationDoesNotExists() throws Throwable {
+        homePage.verifyPaginationExists();
+    }
 }
+

@@ -160,7 +160,7 @@ public class ManageProjectSteps extends ApiHelper {
         oktaAccessToken = AccessTokenSteps.getOktaAccessToken();
 
         duplicatePlanResponse = ProjectsService.duplicteProject(oktaAccessToken, duplicatePlanRequestModels, projectId);
-        Assert.assertTrue(createPlanResponse.getStatusCode() == 201);
+        Assert.assertTrue(duplicatePlanResponse.getStatusCode() == 201);
 
         duplicatePlanResponseModel = gson().fromJson(duplicatePlanResponse.body().prettyPrint(), PlanResponseModel.class);
         duplicateProjectId = duplicatePlanResponseModel.getId();

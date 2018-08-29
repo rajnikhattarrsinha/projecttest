@@ -1,14 +1,23 @@
 package net.enablers.tvstack.pages;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.concurrent.TimeUnit;
 
+import com.google.common.base.Verify;
+import org.jruby.RubyProcess;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import net.enablers.tvstack.model.web.PlanModel;
@@ -36,6 +45,13 @@ public class NewPlanSetupPage extends PageObject {
     @FindBy(xpath = "//input[@id = 'startDate']")
     WebElementFacade dateField;
 
+    @FindBy(xpath = "//input[@id = 'startDate']")
+    WebElementFacade dateField1;
+
+    @FindBy(xpath = "//input[@id = 'endDate']")
+    WebElementFacade endDate1;
+
+
     @FindBy(xpath = "//input[@id = 'endDate']")
     WebElementFacade endDate;
 
@@ -47,21 +63,30 @@ public class NewPlanSetupPage extends PageObject {
 
     @FindBy(xpath = "//button[span='Create Plan']")
     WebElementFacade createPlanButton;
-    
+
     @FindBy(xpath = "//td[@tabindex='0']")
     List<WebElementFacade> lastOfMonth;
 
     @FindBy(xpath = "//td[text() = '1'][not(contains(@class, 'blocked'))]")
     List<WebElementFacade> firstOfMonth;
-    
+
+    @FindBy(xpath = "//button[@class='DateRangePickerInput_calendarIcon DateRangePickerInput_calendarIcon_1']")
+    WebElementFacade DatePicker;
+
+    @FindBy(xpath = "//*[@class='Polaris-Banner__Content']/p/strong")
+    WebElement CampaignLength;
+
+    @FindBy(xpath = "//*[@class='Polaris-Banner__Content']/p")
+    WebElement CampaignText;
+
     public By getPageHeaderBasedOnSection(String section) {
     	return By.xpath("//h1[contains(.,'"+section+"')]");
     }
-    
+
     public By getPlanSetupButtonBasedOn(String text) {
     	return By.xpath("//button[contains(span,'" + text + "')]");
     }
-    
+
     public void verifyPageTitle(String section) {
         withTimeoutOf(180, TimeUnit.SECONDS).waitFor(this.getPageHeaderBasedOnSection(section));
         element(this.getPageHeaderBasedOnSection(section)).shouldBeVisible();
@@ -105,7 +130,7 @@ public class NewPlanSetupPage extends PageObject {
         plan.setClient("JD Sports");
         plan.setPlanName("AutoPlan" + RandomGenerator.randomAlphanumeric(3));
         Serenity.setSessionVariable("planName").to(plan.getPlanName());
-        plan.setBudget(100000);
+        plan.setBudget(1000000);
         plan.setStartDate(startDate);
         plan.setEndDate(endDate);
         planName.type(plan.getPlanName());
@@ -117,8 +142,84 @@ public class NewPlanSetupPage extends PageObject {
 			firstOfMonth.get(0).waitUntilClickable().click();
 		} else {
 			$("//td[text() = '" + plan.getEndDate() + "'][@tabindex = '0']").waitUntilClickable().click();
-		}        
+		}
         $("//button[span='Create Plan']").waitUntilEnabled().and().waitUntilClickable().click();
+    }
+
+
+    public void SevenDaysDatePicker(){
+
+       LocalDate localDate = LocalDate.now();
+       Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+       SimpleDateFormat sdf = new SimpleDateFormat("dd");
+       int startDate = Integer.parseInt(sdf.format(date));
+       int endDate = Integer.parseInt(sdf.format(date)) + 3;
+       plan.setStartDate(startDate);
+       plan.setEndDate(endDate);
+
+
+       dateField.waitUntilClickable().then().click();
+       $("//td[text() = '" + plan.getStartDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+
+    //   $("//td[text() = '" + plan.getEndDate() + "'][not(contains(@class, 'blocked'))]").waitUntilClickable().click();
+
+    }
+
+    public void selectMoreThan3WeekSlot()
+    {
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd");
+        int startDate = Integer.parseInt(sdf.format(date));
+        int endDate = Integer.parseInt(sdf.format(date)) + 31;
+        plan.setStartDate(startDate);
+        int res= endDate%30;
+        plan.setEndDate(res);
+
+        dateField.waitUntilClickable().then().click();
+        $("//td[text() = '" + plan.getStartDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+       $("//td[text() = '" + plan.getEndDate() + "'][not(contains(@class, 'blocked'))]").waitUntilClickable().click();
+
+    }
+
+    public void verifyCampaignLength() {
+
+        waitFor(CampaignLength).waitUntilVisible();
+        String campaign = CampaignLength.getText();
+
+        Assert.assertEquals(campaign , "7 days");
+                }
+
+    public void verifyCampaignLengthForMoreThan7Days(){
+        waitFor(CampaignLength).waitUntilVisible();
+        String campaign = CampaignLength.getText();
+        Assert.assertEquals(campaign , "14 days");
+    }
+
+    public void verifyCampaignLengthForMoreThan3Week() {
+        waitFor(CampaignLength).waitUntilVisible();
+        String campaign = CampaignLength.getText();
+        Assert.assertEquals(campaign, "4-8 weeks");
+    }
+
+    public void selectMoreThan7Days(){
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd");
+        int startDate = Integer.parseInt(sdf.format(date));
+        int endDate = Integer.parseInt(sdf.format(date)) + 11;
+        plan.setStartDate(startDate);
+        int res= endDate%30;
+        plan.setEndDate(res);
+
+        dateField.waitUntilClickable().then().click();
+        $("//td[text() = '" + plan.getStartDate() + "'][@tabindex = '0']").waitUntilClickable().click();
+
+            $("//td[text() = '" + plan.getEndDate() + "'][not(contains(@class, 'blocked'))]").waitUntilClickable().click();
+
     }
 
     public PlanModel clickOnLogo() {

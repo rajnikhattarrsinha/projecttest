@@ -75,4 +75,43 @@ public class ScenariosSetupPageSteps {
     public void theSliderPiechartAndCompareTableAreVsible() throws Exception {
     	scenariosSetupPage.checkScenarioElements();
     }
+    
+    @Given("^I optimize the '(.*)' channel percentage budget to (\\d+)$")
+    public void iOptimizeTheTVChannelBasedOnThePercentageOfBudget(String channel, int percentage) throws Exception {
+    	Serenity.setSessionVariable("percentage").to(percentage);
+    	scenariosSetupPage.updatePercentageOfBudget(channel, percentage);
+    	scenariosSetupPage.lock(channel);
+    	scenariosSetupPage.pressOptimizeButton();
+    }
+
+    @Given("^I verify that the budget is fully distributed within channels$")
+    public void iVerifyThatTheudgetIsDistributedWithinChannels() throws Exception {
+    	scenariosSetupPage.checkAllChannelsBudget();
+    	scenariosSetupPage.checkAllChannelsBudgetPercentage();
+    }
+    
+    @Given("^I optimize the '(.*)' channel budget to (\\d+)$")
+    public void iOptimizeTheTVChannelBudgetTo(String channel, int budget) throws Exception {
+    	Serenity.setSessionVariable("budget").to(budget);
+    	scenariosSetupPage.updatePercentageOfBudget(channel, budget);
+    	scenariosSetupPage.lock(channel);
+    	scenariosSetupPage.pressOptimizeButton();
+    }
+    
+    @Then("^the slider displays (\\d+)% for TV$")
+    public void theTVTSliderDisplays(int percentage) throws Exception {
+    	scenariosSetupPage.compareChannelBudgetDistribution(percentage);
+    }
+    
+    @Given("^I optimize using the (\\d+)% OLV slider bar$")
+    public void iClickOnTheSliderBar(int sliderPercentage) throws Exception {
+    	scenariosSetupPage.clickOnSliderBasedOnSelectedPercentage(sliderPercentage);
+    	scenariosSetupPage.lock("TV");
+    	scenariosSetupPage.pressOptimizeButton();
+    }
+
+    @Then("^the '(.*)' budget percentage was changed to (\\d+)%$")
+    public void theBudgetPercentageWasChangedAccordingly(String channel, int percentage) throws Exception {
+    	scenariosSetupPage.checkBudgetPercentageUpdate(channel, percentage);
+    }
 }

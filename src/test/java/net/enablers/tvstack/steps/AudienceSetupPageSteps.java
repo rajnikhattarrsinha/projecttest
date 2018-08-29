@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 
 public class AudienceSetupPageSteps {
@@ -133,5 +134,26 @@ public class AudienceSetupPageSteps {
         audienceSetupPage.clickEditAudienceBtn();
 
     }
+    //Scenario: Edit Audience
+    @Then("^I click on Edit Audience and edit the Audience name$")
+    public void iClickOnEditAudienceAndEditTheAudienceName() throws Throwable {
+        audienceSetupPage.clickEditAudienceBtn();
+        audienceSetupPage.clickNewGroup();
+        audienceSetupPage.AddNewQuery();
+        audienceSetupPage.editAudienceName();
+        audienceSetupPage.saveTheAudience();
+    }
 
+    @And("^I verify that the edited audience is present on the list$")
+    public void iVerifyThatTheEditedAudienceIsPresentOnTheList() throws Throwable {
+        audienceSetupPage.verifyEditedAudienceIsPresent();
+    }
+
+
+    //Scenario: Preview Audience
+
+    @And ("^I verify the Preview details$")
+    public void iVerifyTheDetails() {
+        audienceSetupPage.verifyPreviewText();
+    }
 }

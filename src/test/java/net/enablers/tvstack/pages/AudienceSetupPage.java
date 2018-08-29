@@ -3,6 +3,7 @@ package net.enablers.tvstack.pages;
 import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
 
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,6 +15,8 @@ import net.enablers.tvstack.utilities.RandomGenerator;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.interactions.Actions;
+
 
 public class AudienceSetupPage extends PageObject {
 
@@ -39,6 +42,9 @@ public class AudienceSetupPage extends PageObject {
 
     @FindBy(xpath = "//span[@class='audience-builder__query-preview-value']")
     WebElementFacade previewZone;
+
+    @FindBy(xpath = "//li[@class='group__inner']")
+    WebElementFacade previewQuery;
 
     @FindBy(xpath = "//*[@class='Polaris-TextContainer']")
     WebElementFacade previewDisplayUnderExistingAudiences;
@@ -67,12 +73,8 @@ public class AudienceSetupPage extends PageObject {
     @FindBy(xpath = "//div[@class='Polaris-ButtonGroup']//div[2]//button[1]")
     WebElement ContinueBtn;
 
-    @FindBy(xpath = "//input[@placeholder='Audience name']")
-    WebElement RenameAudienceName;
-
-    @FindBy(xpath = "//td[contains(text(),'copied')]")
-    WebElement ClonedAudience;
-
+    @FindBy(xpath = "//button[@class='button-custom audience-builder__btn-create']")
+    WebElementFacade NewGroup;
 
     NewPlanSetupPage newPlanSetupPage;
     
@@ -136,6 +138,20 @@ public class AudienceSetupPage extends PageObject {
         newAudieceInputField.type(Serenity.sessionVariableCalled("new_audience_name"));
     }
 
+    public void AddNewQuery(){
+
+        WebElement demographicsFolder = $("//div[span='Demographics']");
+        WebElement AgeFolder = $("//div[span='Age']");
+        WebElement AgeContainer = $("//div[span='Age group recode 1']");
+        withTimeoutOf(200, TimeUnit.SECONDS).waitFor(demographicsFolder).then().click();
+        waitFor(AgeFolder).then().click();
+        waitFor(AgeContainer).then().click();
+        WebElement Age = $("//div[span='18-24']");
+        Age.click();
+        Serenity.setSessionVariable("new_query").to("((Gender [Female]) AND (Age group recode 1 [18-24]))");
+        previewZone.shouldContainText(Serenity.sessionVariableCalled("new_query"));
+    }
+
     public void ClonedAudience(){
         Serenity.setSessionVariable("clone_audience_name").to("Clone_audience" + RandomGenerator.randomAlphanumeric(3));
         RenameAudience.type(Serenity.sessionVariableCalled("clone_audience_name"));
@@ -158,10 +174,16 @@ public class AudienceSetupPage extends PageObject {
     public void audienceIsSavedSuccessfully() {
         this.verifyPageTitle();
         withTimeoutOf(300, TimeUnit.SECONDS).waitForText(existingAudiencesSection, Serenity.sessionVariableCalled("new_audience_name"));
+         }
+
+
+
+    public void verifyPreviewText(){
         $("//button[span='Preview']").click();
         waitFor(previewDisplayUnderExistingAudiences).shouldContainText(Serenity.sessionVariableCalled("female_query"));
-    }
 
+
+    }
     public void clickOnDeleteAudience() {
         deleteAudienceButton.waitUntilClickable().click();
         waitFor(deleteAudienceModal).shouldContainText("Do you want to delete planning audience?");
@@ -185,13 +207,23 @@ public class AudienceSetupPage extends PageObject {
     public void clickEditAudienceBtn() throws InterruptedException {
         EditAudienceButton.click();
         String popup = getDriver().getWindowHandle();
-        System.out.println(popup);
         getDriver().switchTo().window(popup);
         ContinueBtn.click();
-        RenameAudienceName.clear();
-        RenameAudience.sendKeys("Renamed");
+    }
+    public void editAudienceName(){
+        Serenity.setSessionVariable("edited_audience_name").to("Auto_audience" + RandomGenerator.randomAlphanumeric(3));
+        newAudieceInputField.type(Serenity.sessionVariableCalled("edited_audience_name"));
 
+    }
+    public void clickNewGroup(){
+        NewGroup.click();
 
+    }
+
+    public void verifyEditedAudienceIsPresent(){
+        this.verifyPageTitle();
+        withTimeoutOf(300, TimeUnit.SECONDS).waitForText(existingAudiencesSection, Serenity.sessionVariableCalled("edited_audience_name"));
+        $("//button[span='Preview']").click();
     }
 
     public void checkAudienceDeletedSuccessfully() {

@@ -1,6 +1,8 @@
 package net.enablers.tvstack.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.enablers.tvstack.model.web.PlanModel;
@@ -86,7 +88,7 @@ public class NewPlanSetupPageSteps extends ScenarioSteps {
     @When("^I create a new plan$")
     public void iCreateANewPlan() throws Exception {
         homePage.createNewPlan();
-    	newPlanSetupPage.submitNewPlan();
+    newPlanSetupPage.submitNewPlan();
     	this.thePlanIsSavedSuccessfullySoFar();
     }
 
@@ -98,5 +100,49 @@ public class NewPlanSetupPageSteps extends ScenarioSteps {
     @Then("^the deleted plan is verified$")
     public void theDeletedPlanIsVerified() throws Exception {
     	homePage.verifyPlanWasDeleted(Serenity.sessionVariableCalled("planName"));
+    }
+
+
+    //Scenario: Calculate Campaign length
+
+    @When("^Create a new plan$")
+    public void createANewPlan() throws Exception {
+        homePage.createNewPlan();
+
+    }
+
+//Scenario: Verify that the campaign length is accurate
+
+    @Then("^Select days 7 date slot$")
+    public void selectDateSlot()  {
+        newPlanSetupPage.SevenDaysDatePicker();
+
+    }
+
+
+    @And("^Verify the Campaign length as per the selected date slot$")
+    public void verifyTheCampaignLengthForDaysSlot()  {
+        newPlanSetupPage.verifyCampaignLength();
+    }
+
+    @Then("^Select more than 7 days slot$")
+    public void selectDaysDateSlot()  {
+        newPlanSetupPage.selectMoreThan7Days();
+    }
+
+    @And("^Verify the Campaign length for case more than 7 days$")
+    public void verifyTheCampaignLengthForCaseMoreThanDays() {
+        newPlanSetupPage.verifyCampaignLengthForMoreThan7Days();
+
+    }
+
+    @Then("^Select more than (\\d+) week slot$")
+    public void selectMoreThan3WeeksSlot(int arg0) throws Throwable {
+        newPlanSetupPage.selectMoreThan3WeekSlot();
+    }
+
+    @And("^Verify the Campaign length for case more than (\\d+) weeks$")
+    public void verfiyTheCampaignLengthForCaseMoreThanWeeks(int arg0) throws Throwable {
+        newPlanSetupPage.verifyCampaignLengthForMoreThan3Week();
     }
 }
