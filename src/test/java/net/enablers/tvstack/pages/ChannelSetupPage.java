@@ -214,10 +214,7 @@ public class ChannelSetupPage extends PageObject {
 	{
 		assertThat(element(textboxBasedonName("Reach")).getValue()==Reach);
 	}
-	public void iClickonADVANCEDbutton()
-	{
-		advancedCalibrateButton.waitUntilClickable().click();
-	}
+
 	public void getMaximumReachValueAndVerifyWithUserMaximumReachValue(String MaximumReach)
 	{
 		assertThat(element(textboxBasedonName("Maximum Reach")).getValue()==MaximumReach);
@@ -289,8 +286,6 @@ public class ChannelSetupPage extends PageObject {
 		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase()));
 
 	}
-
-
 	public void iClickonButton(String buttonName)
 	{
 		try
@@ -313,6 +308,12 @@ public class ChannelSetupPage extends PageObject {
 		String ScenarioName = Serenity.sessionVariableCalled("new_audience_name")+"-scenario"+ScenarioNumber;
 		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(30, TimeUnit.SECONDS).waitUntilVisible();
 	}
+
+	public void entervalueinTextbox(String textboxname,String Textvalue)
+	{
+		element(textboxBasedonName(textboxname)).sendKeys(Textvalue);
+	}
+
 
 	public void clickonPlanNamefromHeaderSection()
 	{

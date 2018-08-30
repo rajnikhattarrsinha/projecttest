@@ -157,6 +157,6 @@ Feature: Channel selection
     Then I should see '14.00' populated in CPM textbox corresponding to Channel '2'
     Then I should see '12.00' populated in CPM textbox corresponding to Channel '3'
     Then I should see '12.00' populated in CPM textbox corresponding to Channel '4'
-  
+
 
     # Rajni's code ends here.....

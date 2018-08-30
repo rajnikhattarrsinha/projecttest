@@ -275,6 +275,31 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("Plan name edit link click successfully.");
     }
 
+    @Then("^I should be able to enter value '(.*)' in GRPs Celebrated textbox$")
+    public void iWillEnterGRPsCelebrated(String GRPs ) throws Throwable
+    {
+        channelSetupPage.entervalueinTextbox("GRPs Calibrated at",GRPs);
+        appliEyes.capture("GRPs Celebrated value '"+GRPs+"' enter successfully.");
+    }
+    @Then("^I should be able to enter value '(.*)' in Reach populated textbox")
+    public void iWillEnterinReachTextbox(String Reach ) throws Throwable
+    {
+        channelSetupPage.entervalueinTextbox("Reach",Reach );
+        appliEyes.capture("Reach value '"+Reach+"' enter successfully.");
+    }
+    @Then("^I should be able to enter value '(.*)' in Maximum Reach textbox")
+    public void iWillEnterinMaximumReachtextbox(String MaximumReach) throws Throwable
+    {
+        channelSetupPage.entervalueinTextbox("Maximum Reach",MaximumReach );
+        appliEyes.capture("Maximum Reach value '"+MaximumReach+"' enter successfully.");
+    }
+    @Then("^I should be able to enter value '(.*)' in Precision textbox")
+    public void iWillEnterinPrecisiontextbox(String Precisionvalue ) throws Throwable
+    {
+        channelSetupPage.entervalueinTextbox("Precision",Precisionvalue );
+        appliEyes.capture("Precision value '"+Precisionvalue+"' enter successfully.");
+    }
+
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///
 
