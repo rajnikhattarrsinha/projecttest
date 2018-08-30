@@ -199,7 +199,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelNo,String valuetoverify)
 	{
-		assertThat(element(textboxCPM(channelNo)).getValue() == valuetoverify);
+		assertThat(element(textboxCPM(channelNo)).getValue().equals(valuetoverify)).isTrue();
 	}
 	public void setCPMvalue(String channelNo,String NewCPMValue)
 	{
@@ -208,20 +208,20 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
 	{
-		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue() == UserGRPs);
+		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue().equals(UserGRPs)).isTrue();
 	}
 	public void getReachvalueAndVerifyWithUserReachValue(String Reach)
 	{
-		assertThat(element(textboxBasedonName("Reach")).getValue()==Reach);
+		assertThat(element(textboxBasedonName("Reach")).getValue().equals(Reach)).isTrue();
 	}
 
 	public void getMaximumReachValueAndVerifyWithUserMaximumReachValue(String MaximumReach)
 	{
-		assertThat(element(textboxBasedonName("Maximum Reach")).getValue()==MaximumReach);
+		assertThat(element(textboxBasedonName("Maximum Reach")).getValue().equals(MaximumReach)).isTrue();
 	}
 	public void getPrecisionValueAndComapreUserInputValue(String Precision)
 	{
-		assertThat(element(textboxBasedonName("Precision")).getValue()==Precision);
+		assertThat(element(textboxBasedonName("Precision")).getValue().equals(Precision)).isTrue();
 	}
 	public void iclickCancelbutton()
 	{
@@ -258,7 +258,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public void verifyNoneditableCPMtextbox(String channelNo)
 	{
-		assertThat(element(textboxCPM(channelNo)).getAttribute("readonly") !=null);
+		assertThat(element(textboxCPM(channelNo)).getAttribute("readonly") !=null).isTrue();
 	}
 
 
@@ -283,7 +283,7 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyPageHeader(String PageHeader)
 	{
 		headerTag.shouldBeVisible();
-		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase()));
+		assertThat(headerTag.getText().toLowerCase().contains(PageHeader.toLowerCase())).isTrue();
 
 	}
 	public void iClickonButton(String buttonName)
@@ -313,7 +313,6 @@ public class ChannelSetupPage extends PageObject {
 	{
 		element(textboxBasedonName(textboxname)).sendKeys(Textvalue);
 	}
-
 
 	public void clickonPlanNamefromHeaderSection()
 	{
