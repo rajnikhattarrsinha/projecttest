@@ -90,13 +90,6 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("Expected value of Reach '"+Reach+"' is displayed.");
     }
 
-    @Then("^I click on ADVANCED button")
-    public void iClickOnADVANCEDbutton() throws Throwable
-    {
-        channelSetupPage.iClickonADVANCEDbutton();
-        appliEyes.capture("'Advance' link clicked successfully");
-    }
-
     @Then("^I should see Maximum Reach populated as '(.*)'")
     public void iShouldSeeMaximumReachPopulatedTextValueAndVerifyUserMaximumReach(String MaximumReach) throws Throwable
     {

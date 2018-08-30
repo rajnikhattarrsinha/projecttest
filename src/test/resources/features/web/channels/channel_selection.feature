@@ -53,7 +53,7 @@ Feature: Channel selection
     And   I press calibrate button
     Then  I should see GRPs Celebrated at textbox populated as '60'
     Then  I should see Reach populated as '50'
-    And   I click on ADVANCED button
+    And   I click on 'ADVANCED' button
     Then  I should see Maximum Reach populated as '80'
     Then  I should see Precision populated as '70'
     And   I click Cancel button
@@ -118,10 +118,10 @@ Feature: Channel selection
     And  I press calibrate button
     Then  I should be able to enter value '10' in GRPs Celebrated textbox
     Then  I should be able to enter value '10' in Reach populated textbox
-    And   I click on ADVANCED button
+    And   I click on 'ADVANCED' button
     Then  I should be able to enter value '20' in Maximum Reach textbox
     Then  I should be able to enter value '20' in Precision textbox
-    And  I click on Save button
+    And  I click on 'Save' button
     And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel '2'
     And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel '2'
     And  I should see '20.00' populated in CPM textbox corresponding to Channel '2'
@@ -157,7 +157,6 @@ Feature: Channel selection
     Then I should see '14.00' populated in CPM textbox corresponding to Channel '2'
     Then I should see '12.00' populated in CPM textbox corresponding to Channel '3'
     Then I should see '12.00' populated in CPM textbox corresponding to Channel '4'
-
-
+  
 
     # Rajni's code ends here.....
