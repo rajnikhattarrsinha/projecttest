@@ -1,22 +1,15 @@
 package net.enablers.tvstack.steps;
 
-import java.util.Collections;
 import java.util.List;
-import cucumber.api.Transform;
-import cucumber.api.Scenario;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.Before;
-import net.enablers.tvstack.helpers.WebHelper;
-import net.enablers.tvstack.helpers.testData;
-import net.enablers.tvstack.model.api.scenariocompare.Scenarios;
 import net.enablers.tvstack.pages.AudienceSetupPage;
 import net.enablers.tvstack.pages.ChannelSetupPage;
 import net.enablers.tvstack.pages.NewPlanSetupPage;
 import net.enablers.tvstack.utilities.AppliEyes;
 import net.serenitybdd.core.Serenity;
-import net.thucydides.core.annotations.Feature;
 import net.thucydides.core.annotations.Steps;
 
 public class ChannelSetupPageSteps {
@@ -25,7 +18,6 @@ public class ChannelSetupPageSteps {
     AudienceSetupPage audienceSetupPage;
     ChannelSetupPage channelSetupPage;
     AppliEyes appliEyes;
-    WebHelper webHelper;
 
     @Steps
     TvstackLandingPageSteps landingPageSteps;
@@ -40,11 +32,6 @@ public class ChannelSetupPageSteps {
     //****************** RAJNI CODE START HERE*****************************//
     //*******************************************************************///
 
-    @Before
-    public void before(Scenario scenario)
-    {
-        webHelper.fetchTestDatafromExcelandPassargument(scenario);
-    }
     //########################################################################################################
     //# Scenario ID : 1
     //# Test Case Calibrate TV Channel-Prepopulating configured values
@@ -72,7 +59,7 @@ public class ChannelSetupPageSteps {
 //    }
 
     @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectClosestbuyingAudienceOfChannel(@Transform(testData.class) String buyingAudience, String channelNo) throws Throwable
+    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience, String channelNo) throws Throwable
     {
         channelSetupPage.selectClosestbuyingAudienceoption(channelNo,buyingAudience);
         appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelNo+"'.");
@@ -80,14 +67,14 @@ public class ChannelSetupPageSteps {
 
 
     @Then("^I select Second Length/Format as '(.*)' corresponding to Channel '(.*)'")
-    public void iSelectSecondLengthFormatOfChannel(@Transform(testData.class) String secondlengthFormatoption,String channelNo) throws Throwable
+    public void iSelectSecondLengthFormatOfChannel(String secondlengthFormatoption,String channelNo) throws Throwable
     {
         channelSetupPage.selectSecondLengthFormatoption(channelNo,secondlengthFormatoption);
         appliEyes.capture("Second Length format option '"+secondlengthFormatoption+"' successfully selected for Channel '"+channelNo+"'.");
     }
 
     @Then("^I should see '(.*)' populated in CPM textbox corresponding to Channel '(.*)'")
-    public void iShouldSeePopulatedCPMtextboxValueOfChannel(@Transform(testData.class) String userCPMInput,String channelNo) throws Throwable
+    public void iShouldSeePopulatedCPMtextboxValueOfChannel(String userCPMInput,String channelNo) throws Throwable
     {
         channelSetupPage.getCPMValueOfChannelAndVerifyWithUserCPMvalue(channelNo,userCPMInput);
         appliEyes.capture("Expected Channel '"+channelNo+"' CPM  value '"+userCPMInput+"' is displayed.");
@@ -96,14 +83,14 @@ public class ChannelSetupPageSteps {
 
 
     @Then("^I should see GRPs Celebrated at textbox populated as '(.*)'")
-    public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(@Transform(testData.class) String userGRPs) throws Throwable
+    public void iShouldSeeGRPsCelebratedatTextboxValueOfChannel(String userGRPs) throws Throwable
     {
         channelSetupPage.getGRPsValueAndverifyWithUserGRPs(userGRPs);
         appliEyes.capture("Expected value of GRPs Calibrated at '"+userGRPs+"' is displayed.");
     }
 
     @Then("^I should see Reach populated as '(.*)'")
-    public void iShouldSeeReachpopulatedTextValueAndVerifyWithUserReachValue(@Transform(testData.class) String Reach) throws Throwable
+    public void iShouldSeeReachpopulatedTextValueAndVerifyWithUserReachValue(String Reach) throws Throwable
     {
         channelSetupPage.getReachvalueAndVerifyWithUserReachValue(Reach);
         appliEyes.capture("Expected value of Reach '"+Reach+"' is displayed.");
@@ -117,14 +104,14 @@ public class ChannelSetupPageSteps {
     }
 
     @Then("^I should see Maximum Reach populated as '(.*)'")
-    public void iShouldSeeMaximumReachPopulatedTextValueAndVerifyUserMaximumReach(@Transform(testData.class) String MaximumReach) throws Throwable
+    public void iShouldSeeMaximumReachPopulatedTextValueAndVerifyUserMaximumReach(String MaximumReach) throws Throwable
     {
         channelSetupPage.getMaximumReachValueAndVerifyWithUserMaximumReachValue(MaximumReach);
         appliEyes.capture("Expected value of 'Maximum Reach' "+MaximumReach+" is displayed.");
     }
 
     @Then("^I should see Precision populated as '(.*)'")
-    public void iShouldSeePrecisionPopulatedValueAndVerifyWithUserPrecisionValue(@Transform(testData.class) String Precision) throws Throwable
+    public void iShouldSeePrecisionPopulatedValueAndVerifyWithUserPrecisionValue(String Precision) throws Throwable
     {
         channelSetupPage.getPrecisionValueAndComapreUserInputValue(Precision);
         appliEyes.capture("Expected value of 'Precision' "+Precision+" is displayed.");
@@ -233,71 +220,6 @@ public class ChannelSetupPageSteps {
         channelSetupPage.setCPMvalue(channelNo,CPM);
         appliEyes.capture("In Channel '"+channelNo+"' CPM  value '"+CPM+"' is entered.");
     }
-    //########################################################################################################
-    //# Scenario ID : 5
-    //# Test Case Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
-    //#------------------------------------------------------------------------------------------------------
-    //# Description: This test case verify the updated CPM value for channel TV,VideoOnDemand and Online+Video
-    //#------------------------------------------------------------------------------------------------------
-    //# Pre-conditions: NA
-    //# Post-conditions: NA
-    //# Limitations: NA
-    //#------------------------------------------------------------------------------------------------------
-    //# Owner:  Rajni
-    //# Created on: 13-Aug-2018
-    //#------------------------------------------------------------------------------------------------------
-    //# Reviewer:
-    //# Review Date:
-    //#------------------------------------------------------------------------------------------------------
-    //# History Notes:
-    //########################################################################################################
-
-    @Then("^I click on '(.*)' button$")
-    public void iClickonButton(String buttonText) throws Throwable
-    {
-        channelSetupPage.iClickonButton(buttonText);
-        appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
-    }
-    @Then ("I should see the newly created scenario '(.*)' on Scenarios page")
-    public void iShouldseeNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
-    {
-        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
-        appliEyes.capture("New Created Scenario id displayed on Scenario page");
-    }
-
-    @Then("^I should see '(.*)' page")
-    public void iShouldSeePageHeaderName(String PageName) throws Throwable
-    {
-        channelSetupPage.verifyPageHeader(PageName);
-        appliEyes.capture(PageName+" Page is displayed.");
-    }
-
-    @Then("^I select newly created scenario A from scenario A listbox$")
-    public void iSelectScenarioA() throws Throwable
-    {
-        String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
-        channelSetupPage.selectScenarioAValue(scenarioA);
-    }
-
-    @Then("^I select newly created scenario B  from scenario B listbox$")
-    public void iSelectScenarioB() throws Throwable
-    {
-        String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
-        channelSetupPage.selectScenarioBValue(scenarioB);
-    }
-    @Then("^I select created plan from Planning Audience listbox$")
-    public void iSelectPlanningAudience() throws Throwable
-    {
-        String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
-        channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
-    }
-
-    @Then("^I click plan name edit link from top of the page$")
-    public void iClickPlanName() throws Throwable
-    {
-        channelSetupPage.clickonPlanNamefromHeaderSection();
-        appliEyes.capture("Plan name edit link click successfully.");
-    }
 
 
     //****************** RAJNI CODE END HERE*****************************//
@@ -306,7 +228,7 @@ public class ChannelSetupPageSteps {
 
     @Then("^I should be taken to audience channel page$")
     public void iShouldBeTakenToAudienceChannelPage() {
-        newPlanSetupPage.verifyPageTitle("Channel");
+    	newPlanSetupPage.verifyPageTitle("Channel");
         appliEyes.capture("Landed on audience channel page");
     }
 
@@ -333,21 +255,12 @@ public class ChannelSetupPageSteps {
 
     @Given("^I click '(.*)' button$")
     public void iClickButton(String buttonType) throws Exception {
-        newPlanSetupPage.iClickNextButton(buttonType);
+    	newPlanSetupPage.iClickNextButton(buttonType);
     }
 
-    // Line is commeneted because of assertion is based on page title.
-    // Currently application tital remains same on all page
-    /*
     @Then("^I can see the '(.*)' section$")
     public void iCanSeeTheSelected_Channel(String section) throws Exception {
     	newPlanSetupPage.verifyPageTitle(section);
-    }
-    */
-
-    @Then("^I can see the '(.*)' section$")
-    public void iCanSeeTheSelected_Channel(String section) throws Exception {
-        channelSetupPage.verifyPageHeader(section);
     }
 
 

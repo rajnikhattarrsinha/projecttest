@@ -60,7 +60,7 @@ public class PlannerAdminPage extends PageObject {
 		for (int i = 0; i < leadsAndPlannersSections.size(); i++) {
 			leadsAndPlannersSections.get(i).shouldBeCurrentlyVisible();
 		}
-	  assertThat(leadsAndPlannersSections.size()==2);
+		assertThat(leadsAndPlannersSections.size()==2);
 	}
 
 	public void removeTestPlannerBeforeRunning(String user) {

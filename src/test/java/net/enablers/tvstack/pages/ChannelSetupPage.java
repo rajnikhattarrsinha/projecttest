@@ -199,7 +199,7 @@ public class ChannelSetupPage extends PageObject {
 
 	public void getCPMValueOfChannelAndVerifyWithUserCPMvalue(String channelNo,String valuetoverify)
 	{
-		assertThat(element(textboxCPM(channelNo)).getValue().equals(valuetoverify));
+		assertThat(element(textboxCPM(channelNo)).getValue() == valuetoverify);
 	}
 	public void setCPMvalue(String channelNo,String NewCPMValue)
 	{
@@ -208,11 +208,11 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public void getGRPsValueAndverifyWithUserGRPs(String UserGRPs)
 	{
-		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue().equals(UserGRPs));
+		assertThat(element(textboxBasedonName("GRPs Calibrated at")).getValue() == UserGRPs);
 	}
 	public void getReachvalueAndVerifyWithUserReachValue(String Reach)
 	{
-		assertThat(element(textboxBasedonName("Reach")).getValue().equals(Reach));
+		assertThat(element(textboxBasedonName("Reach")).getValue()==Reach);
 	}
 	public void iClickonADVANCEDbutton()
 	{
@@ -220,11 +220,11 @@ public class ChannelSetupPage extends PageObject {
 	}
 	public void getMaximumReachValueAndVerifyWithUserMaximumReachValue(String MaximumReach)
 	{
-		assertThat(element(textboxBasedonName("Maximum Reach")).getValue().equals(MaximumReach));
+		assertThat(element(textboxBasedonName("Maximum Reach")).getValue()==MaximumReach);
 	}
 	public void getPrecisionValueAndComapreUserInputValue(String Precision)
 	{
-		assertThat(element(textboxBasedonName("Precision")).getValue().equals(Precision));
+		assertThat(element(textboxBasedonName("Precision")).getValue()==Precision);
 	}
 	public void iclickCancelbutton()
 	{
@@ -311,7 +311,7 @@ public class ChannelSetupPage extends PageObject {
 	public void verifyNewlyCreatedScenario(String ScenarioNumber)
 	{
 		String ScenarioName = Serenity.sessionVariableCalled("new_audience_name")+"-scenario"+ScenarioNumber;
-		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(60, TimeUnit.SECONDS).waitUntilVisible();
+		$("//td[text()='"+ScenarioName+"']").withTimeoutOf(30, TimeUnit.SECONDS).waitUntilVisible();
 	}
 
 	public void clickonPlanNamefromHeaderSection()
