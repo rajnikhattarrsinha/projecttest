@@ -51,12 +51,6 @@ public class ChannelSetupPageSteps {
     //# History Notes:
     //########################################################################################################
 
-//    @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
-//    public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience,String channelName) throws Throwable
-//    {
-//        channelSetupPage.selectClosestbuyingAudienceoption(channelName,buyingAudience);
-//        appliEyes.capture("Closest buying Audience option '"+buyingAudience+"' successfully selected for Channel '"+channelName+"'.");
-//    }
 
     @Then("^I select Closest buying Audience as '(.*)' corresponding to Channel '(.*)'")
     public void iSelectClosestbuyingAudienceOfChannel(String buyingAudience, String channelNo) throws Throwable
@@ -221,6 +215,72 @@ public class ChannelSetupPageSteps {
         appliEyes.capture("In Channel '"+channelNo+"' CPM  value '"+CPM+"' is entered.");
     }
 
+    //########################################################################################################
+    //# Scenario ID : 5
+    //# Test Case : Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
+    //#------------------------------------------------------------------------------------------------------
+    //# Description: This test case Overwriting the CPM value and verify new updated CPM value is displayed
+    //# on Channel page.
+    //#------------------------------------------------------------------------------------------------------
+    //# Pre-conditions: NA
+    //# Post-conditions: NA
+    //# Limitations: NA
+    //#------------------------------------------------------------------------------------------------------
+    //# Owner:  Rajni
+    //# Created on: 30-Aug-2018
+    //#------------------------------------------------------------------------------------------------------
+    //# Reviewer:
+    //# Review Date:
+    //#------------------------------------------------------------------------------------------------------
+    //# History Notes:
+    //########################################################################################################
+
+    @Then("^I click on '(.*)' button$")
+    public void iClickonButton(String buttonText) throws Throwable
+    {
+        channelSetupPage.iClickonButton(buttonText);
+        appliEyes.capture("Button '"+buttonText+"' clicked successfully.");
+    }
+    @Then ("I should see the newly created scenario '(.*)' on Scenarios page")
+    public void iShouldseeNewCreatedScenarioOnScenarioPage(String scenarioNumber) throws Throwable
+    {
+        channelSetupPage.verifyNewlyCreatedScenario(scenarioNumber);
+        appliEyes.capture("New Created Scenario id displayed on Scenario page");
+    }
+
+    @Then("^I should see '(.*)' page")
+    public void iShouldSeePageHeaderName(String PageName) throws Throwable
+    {
+        channelSetupPage.verifyPageHeader(PageName);
+        appliEyes.capture(PageName+" Page is displayed.");
+    }
+
+    @Then("^I select newly created scenario A from scenario A listbox$")
+    public void iSelectScenarioA() throws Throwable
+    {
+        String scenarioA = Serenity.sessionVariableCalled("new_audience_name")+"-scenario1";
+        channelSetupPage.selectScenarioAValue(scenarioA);
+    }
+
+    @Then("^I select newly created scenario B  from scenario B listbox$")
+    public void iSelectScenarioB() throws Throwable
+    {
+        String scenarioB = Serenity.sessionVariableCalled("new_audience_name")+"-scenario2";
+        channelSetupPage.selectScenarioBValue(scenarioB);
+    }
+    @Then("^I select created plan from Planning Audience listbox$")
+    public void iSelectPlanningAudience() throws Throwable
+    {
+        String PlanningAudience = Serenity.sessionVariableCalled("new_audience_name");
+        channelSetupPage.selectPlanningAudienceValue(PlanningAudience);
+    }
+
+    @Then("^I click plan name edit link from top of the page$")
+    public void iClickPlanName() throws Throwable
+    {
+        channelSetupPage.clickonPlanNamefromHeaderSection();
+        appliEyes.capture("Plan name edit link click successfully.");
+    }
 
     //****************** RAJNI CODE END HERE*****************************//
     //*******************************************************************///

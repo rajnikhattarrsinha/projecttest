@@ -111,25 +111,36 @@ Feature: Channel selection
   @skip
   Scenario: Overwriting CPM for Channels TV,VideoOnDemand and Online+Video and Saving for Plan
     Given I'm on audience channels page
-    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel 'TV'
-    Then I should see '20.00' populated in CPM textbox corresponding to Channel 'TV'
-    Then I should be able to enter value '22.00' in CPM textbox corresponding to Channel 'TV'
-    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel 'Video on Demand'
-    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
-    Then I enter value '22.00' in CPM textbox corresponding to Channel 'Video on Demand'
-    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel 'Online+Video'
-    And  I should see '20.00' populated in CPM textbox corresponding to Channel 'Online+Video'
-    Then I enter value '22.00' in CPM textbox corresponding to Channel 'Online+Video'
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel '1'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel '1'
+    Then I should see '20.00' populated in CPM textbox corresponding to Channel '1'
+    Then I should be able to enter value '12.00' in CPM textbox corresponding to Channel '1'
+    And  I press calibrate button
+    Then  I should be able to enter value '10' in GRPs Celebrated textbox
+    Then  I should be able to enter value '10' in Reach populated textbox
+    And   I click on ADVANCED button
+    Then  I should be able to enter value '20' in Maximum Reach textbox
+    Then  I should be able to enter value '20' in Precision textbox
+    And  I click on Save button
+    And  I select Closest buying Audience as 'VideoDONOTDELETE' corresponding to Channel '2'
+    And  I select Second Length/Format as 'VideoFormatDONOTDELETE' corresponding to Channel '2'
+    And  I should see '20.00' populated in CPM textbox corresponding to Channel '2'
+    Then I should be able to enter value '14.00' in CPM textbox corresponding to Channel '2'
+    And  I select Closest buying Audience as 'OnlineVideoDONOTDELETE' corresponding to Channel '3'
+    And  I select Second Length/Format as 'onlinevideoDONOTDELETE' corresponding to Channel '3'
+    And  I should see '20.00' populated in CPM textbox corresponding to Channel '3'
+    Then I should be able to enter value '12.00' in CPM textbox corresponding to Channel '3'
+    And  I select Age as '18-34' corresponding to Channel Youtube
+    And  I select Gender as 'Female' corresponding to Channel 'Youtube'
+    And  I select Second Length/Format as 'GooglePreferred' corresponding to Channel '4'
+    Then I should be able to enter value '12' in CPM textbox corresponding to Channel '4'
     Then I click on 'Next: Scenarios' button
     Then I can see the 'Scenarios' section
-    Then I click on 'Create new scenario' button
+    Then I click on 'Create scenario' button
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '1' on Scenarios page
-    Then I click on 'Create new scenario' button
+    Then I click on 'Create scenario' button
     Then I click on 'update' button
     Then I click on 'Close' button
     Then I should see the newly created scenario '2' on Scenarios page
@@ -142,9 +153,10 @@ Feature: Channel selection
     Then I should see 'Edit plan' page
     And  I click on 'Update' button
     And  I click on 'Next: Channels' button
-    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'TV'
-    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Video on Demand'
-    Then I should see '22.00' populated in CPM textbox corresponding to Channel 'Online+Video'
+    Then I should see '12.00' populated in CPM textbox corresponding to Channel '1'
+    Then I should see '14.00' populated in CPM textbox corresponding to Channel '2'
+    Then I should see '12.00' populated in CPM textbox corresponding to Channel '3'
+    Then I should see '12.00' populated in CPM textbox corresponding to Channel '4'
 
 
 
