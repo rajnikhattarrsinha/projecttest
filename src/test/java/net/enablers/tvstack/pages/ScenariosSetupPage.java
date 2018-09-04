@@ -176,4 +176,13 @@ public class ScenariosSetupPage extends PageObject {
 		int tvBudgetPercentage = Integer.valueOf(element(this.getBudgetPercentageInputField(channel)).waitUntilVisible().then().getValue().replaceAll("\\.0*$", ""));		
 		assertThat(tvBudgetPercentage == percentage);	
 	}
+
+	public By textbuyingAudience(String channelNo)
+	{
+		return By.xpath("//table[@class='compare-table']//tbody//tr[" + channelNo + "]//td[5]");
+	}
+	public void verifybuyingAudienceTextonScenariopage(String buyingAudience,String channelNo)
+	{
+		assertThat(element(textbuyingAudience(channelNo)).getText().equals(buyingAudience));
+	}
 }

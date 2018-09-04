@@ -60,3 +60,19 @@ Feature: Scenario builder
     Then the 'TV' budget percentage was changed to 70%
     And the slider displays 70% for TV
     And I verify that the budget is fully distributed within channels
+
+
+ #****************RAJNI CODE START HERE ***************************######
+  Scenario:Verifying Buying Audience on Create Scenario screen to show values as selected on Channel Page
+    Given I'm on audience channels page
+    And  I select Closest buying Audience as 'TVDONOTDELETE' corresponding to Channel '1'
+    And  I select Second Length/Format as 'TVDONOTDELETE' corresponding to Channel '1'
+    Then I click on 'Next: Scenarios' button
+    Then I can see the 'Scenarios' section
+    Then I click on 'Create scenario' button
+    Then I should see Buying Audience 'TVDONOTDELETE' on Scenarios page corresponding to Channel '1'
+    Then I should see Buying Audience 'All' on Scenarios page corresponding to Channel '2'
+    Then I should see Buying Audience 'All' on Scenarios page corresponding to Channel '3'
+    Then I should see Buying Audience 'All' on Scenarios page corresponding to Channel '4'
+    Then I should see Buying Audience 'All' on Scenarios page corresponding to Channel '5'
+    Then I should see Buying Audience 'All' on Scenarios page corresponding to Channel '6'
