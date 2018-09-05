@@ -183,6 +183,6 @@ public class ScenariosSetupPage extends PageObject {
 	}
 	public void verifybuyingAudienceTextonScenariopage(String buyingAudience,String channelNo)
 	{
-		assertThat(element(textbuyingAudience(channelNo)).getText().equals(buyingAudience));
+		assertThat(element(textbuyingAudience(channelNo)).getText().equals(buyingAudience)).isTrue();
 	}
 }
